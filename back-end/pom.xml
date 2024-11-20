@@ -35,6 +35,16 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -49,6 +59,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+
+		<!-- https://mvnrepository.com/artifact/com.daml/bindings-scala -->
+		<dependency>
+			<groupId>com.daml</groupId>
+			<artifactId>bindings-scala_2.13</artifactId>
+			<version>3.0.0-snapshot.20240126.12648.0.va9dc2d63</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

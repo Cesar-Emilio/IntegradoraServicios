@@ -21,3 +21,6 @@
 2024-11-19T19:52:03.415-06:00  WARN 23056 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2024-11-19T19:52:03.742-06:00  INFO 23056 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2024-11-19T19:52:03.748-06:00  INFO 23056 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 3.329 seconds (process running for 3.932)
+2024-11-19T21:09:10.452-06:00  INFO 23056 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-19T21:09:10.481-06:00  INFO 23056 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-19T21:09:10.487-06:00  INFO 23056 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
