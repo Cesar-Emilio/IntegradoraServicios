@@ -1,4 +1,4 @@
 package mx.edu.utex.todolist.user.model;
 
-public class Category {
+public class User {
 }

@@ -1,4 +1,4 @@
 package mx.edu.utex.todolist.user.control;
 
-public class CategoryController {
+public class UserController {
 }

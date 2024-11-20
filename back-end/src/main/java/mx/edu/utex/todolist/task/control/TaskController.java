@@ -1,4 +1,4 @@
 package mx.edu.utex.todolist.task.control;
 
-public class CategoryController {
+public class TaskController {
 }
