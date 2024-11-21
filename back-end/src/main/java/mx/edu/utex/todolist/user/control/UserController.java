@@ -41,10 +41,12 @@ public class UserController {
         return userService.login(userDTO);
     }
 
+    /*
     @PostMapping("/logout")
     public ResponseEntity<Message> logout(@RequestBody UserDTO userDTO) {
         return userService.logout(userDTO);
     }
+    */
 
     @GetMapping("/{id}")
     public ResponseEntity<Message> findById(@PathVariable Long id) {

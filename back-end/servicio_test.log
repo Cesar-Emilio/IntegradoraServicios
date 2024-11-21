@@ -1,26 +1,14 @@
-2024-11-19T19:52:00.848-06:00  INFO 23056 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 22 with PID 23056 (C:\Users\cesar\OneDrive\Documentos\UTEZ\4to Cuatrimestre\Aplicaciones web orientadas a servicios\IntegradoraServicios\back-end\target\classes started by cesar in C:\Users\cesar\OneDrive\Documentos\UTEZ\4to Cuatrimestre\Aplicaciones web orientadas a servicios\IntegradoraServicios\back-end)
-2024-11-19T19:52:00.851-06:00  INFO 23056 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-11-19T19:52:01.483-06:00  INFO 23056 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-19T19:52:01.504-06:00  INFO 23056 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 JPA repository interfaces.
-2024-11-19T19:52:02.006-06:00  INFO 23056 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-11-19T19:52:02.025-06:00  INFO 23056 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-11-19T19:52:02.025-06:00  INFO 23056 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-11-19T19:52:02.076-06:00  INFO 23056 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-11-19T19:52:02.077-06:00  INFO 23056 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1171 ms
-2024-11-19T19:52:02.213-06:00  INFO 23056 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-19T19:52:02.282-06:00  INFO 23056 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-11-19T19:52:02.313-06:00  INFO 23056 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-11-19T19:52:02.625-06:00  INFO 23056 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-19T19:52:02.660-06:00  INFO 23056 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-11-19T19:52:03.032-06:00  INFO 23056 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@352e5a82
-2024-11-19T19:52:03.033-06:00  INFO 23056 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-11-19T19:52:03.076-06:00  WARN 23056 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-19T19:52:03.077-06:00  WARN 23056 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-11-19T19:52:03.377-06:00  INFO 23056 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-19T19:52:03.383-06:00  INFO 23056 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-19T19:52:03.415-06:00  WARN 23056 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-11-19T19:52:03.742-06:00  INFO 23056 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-11-19T19:52:03.748-06:00  INFO 23056 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 3.329 seconds (process running for 3.932)
-2024-11-19T21:09:10.452-06:00  INFO 23056 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-19T21:09:10.481-06:00  INFO 23056 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-11-19T21:09:10.487-06:00  INFO 23056 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-21T00:00:08.758-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-6] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:00:15.593-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-5] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:00:16.160-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-4] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:00:16.856-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-7] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:00:17.395-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-8] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:00:18.022-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-10] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:00:18.615-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-9] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:00:36.030-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-1] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-11-21T00:01:59.770-06:00  WARN 12964 --- [todolist] [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2024-11-21T00:02:04.620-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-5] m.e.u.todolist.user.control.UserService  : La actualización ha sido realizada correctamente
+2024-11-21T00:02:13.585-06:00  INFO 12964 --- [todolist] [http-nio-8080-exec-4] m.e.u.todolist.user.control.UserService  : La búsqueda ha sido realizada correctamente
+2024-11-21T00:02:19.297-06:00  INFO 12964 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-21T00:02:19.299-06:00  INFO 12964 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-21T00:02:19.308-06:00  INFO 12964 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

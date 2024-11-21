@@ -1,5 +1,5 @@
 package mx.edu.utex.todolist.security;
-
+/*
 import com.example.RepasoCesar.security.dto.AuthRequest;
 import com.example.RepasoCesar.security.dto.AuthResponse;
 import com.example.RepasoCesar.user.model.User;
@@ -52,3 +52,4 @@ public class AuthController {
         return new AuthResponse(jwt, user.getId(), user.getUsername(), expirationTime);
     }
 }
+*/

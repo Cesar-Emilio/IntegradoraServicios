@@ -3,9 +3,6 @@ package mx.edu.utex.todolist.user.model;
 import jakarta.validation.constraints.NotNull;
 
 public class UserDTO {
-    @NotNull(groups = {Modify.class, ChangeStatus.class}, message = "El id no puede ser nulo")
-    private long id;
-
     @NotNull(groups = {Register.class, Modify.class}, message = "El nombre no puede ser nulo")
     private String name;
 
@@ -33,25 +30,6 @@ public class UserDTO {
         this.password = password;
         this.status = status;
         this.admin = admin;
-    }
-
-    public UserDTO(long id, String name, String surname, String email, int cellphone, String password, boolean status, boolean admin) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.cellphone = cellphone;
-        this.password = password;
-        this.status = status;
-        this.admin = admin;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {

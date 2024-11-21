@@ -1,5 +1,5 @@
 package mx.edu.utex.todolist.security;
-
+/*
 import com.example.RepasoCesar.user.model.User;
 import com.example.RepasoCesar.user.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,3 +35,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         );
     }
 }
+ */
