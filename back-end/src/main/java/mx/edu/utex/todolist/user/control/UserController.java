@@ -61,6 +61,7 @@ public class UserController {
         return userService.edit(id, userDTO);
     }
 
+    /*
     @PostMapping("/solicitudeChangePassword/{email}")
     public ResponseEntity<Message> solicitudeChangePassword(@PathVariable String email) {
         return userService.solicitudeChangePassword(email);
@@ -70,4 +71,5 @@ public class UserController {
     public ResponseEntity<Message> changePasswordBySolicitude(@PathVariable String token, @RequestBody String password) {
         return userService.changePasswordBySolicitude(token, password);
     }
+    */
 }

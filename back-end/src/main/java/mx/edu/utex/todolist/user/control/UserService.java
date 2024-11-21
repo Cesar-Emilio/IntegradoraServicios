@@ -211,10 +211,10 @@ public class UserService {
         return new ResponseEntity<>(new Message(/*token*/"a", "Inicio de sesión exitoso", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
+    /*
     @Transactional
     public ResponseEntity<Message> logout(String token) {
-        // Asumiendo que tienes un servicio para manejar tokens (lista negra, revocación, etc.)
-        tokenService.invalidateToken(token); // Implementa la lógica de revocación o invalidación del token
+        tokenService.invalidateToken(token);
         return new ResponseEntity<>(new Message("Sesión cerrada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
@@ -224,9 +224,6 @@ public class UserService {
         if (user == null) {
             return new ResponseEntity<>(new Message("Correo no registrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        /*String token = tokenService.generateResetToken(user); // Genera un token de recuperación
-        // Envía un correo electrónico al usuario con el token o enlace de recuperación
-        emailService.sendPasswordResetEmail(user.getEmail(), token);*/
         return new ResponseEntity<>(new Message("Solicitud de cambio de clave enviada al correo", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
@@ -245,4 +242,5 @@ public class UserService {
         tokenService.delete(resetToken);
         return new ResponseEntity<>(new Message("Contraseña actualizada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
     }
+    */
 }
