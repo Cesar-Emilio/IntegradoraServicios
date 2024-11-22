@@ -1,9 +1,9 @@
 package mx.edu.utex.todolist.security;
-/*
-import com.example.RepasoCesar.security.dto.AuthRequest;
-import com.example.RepasoCesar.security.dto.AuthResponse;
-import com.example.RepasoCesar.user.model.User;
-import com.example.RepasoCesar.user.model.UserRepository;
+
+import mx.edu.utex.todolist.security.dto.AuthRequest;
+import mx.edu.utex.todolist.security.dto.AuthResponse;
+import mx.edu.utex.todolist.user.model.User;
+import mx.edu.utex.todolist.user.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -44,12 +44,11 @@ public class AuthController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        User user = userRepository.findByUsername(authRequest.getUsername())
+        User user = userRepository.findByEmail(authRequest.getUsername())
                 .orElseThrow(() -> new Exception("Usuario no encontrado"));
 
         long expirationTime = jwtUtil.getExpirationTime();
 
-        return new AuthResponse(jwt, user.getId(), user.getUsername(), expirationTime);
+        return new AuthResponse(jwt, user.getId(), user.getEmail(), expirationTime);
     }
 }
-*/

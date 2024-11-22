@@ -1,7 +1,7 @@
 package mx.edu.utex.todolist.security;
-/*
-import com.example.RepasoCesar.user.model.User;
-import com.example.RepasoCesar.user.model.UserRepository;
+
+import mx.edu.utex.todolist.user.model.User;
+import mx.edu.utex.todolist.user.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,12 +22,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Correo no encontrado: " + email));
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
+                user.getEmail(),
                 user.getPassword(),
                 user.getRoles().stream()
                         .map(role -> new SimpleGrantedAuthority(role.getName()))
@@ -35,4 +35,3 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         );
     }
 }
- */

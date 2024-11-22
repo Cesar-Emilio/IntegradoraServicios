@@ -1,6 +1,10 @@
 package mx.edu.utex.todolist.user.model;
 
 import jakarta.persistence.*;
+import mx.edu.utex.todolist.role.model.Role;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="user")
@@ -15,13 +19,13 @@ public class User {
     @Column(name = "surname", columnDefinition = "VARCHAR(50)")
     private String apellido;
 
-    @Column(name = "email", columnDefinition = "VARCHAR(50)")
+    @Column(name = "email", columnDefinition = "VARCHAR(50)", nullable = false, unique = true)
     private String email;
 
     @Column(name = "cellphone", columnDefinition = "INTEGER(10)")
     private int telefono;
 
-    @Column(name = "password", columnDefinition = "VARCHAR(50)")
+    @Column(name = "password", columnDefinition = "VARCHAR(50)", nullable = false)
     private String password;
 
     @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
@@ -29,6 +33,14 @@ public class User {
 
     @Column(name = "admin", columnDefinition = "BOOL DEFAULT FALSE")
     private boolean admin;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -116,5 +128,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

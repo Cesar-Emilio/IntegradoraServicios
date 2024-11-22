@@ -1,5 +1,5 @@
 package mx.edu.utex.todolist.security;
-/*
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +28,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register").permitAll()
+                        //TODO: A implementar
                         .requestMatchers("/town/**").hasAuthority("ROLE_TOWN_ACCESS")
                         .requestMatchers("/state/**").hasAuthority("ROLE_STATE_ACCESS")
                         .anyRequest().authenticated()
@@ -48,6 +49,3 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-
-
- */
