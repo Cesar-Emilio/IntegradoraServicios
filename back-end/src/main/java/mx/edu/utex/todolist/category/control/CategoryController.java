@@ -20,37 +20,37 @@ public class CategoryController {
     }
 
     // Consultar todas las categorías
-    @GetMapping("/all")
+    @GetMapping("/findAll")
     public ResponseEntity<Message> findAll() {
         return categoryService.consultCategories();
     }
 
     // Consultar categoría por ID
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Message> findById(@PathVariable Long id) {
         return categoryService.idCategory(id);
     }
 
     // Eliminar categoría
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Message> deleteCategory(@PathVariable Long id) {
         return categoryService.deleteCategory(id);
     }
 
     // Actualizar categoría
-    @PutMapping("/update")
-    public ResponseEntity<Message> updateCategory(@RequestBody Category category) {
-        return categoryService.updateCategory(category);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Message> updateCategory(@RequestBody Category category, @PathVariable Long id) {
+        return categoryService.updateCategory(category, id);
     }
 
     // Activar categoría
-    @PutMapping("/{id}/activate")
+    @PutMapping("/activate/{id}")
     public ResponseEntity<Message> activateCategory(@PathVariable Long id) {
         return categoryService.activateCategory(id);
     }
 
     // Desactivar categoría
-    @PutMapping("/{id}/deactivate")
+    @PutMapping("/deactivate/{id}")
     public ResponseEntity<Message> desactivateCategory(@PathVariable Long id) {
         return categoryService.desactivateCategory(id);
     }

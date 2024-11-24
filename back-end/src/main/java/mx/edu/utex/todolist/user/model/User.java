@@ -31,21 +31,13 @@ public class User {
     @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
     private boolean status;
 
-    @Column(name = "admin", columnDefinition = "BOOL DEFAULT FALSE")
-    private boolean admin;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+    @Column(name = "admin", columnDefinition = "VARCHAR(20) DEFAULT 'ROLE_USER'")
+    private String admin;
 
     public User() {
     }
 
-    public User(String nombre, String apellido, String email, int telefono, String password, boolean status, boolean admin) {
+    public User(String nombre, String apellido, String email, int telefono, String password, boolean status, String admin) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -55,7 +47,7 @@ public class User {
         this.admin = admin;
     }
 
-    public User(long id, String nombre, String apellido, String email, int telefono, String password, boolean status, boolean admin) {
+    public User(long id, String nombre, String apellido, String email, int telefono, String password, boolean status, String admin) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -122,19 +114,11 @@ public class User {
         this.status = status;
     }
 
-    public boolean isAdmin() {
+    public String getAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(String admin) {
         this.admin = admin;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }

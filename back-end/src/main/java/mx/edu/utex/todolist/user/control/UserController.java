@@ -21,12 +21,12 @@ public class UserController {
         return userService.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<Message> register(@RequestBody UserDTO userDTO) {
         return userService.register(userDTO);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Message> update(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         return userService.update(id, userDTO);
     }
@@ -41,19 +41,17 @@ public class UserController {
         return userService.login(userDTO);
     }
 
-    /*
     @PostMapping("/logout")
     public ResponseEntity<Message> logout(@RequestBody UserDTO userDTO) {
         return userService.logout(userDTO);
     }
-    */
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Message> findById(@PathVariable Long id) {
         return userService.findById(id);
     }
 
-    @PutMapping("/{id}/password")
+    @PutMapping("/changePassword/{id}")
     public ResponseEntity<Message> updatePassword(@PathVariable Long id, @RequestBody String password) {
         return userService.updatePassword(id, password);
     }
@@ -63,7 +61,6 @@ public class UserController {
         return userService.edit(id, userDTO);
     }
 
-    /*
     @PostMapping("/solicitudeChangePassword/{email}")
     public ResponseEntity<Message> solicitudeChangePassword(@PathVariable String email) {
         return userService.solicitudeChangePassword(email);
@@ -73,5 +70,4 @@ public class UserController {
     public ResponseEntity<Message> changePasswordBySolicitude(@PathVariable String token, @RequestBody String password) {
         return userService.changePasswordBySolicitude(token, password);
     }
-    */
 }

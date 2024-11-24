@@ -27,10 +27,25 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        // Rutas públicas
                         .requestMatchers("/login", "/register").permitAll()
-                        //TODO: A implementar
-                        .requestMatchers("/town/**").hasAuthority("ROLE_TOWN_ACCESS")
-                        .requestMatchers("/state/**").hasAuthority("ROLE_STATE_ACCESS")
+
+                        //Rutas protegidas para ROLE_USER y ROLE_ADMIN
+                        .requestMatchers("/users/login", "/users/logout", "/users/changePassword/**",
+                                "/users/edit/**", "/users/solicitudeChangePassword/**",
+                                "/users/changePasswordBySolicitude/**", "/users/update/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .requestMatchers("/proyects/findAll", "/proyects/find/**","/proyects/active", "/proyects/inactive",
+                                "/proyects/getTasks").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .requestMatchers("/category/findAll").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+
+                        // Rutas protegidas exclusivas para ROLE_ADMIN
+                        .requestMatchers("/users/changeStatus/**", "/users/find/**", "/users/findAll")
+                        .hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/proyects/register", "/proyects/update/**", "/proyects/changeStatus/**",
+                                ).hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/category/update/**", "/category/delete/**", "/category/activate/**",
+                                "/category/deactivate/**", "/category/add").hasAuthority("ROLE_ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -38,6 +53,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

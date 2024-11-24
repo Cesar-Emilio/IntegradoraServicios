@@ -13,17 +13,17 @@ public class ProyectController {
      @Autowired
     private ProyectService proyectService;
 
-    @GetMapping
+    @GetMapping("/findAll")
     public ResponseEntity<Message> findAll() {
         return proyectService.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<Message> register(@RequestBody ProyectDTO proyectDTO) {
         return proyectService.register(proyectDTO);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Message> update(@PathVariable Long id, @RequestBody ProyectDTO proyectDTO) {
         return proyectService.update(id, proyectDTO);
     }
@@ -33,7 +33,7 @@ public class ProyectController {
         return proyectService.changeStatus(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Message> findById(@PathVariable Long id) {
         return proyectService.findById(id);
     }
@@ -48,11 +48,8 @@ public class ProyectController {
         return proyectService.findInactive();
     }
 
-    /*TODO: Implementar el CRUD de tareas*/
-    /*
-    @GetMapping("/{id}/tasks")
+    @GetMapping("/getTasks/{id}")
     public ResponseEntity<Message> findTasks(@PathVariable Long id) {
         return proyectService.findTasks(id);
     }
-    */
 }

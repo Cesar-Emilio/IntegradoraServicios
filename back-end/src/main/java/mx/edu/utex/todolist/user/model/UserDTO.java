@@ -20,9 +20,9 @@ public class UserDTO {
 
     private boolean status;
 
-    private boolean admin;
+    private String admin;
 
-    public UserDTO(String name, String surname, String email, int cellphone, String password, boolean status, boolean admin) {
+    public UserDTO(String name, String surname, String email, int cellphone, String password, boolean status, String admin) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -80,11 +80,11 @@ public class UserDTO {
         this.status = status;
     }
 
-    public boolean isAdmin() {
+    public String getAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(String admin) {
         this.admin = admin;
     }
 

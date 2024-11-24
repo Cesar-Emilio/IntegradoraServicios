@@ -15,6 +15,7 @@ import mx.edu.utex.todolist.utils.TypesResponse;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -52,7 +53,7 @@ public class UserService {
         if(dto.getPassword().length() > 50) {
             return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        User user = new User(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getCellphone(), dto.getPassword(), dto.isStatus(), dto.isAdmin())
+        User user = new User(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getCellphone(), dto.getPassword(), dto.isStatus(), dto.getAdmin())
                 ;
         user = userRepository.saveAndFlush(user);
         if(user == null) {
@@ -89,7 +90,7 @@ public class UserService {
         user.setTelefono(dto.getCellphone());
         user.setPassword(dto.getPassword());
         user.setStatus(dto.isStatus());
-        user.setAdmin(dto.isAdmin());
+        user.setAdmin(dto.getAdmin());
         user = userRepository.saveAndFlush(user);
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se actualizó correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
@@ -119,7 +120,7 @@ public class UserService {
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se encontró", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        user.setAdmin(!user.isAdmin());
+        user.setAdmin(user.getAdmin().equals("ROLE_USER") ? "ROLE_ADMIN" : "ROLE_USER");
         user = userRepository.saveAndFlush(user);
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se actualizó correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
@@ -203,7 +204,7 @@ public class UserService {
 
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> login(UserDTO dto) {
-        User user = userRepository.findByEmail(dto.getEmail());
+        Optional<User> user = userRepository.findByEmail(dto.getEmail());
         if (user == null /*|| !passwordEncoder.matches(dto.getPassword(), user.getPassword()) */) {
             return new ResponseEntity<>(new Message("Credenciales inválidas", TypesResponse.ERROR), HttpStatus.UNAUTHORIZED);
         }
