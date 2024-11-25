@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    Optional<Task> findById(Long id);  // findById debería estar aquí automáticamente con JpaRepository
+    Optional<Task> findById(Long id);
 
     List<Task> findByStatusTrue();
     List<Task> findByStatusFalse();

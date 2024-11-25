@@ -4,30 +4,31 @@ import jakarta.validation.constraints.NotNull;
 import mx.edu.utex.todolist.proyect.model.ProyectDTO;
 
 public class TaskDTO {
-    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class},message = "El nombre es requerido")
+    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class}, message = "El nombre es requerido")
     private String name;
 
-    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class},message = "La descripción es requerida")
+    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class}, message = "La descripción es requerida")
     private String description;
 
-    @NotNull(groups = {ProyectDTO.ChangeStatus.class},message = "El estado es requerido")
+    @NotNull(groups = {ProyectDTO.ChangeStatus.class}, message = "El estado es requerido")
     private boolean status;
 
     public TaskDTO() {
-
+        // Constructor vacío
     }
 
-    public TaskDTO(String name, String  description, boolean status) {
+    public TaskDTO(String name, String description, boolean status) {
         this.name = name;
         this.description = description;
         this.status = status;
     }
 
-    public TaskDTO(String name,String description) {
+    public TaskDTO(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
+    // Getters y Setters
     public String getName() {
         return name;
     }

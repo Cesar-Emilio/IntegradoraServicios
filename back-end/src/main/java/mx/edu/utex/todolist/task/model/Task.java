@@ -2,44 +2,34 @@ package mx.edu.utex.todolist.task.model;
 
 
 import jakarta.persistence.*;
+import jakarta.persistence.*;
+import mx.edu.utex.todolist.category.model.Category;
+import mx.edu.utex.todolist.proyect.model.Proyect;
+
 
 @Entity
-@Table(name="task")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "name", columnDefinition = "VARCHAR(50)")
     private String name;
-
-    @Column(name = "description", columnDefinition = "VARCHAR(100)")
     private String description;
 
-    @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
     private boolean status;
 
-    public Task() {
-    }
+    @ManyToOne
+    private Category category;
 
-    public Task(String name, String description, boolean status) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
+    @ManyToOne
+    private Proyect proyect;
 
-    public Task(long id, String name, String description, boolean status) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
-
-    public long getId() {
+    // Getters y Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,5 +55,21 @@ public class Task {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Proyect getProyect() {
+        return proyect;
+    }
+
+    public void setProyect(Proyect project) {
+        this.proyect = project;
     }
 }
