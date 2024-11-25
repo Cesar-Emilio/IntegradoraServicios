@@ -1,99 +1,219 @@
 package mx.edu.utex.todolist.task.control;
 
-import jakarta.transaction.Transactional;
+import mx.edu.utex.todolist.category.model.Category;
+import mx.edu.utex.todolist.category.model.CategoryRepository;
+import mx.edu.utex.todolist.proyect.model.Proyect;
+import mx.edu.utex.todolist.proyect.model.ProyectRepository;
 import mx.edu.utex.todolist.task.model.Task;
+import mx.edu.utex.todolist.task.model.TaskDTO;
 import mx.edu.utex.todolist.task.model.TaskRepository;
+import mx.edu.utex.todolist.user.model.User;
+import mx.edu.utex.todolist.user.model.UserRepository;
 import mx.edu.utex.todolist.utils.Message;
 import mx.edu.utex.todolist.utils.TypesResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class TaskService {
 
-    private final TaskRepository taskRepository;
+    private final Logger logger = LoggerFactory.getLogger(TaskService.class);
 
-    public TaskService(TaskRepository taskRepository) {
+    private final TaskRepository taskRepository;
+    private final ProyectRepository proyectRepository;
+    private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
+
+    @Autowired
+    public TaskService(TaskRepository taskRepository, ProyectRepository proyectRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
+        this.proyectRepository = proyectRepository;
+        this.categoryRepository = categoryRepository;
+        this.userRepository = userRepository;
     }
 
+    @Transactional(rollbackFor = SQLException.class)
     // Registrar tarea
-    public ResponseEntity<Message> registerTask(Task task) {
-        if (task.getProyect() == null || task.getCategory() == null) {
-            return new ResponseEntity<>(new Message("El proyecto y la categoría son obligatorios", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Message> register(TaskDTO dto) {
+        if(dto.getName() == null || dto.getName().length() > 50) {
+            logger.error("Nombre de tarea inválido");
+            return new ResponseEntity<>(new Message("Nombre de tarea inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
 
-        Optional<Task> existingTask = taskRepository.findByName(task.getName());
-        if (existingTask.isPresent()) {
-            return new ResponseEntity<>(new Message("Ya existe una tarea con el mismo nombre", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        if(dto.getDescription() == null || dto.getDescription().length() > 50) {
+            logger.error("Descripción de tarea inválida");
+            return new ResponseEntity<>(new Message("Descripción de tarea inválida", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        if(dto.getCategory_id() == null || dto.getCategory_id() <= 0) {
+            logger.error("Id de categoría inválido");
+            return new ResponseEntity<>(new Message("Id de categoría inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        if(dto.getProyect_id() == null || dto.getProyect_id() <= 0) {
+            logger.error("Id de proyecto inválido");
+            return new ResponseEntity<>(new Message("Id de proyecto inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        if(dto.getResponsibles_id() == null || dto.getResponsibles_id().isEmpty()) {
+            logger.error("Id de usuario inválido");
+            return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
 
-        taskRepository.save(task);
-        return new ResponseEntity<>(new Message("Se registró la tarea con éxito", TypesResponse.SUCCESS), HttpStatus.CREATED);
+        Task task = new Task(dto.getName(), dto.getDescription(), true);
+
+        Proyect proyect = proyectRepository.findById(dto.getProyect_id()).orElse(null);
+        if(proyect == null) {
+            logger.error("Proyecto no encontrado");
+            return new ResponseEntity<>(new Message("Proyecto no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        task.setProyect(proyect);
+
+        Category category = categoryRepository.findById(dto.getCategory_id()).orElse(null);
+        if(category == null) {
+            logger.error("Categoría no encontrada");
+            return new ResponseEntity<>(new Message("Categoría no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        task.setCategory(category);
+
+        List<User> responsibles = userRepository.findAllById(dto.getResponsibles_id());
+        if(responsibles.isEmpty()) {
+            logger.error("Usuario no encontrado");
+            return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        task.setResponsibles(responsibles);
+
+        task = taskRepository.saveAndFlush(task);
+
+        if(task == null) {
+            logger.error("No se pudo registrar la tarea");
+            return new ResponseEntity<>(new Message("No se pudo registrar la tarea", TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        logger.info("Tarea registrada correctamente");
+        return new ResponseEntity<>(new Message("Tarea registrada correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
 
     // Consultar tareas
-    public ResponseEntity<Message> consultTask() {
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findAll() {
         List<Task> tasks = taskRepository.findAll();
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(new Message("No hay tareas", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
-        }
-
+        logger.info("La búsqueda ha sido realizada correctamente");
         return new ResponseEntity<>(new Message(tasks, "Listado de tareas", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
     // Actualizar tarea
-    public ResponseEntity<Message> updateTask(Task task, Long id) {
-        Optional<Task> existingTask = taskRepository.findById(id);
-        if (!existingTask.isPresent()) {
+    @Transactional(rollbackFor = SQLException.class)
+    public ResponseEntity<Message> update(TaskDTO dto, Long id) {
+        Optional<Task> optionalTask = taskRepository.findById(id);
+        if (!optionalTask.isPresent()) {
+            logger.error("Tarea no encontrada");
             return new ResponseEntity<>(new Message("Tarea no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
 
-        Task updatedTask = existingTask.get();
-        updatedTask.setName(task.getName());
-        updatedTask.setDescription(task.getDescription());
-        updatedTask.setCategory(task.getCategory());
-        updatedTask.setProyect(task.getProyect());
+        if(dto.getName() == null || dto.getName().length() > 50) {
+            logger.error("Nombre de tarea inválido");
+            return new ResponseEntity<>(new Message("Nombre de tarea inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        if(dto.getDescription() == null || dto.getDescription().length() > 50) {
+            logger.error("Descripción de tarea inválida");
+            return new ResponseEntity<>(new Message("Descripción de tarea inválida", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        if(dto.getCategory_id() == null || dto.getCategory_id() <= 0) {
+            logger.error("Id de categoría inválido");
+            return new ResponseEntity<>(new Message("Id de categoría inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        if(dto.getProyect_id() == null || dto.getProyect_id() <= 0) {
+            logger.error("Id de proyecto inválido");
+            return new ResponseEntity<>(new Message("Id de proyecto inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        if(dto.getResponsibles_id() == null || dto.getResponsibles_id().isEmpty()) {
+            logger.error("Id de usuario inválido");
+            return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
 
-        taskRepository.save(updatedTask);
+        Task task = optionalTask.get();
+        task.setName(dto.getName());
+        task.setDescription(dto.getDescription());
+        task.setStatus(true);
+
+        Proyect proyect = proyectRepository.findById(dto.getProyect_id()).orElse(null);
+        if(proyect == null) {
+            logger.error("Proyecto no encontrado");
+            return new ResponseEntity<>(new Message("Proyecto no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        task.setProyect(proyect);
+
+        Category category = categoryRepository.findById(dto.getCategory_id()).orElse(null);
+        if(category == null) {
+            logger.error("Categoría no encontrada");
+            return new ResponseEntity<>(new Message("Categoría no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        task.setCategory(category);
+
+        List<User> responsibles = userRepository.findAllById(dto.getResponsibles_id());
+        if(responsibles.isEmpty()) {
+            logger.error("Usuario no encontrado");
+            return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        task.setResponsibles(responsibles);
+
+        task = taskRepository.saveAndFlush(task);
+
+        if(task == null) {
+            logger.error("No se pudo registrar la tarea");
+            return new ResponseEntity<>(new Message("No se pudo registrar la tarea", TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        logger.info("Tarea registrada correctamente");
+        return new ResponseEntity<>(new Message("Tarea registrada correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
+
+    }
+
+    // Cambiar estatus de tarea
+    @Transactional(rollbackFor = SQLException.class)
+    public ResponseEntity<Message> changeStatus(Long id) {
+        Task task = taskRepository.findById(id).orElse(null);
+        if(task == null) {
+            logger.error("Tarea no encontrada");
+            return new ResponseEntity<>(new Message("Tarea no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        task.setStatus(!task.isStatus());
+        task = taskRepository.saveAndFlush(task);
+        if(task == null) {
+            logger.error("No se pudo actualizar la tarea");
+            return new ResponseEntity<>(new Message("No se pudo actualizar la tarea", TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        logger.info("Tarea actualizada correctamente");
         return new ResponseEntity<>(new Message("Tarea actualizada correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // Activar tarea
-    public ResponseEntity<Message> activateTask(Long id) {
-        Optional<Task> task = taskRepository.findById(id);
-        if (!task.isPresent()) {
+    // Eliminar tarea
+    @Transactional(rollbackFor = SQLException.class)
+    public ResponseEntity<Message> delete(Long id) {
+        Task task = taskRepository.findById(id).orElse(null);
+        if(task == null) {
+            logger.error("Tarea no encontrada");
             return new ResponseEntity<>(new Message("Tarea no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
-
-        Task updatedTask = task.get();
-        if (updatedTask.isStatus()) {
-            return new ResponseEntity<>(new Message("La tarea ya está habilitada", TypesResponse.WARNING), HttpStatus.OK);
-        }
-
-        updatedTask.setStatus(true);
-        taskRepository.save(updatedTask);
-        return new ResponseEntity<>(new Message("Tarea habilitada correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+        taskRepository.deleteById(id);
+        logger.info("Tarea eliminada correctamente");
+        return new ResponseEntity<>(new Message("Tarea eliminada correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // Desactivar tarea
-    public ResponseEntity<Message> desactivateTask(Long id) {
+    // Consultar tarea por ID
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findById(Long id) {
         Optional<Task> task = taskRepository.findById(id);
         if (!task.isPresent()) {
+            logger.error("Tarea no encontrada");
             return new ResponseEntity<>(new Message("Tarea no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
-
-        Task updatedTask = task.get();
-        if (!updatedTask.isStatus()) {
-            return new ResponseEntity<>(new Message("La tarea ya está deshabilitada", TypesResponse.WARNING), HttpStatus.OK);
-        }
-
-        updatedTask.setStatus(false);
-        taskRepository.save(updatedTask);
-        return new ResponseEntity<>(new Message("Tarea deshabilitada correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message(task.get(), "Tarea encontrada", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 }

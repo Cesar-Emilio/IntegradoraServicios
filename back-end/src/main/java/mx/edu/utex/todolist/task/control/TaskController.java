@@ -2,6 +2,7 @@ package mx.edu.utex.todolist.task.control;
 
 import mx.edu.utex.todolist.category.control.CategoryService;
 import mx.edu.utex.todolist.task.model.Task;
+import mx.edu.utex.todolist.task.model.TaskDTO;
 import mx.edu.utex.todolist.utils.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,27 +19,32 @@ public class TaskController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Message> registerTask(@RequestBody Task task) {
-        return taskService.registerTask(task);
+    public ResponseEntity<Message> registerTask(@RequestBody TaskDTO task) {
+        return taskService.register(task);
     }
 
-    @GetMapping("/consult")
-    public ResponseEntity<Message> consultTasks() {
-        return taskService.consultTask();
+    @GetMapping("/findAll")
+    public ResponseEntity<Message> findAll() {
+        return taskService.findAll();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Message> updateTask(@RequestBody Task task, @PathVariable Long id) {
-        return taskService.updateTask(task, id);
+    public ResponseEntity<Message> updateTask(@RequestBody TaskDTO dto, @PathVariable Long id) {
+        return taskService.update(dto, id);
     }
 
-    @PutMapping("/activate/{id}")
-    public ResponseEntity<Message> activateTask(@PathVariable Long id) {
-        return taskService.activateTask(id);
+    @PutMapping("/changeStatus/{id}")
+    public ResponseEntity<Message> changeStatus(@PathVariable Long id) {
+        return taskService.changeStatus(id);
     }
 
-    @PutMapping("/desactivate/{id}")
-    public ResponseEntity<Message> desactivateTask(@PathVariable Long id) {
-        return taskService.desactivateTask(id);
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Message> findById(@PathVariable Long id) {
+        return taskService.findById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Message> deleteTask(@PathVariable Long id) {
+        return taskService.delete(id);
     }
 }

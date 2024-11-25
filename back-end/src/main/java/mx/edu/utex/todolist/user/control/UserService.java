@@ -212,7 +212,6 @@ public class UserService {
         return new ResponseEntity<>(new Message(/*token*/"a", "Inicio de sesión exitoso", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    /*
     @Transactional
     public ResponseEntity<Message> logout(String token) {
         tokenService.invalidateToken(token);
@@ -243,5 +242,4 @@ public class UserService {
         tokenService.delete(resetToken);
         return new ResponseEntity<>(new Message("Contraseña actualizada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
     }
-    */
 }

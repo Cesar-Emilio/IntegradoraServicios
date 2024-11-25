@@ -3,6 +3,8 @@ package mx.edu.utex.todolist.task.model;
 import jakarta.validation.constraints.NotNull;
 import mx.edu.utex.todolist.proyect.model.ProyectDTO;
 
+import java.util.List;
+
 public class TaskDTO {
     @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class}, message = "El nombre es requerido")
     private String name;
@@ -10,22 +12,33 @@ public class TaskDTO {
     @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class}, message = "La descripción es requerida")
     private String description;
 
-    @NotNull(groups = {ProyectDTO.ChangeStatus.class}, message = "El estado es requerido")
-    private boolean status;
+    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class}, message = "El id de la categoría es requerido")
+    private Long category_id;
+
+    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class}, message =
+            "El id del proyecto es requerido")
+    private Long proyect_id;
+
+    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class}, message =
+            "El id del usuario es requerido")
+    private List<Long> responsibles_id;
+
 
     public TaskDTO() {
         // Constructor vacío
     }
 
-    public TaskDTO(String name, String description, boolean status) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
-
     public TaskDTO(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public TaskDTO(String name, String description, long category_id, long proyect_id, List<Long> user_id) {
+        this.name = name;
+        this.description = description;
+        this.category_id = category_id;
+        this.proyect_id = proyect_id;
+        this.user_id = user_id;
     }
 
     // Getters y Setters
@@ -45,12 +58,28 @@ public class TaskDTO {
         this.description = description;
     }
 
-    public boolean isStatus() {
-        return status;
+    public Long getCategory_id() {
+        return category_id;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setCategory_id(Long category_id) {
+        this.category_id = category_id;
+    }
+
+    public Long getProyect_id() {
+        return proyect_id;
+    }
+
+    public void setProyect_id(Long proyect_id) {
+        this.proyect_id = proyect_id;
+    }
+
+    public List<Long> getResponsibles_id() {
+        return responsibles_id;
+    }
+
+    public void setResponsibles_id(List<Long> responsibles_id) {
+        this.responsibles_id = responsibles_id;
     }
 
     public interface Register {

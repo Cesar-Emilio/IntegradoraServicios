@@ -1,10 +1,9 @@
 package mx.edu.utex.todolist.user.model;
 
 import jakarta.persistence.*;
-import mx.edu.utex.todolist.role.model.Role;
+import mx.edu.utex.todolist.task.model.Task;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name="user")
@@ -33,6 +32,14 @@ public class User {
 
     @Column(name = "admin", columnDefinition = "VARCHAR(20) DEFAULT 'ROLE_USER'")
     private String admin;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_task",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "task_id")
+    )
+    private List<Task> tasks;
 
     public User() {
     }
@@ -120,5 +127,13 @@ public class User {
 
     public void setAdmin(String admin) {
         this.admin = admin;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }

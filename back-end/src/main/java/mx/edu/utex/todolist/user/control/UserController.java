@@ -16,14 +16,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public ResponseEntity<Message> findAll() {
-        return userService.findAll();
-    }
-
     @PostMapping("/register")
     public ResponseEntity<Message> register(@RequestBody UserDTO userDTO) {
         return userService.register(userDTO);
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<Message> findAll() {
+        return userService.findAll();
     }
 
     @PutMapping("/update/{id}")
@@ -31,10 +31,16 @@ public class UserController {
         return userService.update(id, userDTO);
     }
 
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Message> edit(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        return userService.edit(id, userDTO);
+    }
+
     @PutMapping("/changeStatus/{id}")
     public ResponseEntity<Message> changeStatus(@PathVariable Long id) {
         return userService.changeStatus(id);
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<Message> login(@RequestBody UserDTO userDTO) {
@@ -54,11 +60,6 @@ public class UserController {
     @PutMapping("/changePassword/{id}")
     public ResponseEntity<Message> updatePassword(@PathVariable Long id, @RequestBody String password) {
         return userService.updatePassword(id, password);
-    }
-
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<Message> edit(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        return userService.edit(id, userDTO);
     }
 
     @PostMapping("/solicitudeChangePassword/{email}")
