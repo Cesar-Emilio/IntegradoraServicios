@@ -42,14 +42,9 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")
-    public ResponseEntity<Message> login(@RequestBody UserDTO userDTO) {
-        return userService.login(userDTO);
-    }
-
     @PostMapping("/logout")
-    public ResponseEntity<Message> logout(@RequestBody UserDTO userDTO) {
-        return userService.logout(userDTO);
+    public ResponseEntity<Message> logout(@RequestHeader("Authorization") String token) {
+        return userService.logout(token.replace("Bearer ", ""));
     }
 
     @GetMapping("/find/{id}")
@@ -57,8 +52,8 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PutMapping("/changePassword/{id}")
-    public ResponseEntity<Message> updatePassword(@PathVariable Long id, @RequestBody String password) {
+    @PutMapping("/updatePassword/{id}")
+    public ResponseEntity<Message> UpdatePassword(@PathVariable Long id, @RequestBody String password) {
         return userService.updatePassword(id, password);
     }
 

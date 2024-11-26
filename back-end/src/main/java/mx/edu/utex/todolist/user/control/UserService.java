@@ -1,6 +1,8 @@
 package mx.edu.utex.todolist.user.control;
 
 import mx.edu.utex.todolist.user.model.UserDTO;
+import org.springframework.security.core.token.TokenService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import mx.edu.utex.todolist.user.model.UserRepository;
 import mx.edu.utex.todolist.utils.Message;
@@ -21,12 +23,16 @@ import java.util.Optional;
 @Service
 public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private final PasswordEncoder passwordEncoder;
+    private final TokenService tokenService;
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.tokenService = tokenService;
     }
 
     @Transactional(readOnly = true)
@@ -53,7 +59,7 @@ public class UserService {
         if(dto.getPassword().length() > 50) {
             return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        User user = new User(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getCellphone(), dto.getPassword(), dto.isStatus(), dto.getAdmin())
+        User user = new User(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getCellphone(), passwordEncoder.encode(dto.getPassword()), dto.isStatus(), dto.getAdmin())
                 ;
         user = userRepository.saveAndFlush(user);
         if(user == null) {
@@ -151,7 +157,7 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> updatePassword(Long id, String password) {
+    public ResponseEntity<Message> changePassword(Long id, String password) {
         User user = userRepository.findById(id).orElse(null);
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se encontró", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
@@ -202,16 +208,6 @@ public class UserService {
         return new ResponseEntity<>(new Message(user, "El usuario se actualizó correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> login(UserDTO dto) {
-        Optional<User> user = userRepository.findByEmail(dto.getEmail());
-        if (user == null /*|| !passwordEncoder.matches(dto.getPassword(), user.getPassword()) */) {
-            return new ResponseEntity<>(new Message("Credenciales inválidas", TypesResponse.ERROR), HttpStatus.UNAUTHORIZED);
-        }
-        /*String token = jwtTokenProvider.createToken(user.getEmail(), user.getRoles());*/
-        return new ResponseEntity<>(new Message(/*token*/"a", "Inicio de sesión exitoso", TypesResponse.SUCCESS), HttpStatus.OK);
-    }
-
     @Transactional
     public ResponseEntity<Message> logout(String token) {
         tokenService.invalidateToken(token);
@@ -219,11 +215,30 @@ public class UserService {
     }
 
     @Transactional
+    public ResponseEntity<Message> updatePassword(Long id, String password) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        }
+        user.setPassword(passwordEncoder.encode(password));
+        user = userRepository.saveAndFlush(user);
+        if (user == null) {
+            return new ResponseEntity<>(new Message("Error al actualizar la contraseña", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(new Message("Contraseña actualizada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
+    @Transactional
     public ResponseEntity<Message> solicitudeChangePassword(String email) {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email).orElse(null);
         if (user == null) {
             return new ResponseEntity<>(new Message("Correo no registrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
+
+        // Lógica para enviar un correo con un token de restablecimiento
+        String resetToken = tokenService.generateTokenForUser(user);
+        // emailService.sendPasswordResetEmail(user.getEmail(), resetToken);
+
         return new ResponseEntity<>(new Message("Solicitud de cambio de clave enviada al correo", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
@@ -236,10 +251,14 @@ public class UserService {
         if (resetToken.isExpired()) {
             return new ResponseEntity<>(new Message("Token expirado", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
+
         User user = resetToken.getUser();
         user.setPassword(passwordEncoder.encode(password));
         userRepository.saveAndFlush(user);
+
+        // Eliminar el token una vez utilizado
         tokenService.delete(resetToken);
+
         return new ResponseEntity<>(new Message("Contraseña actualizada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 }

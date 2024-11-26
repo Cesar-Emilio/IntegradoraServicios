@@ -41,7 +41,7 @@ public class SecurityConfig {
                         // Rutas protegidas exclusivas para ROLE_ADMIN
                         .requestMatchers("/users/changeStatus/**", "/users/find/**", "/users/findAll")
                         .hasAuthority("ROLE_ADMIN")
-                        .requestMatchers("/proyects/register", "/proyects/update/**", "/proyects/changeStatus/**",
+                        .requestMatchers("/proyects/register", "/proyects/update/**", "/proyects/changeStatus/**"
                                 ).hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/category/update/**", "/category/delete/**", "/category/activate/**",
                                 "/category/deactivate/**", "/category/add").hasAuthority("ROLE_ADMIN")
