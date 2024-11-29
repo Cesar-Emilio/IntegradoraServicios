@@ -52,7 +52,7 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PutMapping("/updatePassword/{id}")
+    @PutMapping("/updatePassword /{id}")
     public ResponseEntity<Message> UpdatePassword(@PathVariable Long id, @RequestBody String password) {
         return userService.updatePassword(id, password);
     }

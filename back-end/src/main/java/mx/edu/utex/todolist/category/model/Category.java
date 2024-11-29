@@ -2,6 +2,9 @@ package mx.edu.utex.todolist.category.model;
 
 
 import jakarta.persistence.*;
+import mx.edu.utex.todolist.task.model.Task;
+
+import java.util.List;
 
 @Entity
 @Table(name="category")
@@ -18,6 +21,9 @@ public class Category {
 
     @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
     private boolean status;
+
+    @OneToMany(mappedBy = "category")
+    private List<Task> tasks;
 
     public Category() {
     }

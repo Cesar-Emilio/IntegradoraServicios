@@ -33,12 +33,12 @@ public class TaskDTO {
         this.description = description;
     }
 
-    public TaskDTO(String name, String description, long category_id, long proyect_id, List<Long> user_id) {
+    public TaskDTO(String name, String description, long category_id, long proyect_id, List<Long> responsibles_id) {
         this.name = name;
         this.description = description;
         this.category_id = category_id;
         this.proyect_id = proyect_id;
-        this.user_id = user_id;
+        this.responsibles_id = responsibles_id;
     }
 
     // Getters y Setters

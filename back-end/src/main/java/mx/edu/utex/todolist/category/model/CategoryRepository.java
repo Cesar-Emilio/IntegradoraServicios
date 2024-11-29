@@ -8,7 +8,7 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category> findById(Long id);  // findById debería estar aquí automáticamente con JpaRepository
 
-    List<Category> findByStatusTrue();
-    List<Category> findByStatusFalse();
+    List<Category> findByStatusIsTrue();
+    List<Category> findByStatusIsFalse();
     Optional<Category> findByName(String name);
 }

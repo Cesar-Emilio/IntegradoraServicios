@@ -1,6 +1,7 @@
 package mx.edu.utex.todolist.category.control;
 
 import mx.edu.utex.todolist.category.model.Category;
+import mx.edu.utex.todolist.category.model.CategoryDTO;
 import mx.edu.utex.todolist.utils.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +16,25 @@ public class CategoryController {
 
     // Registrar categoría
     @PostMapping("/register")
-    public ResponseEntity<Message> registerCategory(@RequestBody Category category) {
+    public ResponseEntity<Message> registerCategory(@RequestBody CategoryDTO category) {
         return categoryService.registerCategory(category);
     }
 
     // Consultar todas las categorías
     @GetMapping("/findAll")
     public ResponseEntity<Message> findAll() {
-        return categoryService.consultCategories();
+        return categoryService.findAll();
     }
 
     // Consultar categoría por ID
     @GetMapping("/find/{id}")
     public ResponseEntity<Message> findById(@PathVariable Long id) {
         return categoryService.idCategory(id);
+    }
+
+    @GetMapping("/findActive")
+    public ResponseEntity<Message> findActive() {
+        return categoryService.findActive();
     }
 
     // Eliminar categoría
@@ -39,7 +45,7 @@ public class CategoryController {
 
     // Actualizar categoría
     @PutMapping("/update/{id}")
-    public ResponseEntity<Message> updateCategory(@RequestBody Category category, @PathVariable Long id) {
+    public ResponseEntity<Message> updateCategory(@RequestBody CategoryDTO category, @PathVariable Long id) {
         return categoryService.updateCategory(category, id);
     }
 
@@ -57,7 +63,7 @@ public class CategoryController {
 
     // Añadir nueva categoría
     @PostMapping("/add")
-    public ResponseEntity<Message> addCategory(@RequestBody Category category) {
+    public ResponseEntity<Message> addCategory(@RequestBody CategoryDTO category) {
         return categoryService.addCategory(category);
     }
 }
