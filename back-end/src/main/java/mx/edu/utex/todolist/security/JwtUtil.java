@@ -2,6 +2,7 @@ package mx.edu.utex.todolist.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,31 @@ public class JwtUtil {
 
     @Value("${jwt.expiration}")
     private long expiration;
+
+    @Value("${jwt.temp-token-expiration-time}")
+    private long tempTokenExpirationTime;
+
+    public String generateTemporaryToken(String email) {
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + tempTokenExpirationTime)) // Establecer expiración corta
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
+    }
+
+    public String validateTemporaryToken(String token) {
+        try {
+            String email = Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject();
+            return email; // Si el token es válido, retorna el email
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Token inválido o expirado");
+        }
+    }
 
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes());

@@ -43,53 +43,50 @@ public class TaskService {
     @Transactional(rollbackFor = SQLException.class)
     // Registrar tarea
     public ResponseEntity<Message> register(TaskDTO dto) {
-        if(dto.getName() == null || dto.getName().length() > 50) {
-            logger.error("Nombre de tarea inválido");
-            return new ResponseEntity<>(new Message("Nombre de tarea inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        if(validateTaskDTOAttributes(dto)) {
+            logger.error("Los atributos de la tarea exceden el límite de caracteres");
+            return new ResponseEntity<>(new Message("Los atributos de la tarea no cumplen con las restricciones", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
 
-        if(dto.getDescription() == null || dto.getDescription().length() > 50) {
-            logger.error("Descripción de tarea inválida");
-            return new ResponseEntity<>(new Message("Descripción de tarea inválida", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getCategory_id() == null || dto.getCategory_id() <= 0) {
+        if(!validateIdCategory(dto.getCategory_id(), dto.getProyect_id())) {
             logger.error("Id de categoría inválido");
             return new ResponseEntity<>(new Message("Id de categoría inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getProyect_id() == null || dto.getProyect_id() <= 0) {
+
+        if(!validateIdProyect(dto.getProyect_id())) {
             logger.error("Id de proyecto inválido");
             return new ResponseEntity<>(new Message("Id de proyecto inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getResponsibles_id() == null || dto.getResponsibles_id().isEmpty()) {
+        if(dto.getResponsibles_id().stream().anyMatch(userId -> !validateIdUser(userId, dto.getProyect_id()))) {
             logger.error("Id de usuario inválido");
             return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
 
         Task task = new Task(dto.getName(), dto.getDescription(), true);
 
-        Proyect proyect = proyectRepository.findById(dto.getProyect_id()).orElse(null);
-        if(proyect == null) {
+        Optional<Proyect> proyect = proyectRepository.findById(dto.getProyect_id());
+        if(!proyect.isPresent()) {
             logger.error("Proyecto no encontrado");
             return new ResponseEntity<>(new Message("Proyecto no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
-        task.setProyect(proyect);
 
-        Category category = categoryRepository.findById(dto.getCategory_id()).orElse(null);
-        if(category == null) {
+        task.setProyect(proyect.get());
+
+        Optional<Category> category = categoryRepository.findById(dto.getCategory_id());
+        if(!category.isPresent()) {
             logger.error("Categoría no encontrada");
             return new ResponseEntity<>(new Message("Categoría no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
-        task.setCategory(category);
+        task.setCategory(category.get());
 
-        List<User> responsibles = userRepository.findAllById(dto.getResponsibles_id());
+        List<User> responsibles = userRepository.findUsersByIdsAndProyectId(dto.getResponsibles_id(), dto.getProyect_id());
         if(responsibles.isEmpty()) {
-            logger.error("Usuario no encontrado");
+            logger.error("No se encontraron los usuarios");
             return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
         task.setResponsibles(responsibles);
 
         task = taskRepository.saveAndFlush(task);
-
         if(task == null) {
             logger.error("No se pudo registrar la tarea");
             return new ResponseEntity<>(new Message("No se pudo registrar la tarea", TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -101,64 +98,60 @@ public class TaskService {
 
     // Consultar tareas
     @Transactional(readOnly = true)
-    public ResponseEntity<Message> findAll() {
-        List<Task> tasks = taskRepository.findAll();
+    public ResponseEntity<Message> findAll(Long proyectId) {
+        List<Task> tasks = taskRepository.findByProyectId(proyectId);
         logger.info("La búsqueda ha sido realizada correctamente");
         return new ResponseEntity<>(new Message(tasks, "Listado de tareas", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
-    // Actualizar tarea
     @Transactional(rollbackFor = SQLException.class)
     public ResponseEntity<Message> update(TaskDTO dto, Long id) {
-        Optional<Task> optionalTask = taskRepository.findById(id);
-        if (!optionalTask.isPresent()) {
+        Task task = taskRepository.findById(id).orElse(null);
+        if (task == null) {
             logger.error("Tarea no encontrada");
             return new ResponseEntity<>(new Message("Tarea no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
 
-        if(dto.getName() == null || dto.getName().length() > 50) {
-            logger.error("Nombre de tarea inválido");
-            return new ResponseEntity<>(new Message("Nombre de tarea inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        if(validateTaskDTOAttributes(dto)) {
+            logger.error("Los atributos de la tarea no cumplen con las restricciones");
+            return new ResponseEntity<>(new Message("Los atributos de la tarea no cumplen con las restricciones", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getDescription() == null || dto.getDescription().length() > 50) {
-            logger.error("Descripción de tarea inválida");
-            return new ResponseEntity<>(new Message("Descripción de tarea inválida", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getCategory_id() == null || dto.getCategory_id() <= 0) {
+
+        if(!validateIdCategory(dto.getCategory_id(), id)) {
             logger.error("Id de categoría inválido");
             return new ResponseEntity<>(new Message("Id de categoría inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getProyect_id() == null || dto.getProyect_id() <= 0) {
+
+        if(!validateIdProyect(dto.getProyect_id())) {
             logger.error("Id de proyecto inválido");
-            return new ResponseEntity<>(new Message("Id de proyecto inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("Id de proyecto inválido",
+                    TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getResponsibles_id() == null || dto.getResponsibles_id().isEmpty()) {
+
+        if(dto.getResponsibles_id().stream().anyMatch(userId -> !validateIdUser(userId, dto.getProyect_id()))) {
             logger.error("Id de usuario inválido");
             return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
 
-        Task task = optionalTask.get();
         task.setName(dto.getName());
         task.setDescription(dto.getDescription());
         task.setStatus(true);
 
-        Proyect proyect = proyectRepository.findById(dto.getProyect_id()).orElse(null);
-        if(proyect == null) {
-            logger.error("Proyecto no encontrado");
-            return new ResponseEntity<>(new Message("Proyecto no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        if(dto.getProyect_id() != null){
+            logger.error("No se puede modificar el proyecto de la tarea");
+            return new ResponseEntity<>(new Message("No se puede modificar el proyecto de la tarea", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        task.setProyect(proyect);
 
-        Category category = categoryRepository.findById(dto.getCategory_id()).orElse(null);
+        Category category = categoryRepository.findCategoryByIdAndProyectId(dto.getCategory_id(), dto.getProyect_id()).orElse(null);
         if(category == null) {
             logger.error("Categoría no encontrada");
             return new ResponseEntity<>(new Message("Categoría no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
         task.setCategory(category);
 
-        List<User> responsibles = userRepository.findAllById(dto.getResponsibles_id());
+        List<User> responsibles = userRepository.findUsersByIdsAndProyectId(dto.getResponsibles_id(), dto.getProyect_id());
         if(responsibles.isEmpty()) {
-            logger.error("Usuario no encontrado");
+            logger.error("Usuarios no encontrados");
             return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
         task.setResponsibles(responsibles);
@@ -175,7 +168,6 @@ public class TaskService {
 
     }
 
-    // Cambiar estatus de tarea
     @Transactional(rollbackFor = SQLException.class)
     public ResponseEntity<Message> changeStatus(Long id) {
         Task task = taskRepository.findById(id).orElse(null);
@@ -215,5 +207,21 @@ public class TaskService {
             return new ResponseEntity<>(new Message("Tarea no encontrada", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(new Message(task.get(), "Tarea encontrada", TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
+    private boolean validateTaskDTOAttributes(TaskDTO dto) {
+        return dto.getName() == null || dto.getName().length() > 50 || dto.getDescription() == null || dto.getDescription().length() > 50;
+    }
+
+    private boolean validateIdCategory(Long categoryId, Long taskId) {
+        return categoryRepository.findCategoryByIdAndProyectId(categoryId, taskId).isPresent();
+    }
+
+    private boolean validateIdProyect(Long proyectId) {
+        return proyectRepository.findById(proyectId).isPresent();
+    }
+
+    private boolean validateIdUser(Long userId, Long proyectId) {
+        return userRepository.findUserByIdAndProyectId(userId, proyectId).isPresent();
     }
 }

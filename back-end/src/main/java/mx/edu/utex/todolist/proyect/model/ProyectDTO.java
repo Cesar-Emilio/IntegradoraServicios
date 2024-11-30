@@ -15,6 +15,15 @@ public class ProyectDTO {
     @NotNull(groups = {ChangeStatus.class},message = "El estado es requerido")
     private boolean status;
 
+    @NotNull(groups = {Modify.class},message = "El id de la categoría es requerido")
+    private Long category_id;
+
+    @NotNull(groups = {Modify.class},message = "El id de la tarea es requerido")
+    private Long task_id;
+
+    @NotNull(groups = {Modify.class},message = "El id del usuario es requerido")
+    private Long user_id;
+
     public ProyectDTO() {
     }
 

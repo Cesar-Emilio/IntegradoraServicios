@@ -43,16 +43,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 email = jwtUtil.extractEmail(jwt);
             } catch (Exception e) {
-                // Manejo de excepción si el token no es válido o está malformado
-                logger.error("Error al extraer el nombre de usuario del token: " + e.getMessage());
+                logger.error("Error al extraer el email del token: " + e.getMessage());
             }
         }
 
-        // Validar el token y autenticar al usuario si el contexto de seguridad está vacío
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(email);
 
-            if (jwtUtil.validateToken(jwt, userDetails)) {
+            if (jwt != null && jwtUtil.validateToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(

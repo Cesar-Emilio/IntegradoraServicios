@@ -24,9 +24,7 @@ public class TaskDTO {
     private List<Long> responsibles_id;
 
 
-    public TaskDTO() {
-        // Constructor vacío
-    }
+    public TaskDTO() {}
 
     public TaskDTO(String name, String description) {
         this.name = name;

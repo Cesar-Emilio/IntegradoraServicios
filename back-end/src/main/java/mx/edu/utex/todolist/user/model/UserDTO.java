@@ -18,17 +18,25 @@ public class UserDTO {
     @NotNull(groups = {Register.class, Modify.class}, message = "El password no puede ser nulo")
     private String password;
 
-    private boolean status;
-
+    @NotNull(groups = {Register.class, Modify.class}, message = "El admin no puede ser nulo")
     private String admin;
 
-    public UserDTO(String name, String surname, String email, int cellphone, String password, boolean status, String admin) {
+    @NotNull(groups = {Modify.class}, message = "Se debe agregar el id del proyecto")
+    private long proyect_id;
+
+    @NotNull(groups = {Modify.class}, message = "Se debe agregar el id de la tarea")
+    private long task_id;
+
+
+    public UserDTO() {
+    }
+
+    public UserDTO(String name, String surname, String email, int cellphone, String password, String admin) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.cellphone = cellphone;
         this.password = password;
-        this.status = status;
         this.admin = admin;
     }
 
@@ -70,14 +78,6 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public String getAdmin() {

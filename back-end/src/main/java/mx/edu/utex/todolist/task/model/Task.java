@@ -119,4 +119,6 @@ public class Task {
     public void setResponsibles(List<User> responsibles) {
         this.responsibles = responsibles;
     }
+
+
 }

@@ -23,9 +23,9 @@ public class TaskController {
         return taskService.register(task);
     }
 
-    @GetMapping("/findAll")
-    public ResponseEntity<Message> findAll() {
-        return taskService.findAll();
+    @GetMapping("/findAll/{proyectId}")
+    public ResponseEntity<Message> findAll(@PathVariable Long proyectId) {
+        return taskService.findAll(proyectId);
     }
 
     @PutMapping("/update/{id}")

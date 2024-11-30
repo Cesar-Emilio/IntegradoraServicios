@@ -1,6 +1,10 @@
 package mx.edu.utex.todolist.user.control;
 
+import mx.edu.utex.todolist.proyect.model.ProyectRepository;
+import mx.edu.utex.todolist.security.JwtUtil;
+import mx.edu.utex.todolist.task.model.TaskRepository;
 import mx.edu.utex.todolist.user.model.UserDTO;
+import mx.edu.utex.todolist.utils.EmailSender;
 import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,16 +27,21 @@ import java.util.Optional;
 @Service
 public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-    private final PasswordEncoder passwordEncoder;
-    private final TokenService tokenService;
-
     private final UserRepository userRepository;
+    private final ProyectRepository proyectRepository;
+    private final TaskRepository taskRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+    private final EmailSender emailSender;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
+    public UserService(UserRepository userRepository, ProyectRepository proyectRepository, TaskRepository taskRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, EmailSender emailSender) {
         this.userRepository = userRepository;
+        this.proyectRepository = proyectRepository;
+        this.taskRepository = taskRepository;
         this.passwordEncoder = passwordEncoder;
-        this.tokenService = tokenService;
+        this.jwtUtil = jwtUtil;
+        this.emailSender = emailSender;
     }
 
     @Transactional(readOnly = true)
@@ -44,27 +53,25 @@ public class UserService {
 
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> register(UserDTO dto) {
-        if(dto.getName().length() > 50) {
-            return new ResponseEntity<>(new Message("El nombre excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        if(validateDTOAttributes(dto)) {
+            logger.error("Los atributos exceden el número de caracteres");
+            return new ResponseEntity<>(new Message("Los atributos exceden el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getSurname().length() > 50) {
-            return new ResponseEntity<>(new Message("El apellido excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getEmail().length() > 50) {
-            return new ResponseEntity<>(new Message("El correo excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(String.valueOf(dto.getCellphone()).length() > 10) {
-            return new ResponseEntity<>(new Message("El teléfono excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getPassword().length() > 50) {
-            return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        User user = new User(dto.getName(), dto.getSurname(), dto.getEmail(), dto.getCellphone(), passwordEncoder.encode(dto.getPassword()), dto.isStatus(), dto.getAdmin())
-                ;
+
+        User user = new User();
+        user.setNombre(dto.getName());
+        user.setApellido(dto.getSurname());
+        user.setEmail(dto.getEmail());
+        user.setTelefono(dto.getCellphone());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setStatus(true);
+        user.setAdmin(dto.getAdmin());
+
         user = userRepository.saveAndFlush(user);
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se registró correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
+
         logger.info("El registro ha sido realizada correctamente");
         return new ResponseEntity<>(new Message(user, "El usuario se registró correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
@@ -75,28 +82,19 @@ public class UserService {
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se encontró", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getName().length() > 50) {
-            return new ResponseEntity<>(new Message("El nombre excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+
+        if(validateDTOAttributes(dto)) {
+            logger.error("Los atributos exceden el número de caracteres");
+            return new ResponseEntity<>(new Message("Los atributos exceden el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getSurname().length() > 50) {
-            return new ResponseEntity<>(new Message("El apellido excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getEmail().length() > 50) {
-            return new ResponseEntity<>(new Message("El correo excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(String.valueOf(dto.getCellphone()).length() > 10) {
-            return new ResponseEntity<>(new Message("El teléfono excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getPassword().length() > 50) {
-            return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
+
         user.setNombre(dto.getName());
         user.setApellido(dto.getSurname());
         user.setEmail(dto.getEmail());
         user.setTelefono(dto.getCellphone());
         user.setPassword(dto.getPassword());
-        user.setStatus(dto.isStatus());
         user.setAdmin(dto.getAdmin());
+
         user = userRepository.saveAndFlush(user);
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se actualizó correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
@@ -165,43 +163,12 @@ public class UserService {
         if(password.length() > 50) {
             return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-        user.setPassword(password);
-        user = userRepository.saveAndFlush(user);
-        if(user == null) {
-            return new ResponseEntity<>(new Message("El usuario no se actualizó correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
-        }
-        logger.info("La actualización ha sido realizada correctamente");
-        return new ResponseEntity<>(new Message(user, "El usuario se actualizó correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
-    }
 
-    @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> edit(Long id, UserDTO dto) {
-        User user = userRepository.findById(id).orElse(null);
-        if(user == null) {
-            return new ResponseEntity<>(new Message("El usuario no se encontró", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getName().length() > 50) {
-            return new ResponseEntity<>(new Message("El nombre excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getSurname().length() > 50) {
-            return new ResponseEntity<>(new Message("El apellido excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getEmail().length() > 50) {
-            return new ResponseEntity<>(new Message("El correo excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(String.valueOf(dto.getCellphone()).length() > 10) {
-            return new ResponseEntity<>(new Message("El teléfono excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        if(dto.getPassword().length() > 50) {
-            return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        }
-        user.setNombre(dto.getName());
-        user.setApellido(dto.getSurname());
-        user.setEmail(dto.getEmail());
-        user.setTelefono(dto.getCellphone());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(password));
+
         user = userRepository.saveAndFlush(user);
         if(user == null) {
+            logger.error("El usuario no se actualizó correctamente");
             return new ResponseEntity<>(new Message("El usuario no se actualizó correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
         logger.info("La actualización ha sido realizada correctamente");
@@ -210,55 +177,62 @@ public class UserService {
 
     @Transactional
     public ResponseEntity<Message> logout(String token) {
-        tokenService.invalidateToken(token);
-        return new ResponseEntity<>(new Message("Sesión cerrada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
-    }
-
-    @Transactional
-    public ResponseEntity<Message> updatePassword(Long id, String password) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user == null) {
-            return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+        try {
+            return new ResponseEntity<>(new Message("Sesión cerrada correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message("Error al cerrar sesión", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        user.setPassword(passwordEncoder.encode(password));
-        user = userRepository.saveAndFlush(user);
-        if (user == null) {
-            return new ResponseEntity<>(new Message("Error al actualizar la contraseña", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(new Message("Contraseña actualizada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
     }
 
     @Transactional
     public ResponseEntity<Message> solicitudeChangePassword(String email) {
+
         User user = userRepository.findByEmail(email).orElse(null);
         if (user == null) {
             return new ResponseEntity<>(new Message("Correo no registrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
-        // Lógica para enviar un correo con un token de restablecimiento
-        String resetToken = tokenService.generateTokenForUser(user);
-        // emailService.sendPasswordResetEmail(user.getEmail(), resetToken);
+        String resetToken = jwtUtil.generateTemporaryToken(email);
 
-        return new ResponseEntity<>(new Message("Solicitud de cambio de clave enviada al correo", TypesResponse.SUCCESS), HttpStatus.OK);
+        emailSender.sendPasswordResetEmail(user.getEmail(), resetToken);
+        return ResponseEntity.ok(new Message("Correo de restablecimiento enviado", TypesResponse.SUCCESS));
     }
 
     @Transactional
     public ResponseEntity<Message> changePasswordBySolicitude(String token, String password) {
-        Token resetToken = tokenService.findByToken(token);
-        if (resetToken == null) {
-            return new ResponseEntity<>(new Message("Token inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
-        }
-        if (resetToken.isExpired()) {
-            return new ResponseEntity<>(new Message("Token expirado", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        String email = jwtUtil.validateTemporaryToken(token);
+
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null) {
+            return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
-        User user = resetToken.getUser();
         user.setPassword(passwordEncoder.encode(password));
-        userRepository.saveAndFlush(user);
+        user = userRepository.saveAndFlush(user);
+        if(user == null) {
+            return new ResponseEntity<>(new Message("El usuario no se actualizó correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
 
-        // Eliminar el token una vez utilizado
-        tokenService.delete(resetToken);
+        return ResponseEntity.ok(new Message("Contraseña actualizada correctamente", TypesResponse.SUCCESS));
+    }
 
-        return new ResponseEntity<>(new Message("Contraseña actualizada con éxito", TypesResponse.SUCCESS), HttpStatus.OK);
+    private boolean validateDTOAttributes(UserDTO dto) {
+        return dto.getName().length() > 50 || dto.getSurname().length() > 50 || dto.getEmail().length() > 50 || String.valueOf(dto.getCellphone()).length() > 10 || dto.getPassword().length() > 50;
+    }
+
+    private boolean validateIdProyect(Long id) {
+        return proyectRepository.findById(id).isPresent();
+    }
+
+    private boolean validateIdTask(Long id) {
+        return taskRepository.findById(id).isPresent();
+    }
+
+    private boolean validateIdUser(Long id) {
+        return userRepository.findById(id).isPresent();
+    }
+
+    private boolean isTaskInProyectAndHasUser(Long idProyect, Long idTask, Long idUser) {
+        return taskRepository.findByIdAndProyectIdAndResponsible(idTask, idProyect, idUser).isPresent();
     }
 }

@@ -1,6 +1,11 @@
 package mx.edu.utex.todolist.proyect.model;
 
+import java.util.List;
 import jakarta.persistence.*;
+
+import mx.edu.utex.todolist.category.model.Category;
+import mx.edu.utex.todolist.task.model.Task;
+import mx.edu.utex.todolist.user.model.User;
 
 @Entity
 @Table(name="proyect")
@@ -21,6 +26,15 @@ public class Proyect {
     @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
     private boolean status;
 
+    @OneToMany(mappedBy = "proyect")
+    private List<Category> categories;
+
+    @OneToMany(mappedBy = "proyect")
+    private List<Task> tasks;
+
+    @ManyToMany(mappedBy = "proyects")
+    private List<User> users;
+
     public Proyect() {
     }
 
@@ -37,6 +51,16 @@ public class Proyect {
         this.abreviation = abreviation;
         this.description = description;
         this.status = status;
+    }
+
+    public Proyect(long id, String name, String abreviation, String description, boolean status, List<Category> categories, List<Task> tasks) {
+        this.id = id;
+        this.name = name;
+        this.abreviation = abreviation;
+        this.description = description;
+        this.status = status;
+        this.categories = categories;
+        this.tasks = tasks;
     }
 
     public long getId() {
@@ -77,5 +101,21 @@ public class Proyect {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setProyect_categories(List<Category> proyect_categories) {
+        this.categories = proyect_categories;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> proyect_tasks) {
+        this.tasks = proyect_tasks;
     }
 }

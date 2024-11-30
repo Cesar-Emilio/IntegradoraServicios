@@ -2,6 +2,7 @@ package mx.edu.utex.todolist.category.model;
 
 
 import jakarta.persistence.*;
+import mx.edu.utex.todolist.proyect.model.Proyect;
 import mx.edu.utex.todolist.task.model.Task;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Task> tasks;
+
+    @ManyToOne()
+    private Proyect proyect;
 
     public Category() {
     }
@@ -71,5 +75,21 @@ public class Category {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Proyect getProyect() {
+        return proyect;
+    }
+
+    public void setProyect(Proyect proyect) {
+        this.proyect = proyect;
     }
 }

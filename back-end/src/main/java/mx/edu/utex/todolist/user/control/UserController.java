@@ -31,20 +31,9 @@ public class UserController {
         return userService.update(id, userDTO);
     }
 
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<Message> edit(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        return userService.edit(id, userDTO);
-    }
-
     @PutMapping("/changeStatus/{id}")
     public ResponseEntity<Message> changeStatus(@PathVariable Long id) {
         return userService.changeStatus(id);
-    }
-
-
-    @PostMapping("/logout")
-    public ResponseEntity<Message> logout(@RequestHeader("Authorization") String token) {
-        return userService.logout(token.replace("Bearer ", ""));
     }
 
     @GetMapping("/find/{id}")
@@ -52,9 +41,15 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PutMapping("/updatePassword /{id}")
-    public ResponseEntity<Message> UpdatePassword(@PathVariable Long id, @RequestBody String password) {
-        return userService.updatePassword(id, password);
+    @PutMapping("/changePassword /{id}")
+    public ResponseEntity<Message> changePassword(@PathVariable Long id, @RequestBody String password) {
+        return userService.changePassword(id, password);
+    }
+
+    //TODO: Realizar los siguientes métodos
+    @PostMapping("/logout")
+    public ResponseEntity<Message> logout(@RequestHeader("Authorization") String token) {
+        return userService.logout(token.replace("Bearer ", ""));
     }
 
     @PostMapping("/solicitudeChangePassword/{email}")

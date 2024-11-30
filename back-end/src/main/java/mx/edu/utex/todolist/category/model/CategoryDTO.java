@@ -4,26 +4,23 @@ import jakarta.validation.constraints.NotNull;
 import mx.edu.utex.todolist.proyect.model.ProyectDTO;
 
 public class CategoryDTO {
-    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class},message = "El nombre es requerido")
+    @NotNull(groups = {Register.class, Modify.class},message = "El nombre es requerido")
     private String name;
 
-    @NotNull(groups = {ProyectDTO.Register.class, ProyectDTO.Modify.class},message = "La descripción es requerida")
+    @NotNull(groups = {Register.class, Modify.class},message = "La descripción es requerida")
     private String description;
 
-    @NotNull(groups = {ProyectDTO.ChangeStatus.class},message = "El estado es requerido")
-    private boolean status;
+    @NotNull(groups = {Modify.class},message = "El estado es requerido")
+    private Long proyect_id;
+
+    @NotNull(groups = {Modify.class},message = "El estado es requerido")
+    private Long task_id;
 
     public CategoryDTO() {
 
     }
 
-    public CategoryDTO(String name, String  description, boolean status) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
-
-    public CategoryDTO(String name,String description) {
+    public CategoryDTO(String name, String  description) {
         this.name = name;
         this.description = description;
     }
@@ -44,12 +41,20 @@ public class CategoryDTO {
         this.description = description;
     }
 
-    public boolean isStatus() {
-        return status;
+    public Long getProyect_id() {
+        return proyect_id;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setProyect_id(Long proyect_id) {
+        this.proyect_id = proyect_id;
+    }
+
+    public Long getTask_id() {
+        return task_id;
+    }
+
+    public void setTask_id(Long task_id) {
+        this.task_id = task_id;
     }
 
     public interface Register {

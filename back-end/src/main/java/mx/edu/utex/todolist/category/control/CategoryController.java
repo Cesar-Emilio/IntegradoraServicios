@@ -21,15 +21,15 @@ public class CategoryController {
     }
 
     // Consultar todas las categorías
-    @GetMapping("/findAll")
-    public ResponseEntity<Message> findAll() {
-        return categoryService.findAll();
+    @GetMapping("/findAll/{proyectId}")
+    public ResponseEntity<Message> findAll(@PathVariable Long proyectId) {
+        return categoryService.findAllByProyect(proyectId);
     }
 
     // Consultar categoría por ID
     @GetMapping("/find/{id}")
     public ResponseEntity<Message> findById(@PathVariable Long id) {
-        return categoryService.idCategory(id);
+        return categoryService.findById(id);
     }
 
     @GetMapping("/findActive")

@@ -1,6 +1,7 @@
 package mx.edu.utex.todolist.user.model;
 
 import jakarta.persistence.*;
+import mx.edu.utex.todolist.proyect.model.Proyect;
 import mx.edu.utex.todolist.task.model.Task;
 
 import java.util.List;
@@ -32,6 +33,14 @@ public class User {
 
     @Column(name = "admin", columnDefinition = "VARCHAR(20) DEFAULT 'ROLE_USER'")
     private String admin;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_proyect",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "proyect_id")
+    )
+    private List<Proyect> proyects;
 
     @ManyToMany
     @JoinTable(
