@@ -115,7 +115,7 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Correo electrónico"
-                                inputRef={usernameRef} // Asigna la referencia
+                                inputRef={usernameRef}
                                 sx={{ mt: 1.5, mb: 1 }}
                                 onChange={dataLogin}
                             />
@@ -126,7 +126,7 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="password"
                                 fullWidth
                                 label="Contraseña"
-                                inputRef={passwordRef} // Asigna la referencia
+                                inputRef={passwordRef}
                                 sx={{ mt: 1.5, mb: 1 }}
                                 onChange={dataLogin}
                             />
@@ -137,7 +137,7 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Nombre"
-                                inputRef={nameRef} // Asigna la referencia
+                                inputRef={nameRef}
                                 sx={{ mt: 1.5, mb: 1 }}
                                 onChange={dataLogin}
                             />
@@ -148,7 +148,7 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Apellido"
-                                inputRef={lastnameRef} // Asigna la referencia
+                                inputRef={lastnameRef}
                                 sx={{ mt: 1.5, mb: 1 }}
                                 onChange={dataLogin}
                             />
@@ -159,7 +159,7 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Teléfono"
-                                inputRef={phoneRef} // Asigna la referencia
+                                inputRef={phoneRef}
                                 sx={{ mt: 1.5, mb: 1 }}
                                 onChange={dataLogin}
                             />

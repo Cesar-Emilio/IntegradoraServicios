@@ -1,8 +1,20 @@
 import React from "react";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { users } from "../../api/users.api";
 
 export const HomePage: React.FC<{}> = () => {
+    React.useEffect(() => {
+        users
+            .getAll()
+            .then((r) => {
+                console.log(r.data.result);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
     return (
         <Container maxWidth="md">
             <Grid
