@@ -3,28 +3,22 @@ import { instance } from './base.api';
 const endpoint = "tasks";
 
 export const tasks = {
-    getAll: async () => {
-        return await instance.get(`${endpoint}/findAll`);
+    create: async (data: Record<string, any>) => {
+        return await instance.post(`${endpoint}/register`, data);
+    },
+    getAll: async (proyectId: number | string) => {
+        return await instance.get(`${endpoint}/findAll/${proyectId}`);
     },
     get: async (id: number | string) => {
         return await instance.get(`${endpoint}/find/${id}`);
     },
-    create: async (data: Record<string, any>) => {
-        return await instance.post(`${endpoint}/register`, data);
-    },
     update: async (id: number | string, data: Record<string, any>) => {
         return await instance.put(`${endpoint}/update/${id}`, data);
     },
-    changeStatus: async (id: number | string, status: string) => {
-        return await instance.put(`${endpoint}/changeStatus/${id}`, { status });
+    changeStatus: async (id: number | string) => {
+        return await instance.put(`${endpoint}/changeStatus/${id}`);
     },
-    getActive: async () => {
-        return await instance.get(`${endpoint}/active`);
-    },
-    getInactive: async () => {
-        return await instance.get(`${endpoint}/inactive`);
-    },
-    getTasks: async (id: number | string) => {
-        return await instance.get(`${endpoint}/getTasks?projectId=${id}`);
-    },
+    delete: async (id: number | string) => {
+        return await instance.delete(`${endpoint}/delete/${id}`);
+    }
 };
