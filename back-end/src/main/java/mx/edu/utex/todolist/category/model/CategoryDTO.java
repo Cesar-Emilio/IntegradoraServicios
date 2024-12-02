@@ -10,10 +10,10 @@ public class CategoryDTO {
     @NotNull(groups = {Register.class, Modify.class},message = "La descripción es requerida")
     private String description;
 
-    @NotNull(groups = {Modify.class},message = "El estado es requerido")
+    @NotNull(groups = {Modify.class},message = "El id del proyecto es requerido")
     private Long proyect_id;
 
-    @NotNull(groups = {Modify.class},message = "El estado es requerido")
+    @NotNull(groups = {Modify.class},message = "El id de la tarea es requerido")
     private Long task_id;
 
     public CategoryDTO() {

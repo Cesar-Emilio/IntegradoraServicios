@@ -60,9 +60,9 @@ public class UserService {
 
         User user = new User();
         user.setNombre(dto.getName());
-        user.setApellido(dto.getSurname());
+        user.setApellido(dto.getLastname());
         user.setEmail(dto.getEmail());
-        user.setTelefono(dto.getCellphone());
+        user.setTelefono(dto.getPhone());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setStatus(true);
         user.setAdmin(dto.getAdmin());
@@ -89,9 +89,9 @@ public class UserService {
         }
 
         user.setNombre(dto.getName());
-        user.setApellido(dto.getSurname());
+        user.setApellido(dto.getLastname());
         user.setEmail(dto.getEmail());
-        user.setTelefono(dto.getCellphone());
+        user.setTelefono(dto.getPhone());
         user.setPassword(dto.getPassword());
         user.setAdmin(dto.getAdmin());
 
@@ -217,7 +217,7 @@ public class UserService {
     }
 
     private boolean validateDTOAttributes(UserDTO dto) {
-        return dto.getName().length() > 50 || dto.getSurname().length() > 50 || dto.getEmail().length() > 50 || String.valueOf(dto.getCellphone()).length() > 10 || dto.getPassword().length() > 50;
+        return dto.getName().length() > 50 || dto.getLastname().length() > 50 || dto.getEmail().length() > 50 || String.valueOf(dto.getPhone()).length() > 10 || dto.getPassword().length() > 50;
     }
 
     private boolean validateIdProyect(Long id) {

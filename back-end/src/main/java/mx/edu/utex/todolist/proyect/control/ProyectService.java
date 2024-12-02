@@ -78,7 +78,7 @@ public class ProyectService {
             return new ResponseEntity<>(new Message("El proyecto no se registró correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
         logger.info("El registro ha sido realizada correctamente");
-        return new ResponseEntity<>(new Message(proyect, "El proyecto se registró correctamente", TypesResponse.SUCCESS), HttpStatus.OK);
+        return new ResponseEntity<>(new Message(proyect, "El proyecto se registró correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
 
     @Transactional(rollbackFor = {SQLException.class})

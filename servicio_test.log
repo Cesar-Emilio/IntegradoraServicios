@@ -634,3 +634,31 @@ com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long
 2024-12-01T19:19:47.237-06:00  INFO 7492 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-12-01T19:19:47.238-06:00  INFO 7492 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-12-01T19:19:47.243-06:00  INFO 7492 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-01T23:50:50.493-06:00  INFO 28448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 28448 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-01T23:50:50.494-06:00  INFO 28448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-01T23:50:50.961-06:00  INFO 28448 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-01T23:50:51.012-06:00  INFO 28448 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 4 JPA repository interfaces.
+2024-12-01T23:50:51.404-06:00  INFO 28448 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-01T23:50:51.412-06:00  INFO 28448 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-01T23:50:51.412-06:00  INFO 28448 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-01T23:50:51.453-06:00  INFO 28448 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-01T23:50:51.453-06:00  INFO 28448 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 930 ms
+2024-12-01T23:50:51.537-06:00  INFO 28448 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-01T23:50:51.570-06:00  INFO 28448 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-01T23:50:51.590-06:00  INFO 28448 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-01T23:50:51.807-06:00  INFO 28448 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-01T23:50:51.825-06:00  INFO 28448 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-01T23:50:52.033-06:00  INFO 28448 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6248cfab
+2024-12-01T23:50:52.034-06:00  INFO 28448 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-01T23:50:52.069-06:00  WARN 28448 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-01T23:50:52.069-06:00  WARN 28448 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-01T23:50:52.786-06:00  INFO 28448 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-01T23:50:52.941-06:00  INFO 28448 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-01T23:50:53.105-06:00  INFO 28448 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-01T23:50:53.525-06:00  INFO 28448 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-01T23:50:53.570-06:00  WARN 28448 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-01T23:50:53.944-06:00  INFO 28448 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-01T23:50:53.949-06:00  INFO 28448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 3.764 seconds (process running for 4.217)
+2024-12-01T23:51:06.288-06:00  INFO 28448 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-01T23:51:06.289-06:00  INFO 28448 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-01T23:51:06.293-06:00  INFO 28448 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -7,13 +7,13 @@ public class UserDTO {
     private String name;
 
     @NotNull(groups = {Register.class, Modify.class}, message = "El apellido no puede ser nulo")
-    private String surname;
+    private String lastname;
 
     @NotNull(groups = {Register.class, Modify.class}, message = "El email no puede ser nulo")
     private String email;
 
     @NotNull(groups = {Register.class, Modify.class}, message = "El telefono no puede ser nulo")
-    private int cellphone;
+    private int phone;
 
     @NotNull(groups = {Register.class, Modify.class}, message = "El password no puede ser nulo")
     private String password;
@@ -31,11 +31,11 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String name, String surname, String email, int cellphone, String password, String admin) {
+    public UserDTO(String name, String lastname, String email, int phone, String password, String admin) {
         this.name = name;
-        this.surname = surname;
+        this.lastname = lastname;
         this.email = email;
-        this.cellphone = cellphone;
+        this.phone = phone;
         this.password = password;
         this.admin = admin;
     }
@@ -48,12 +48,12 @@ public class UserDTO {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -64,12 +64,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public int getCellphone() {
-        return cellphone;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setCellphone(int cellphone) {
-        this.cellphone = cellphone;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {

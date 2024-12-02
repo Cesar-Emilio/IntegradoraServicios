@@ -16,13 +16,13 @@ public class User {
     @Column(name = "name", columnDefinition = "VARCHAR(50)")
     private String nombre;
 
-    @Column(name = "surname", columnDefinition = "VARCHAR(50)")
+    @Column(name = "lastname", columnDefinition = "VARCHAR(50)")
     private String apellido;
 
     @Column(name = "email", columnDefinition = "VARCHAR(50)", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "cellphone", columnDefinition = "INTEGER(10)")
+    @Column(name = "phone", columnDefinition = "INTEGER(10)")
     private int telefono;
 
     @Column(name = "password", columnDefinition = "VARCHAR(100)", nullable = false)
