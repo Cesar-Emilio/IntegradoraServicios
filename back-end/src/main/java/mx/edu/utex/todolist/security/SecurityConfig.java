@@ -28,7 +28,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         // Rutas públicas
-                        .requestMatchers("/login", "/register").permitAll()
+                        .requestMatchers("/login", "/users/register").permitAll()
 
                         //Rutas protegidas para ROLE_USER y ROLE_ADMIN
                         .requestMatchers("/users/login", "/users/logout", "/users/changePassword/**",

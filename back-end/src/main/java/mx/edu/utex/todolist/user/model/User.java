@@ -25,7 +25,7 @@ public class User {
     @Column(name = "cellphone", columnDefinition = "INTEGER(10)")
     private int telefono;
 
-    @Column(name = "password", columnDefinition = "VARCHAR(50)", nullable = false)
+    @Column(name = "password", columnDefinition = "VARCHAR(100)", nullable = false)
     private String password;
 
     @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
@@ -53,7 +53,7 @@ public class User {
     public User() {
     }
 
-    public User(String nombre, String apellido, String email, int telefono, String password, boolean status, String admin) {
+    public User(String nombre, String apellido, String email, int telefono, String password, String admin) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
