@@ -9,6 +9,8 @@ import {
     Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useNotification } from "../../context/notification.context";
+import { LoginValidate } from "../../utils/validateForm";
 
 type LoginType = {
     username: string;
@@ -16,10 +18,15 @@ type LoginType = {
 };
 
 export const LoginPage: React.FC<{}> = () => {
+    const { getError, getSuccess } = useNotification();
     const [loginData, setLoginData] = React.useState<LoginType>({
         username: "",
         password: "",
     });
+
+    // Crear referencias para los campos
+    const usernameRef = React.useRef<HTMLInputElement>(null);
+    const passwordRef = React.useRef<HTMLInputElement>(null);
 
     const dataLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -27,8 +34,21 @@ export const LoginPage: React.FC<{}> = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(loginData);
-        //TODO: Send data to backend
+
+        LoginValidate.validate(loginData)
+            .then(() => {
+                getSuccess("Se ha iniciado sesión correctamente");
+            })
+            .catch((error) => {
+                getError(error.message);
+
+                // Enfocar en el campo que generó el error
+                if (error.path === "username" && usernameRef.current) {
+                    usernameRef.current.focus();
+                } else if (error.path === "password" && passwordRef.current) {
+                    passwordRef.current.focus();
+                }
+            });
     };
 
     return (
@@ -72,8 +92,8 @@ export const LoginPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Correo electrónico"
+                                inputRef={usernameRef}
                                 sx={{ mt: 2, mb: 1 }}
-                                required
                                 onChange={dataLogin}
                             />
                             <TextField
@@ -83,8 +103,8 @@ export const LoginPage: React.FC<{}> = () => {
                                 type="password"
                                 fullWidth
                                 label="Contraseña"
+                                inputRef={passwordRef}
                                 sx={{ mt: 1, mb: 1.5 }}
-                                required
                                 onChange={dataLogin}
                             />
 

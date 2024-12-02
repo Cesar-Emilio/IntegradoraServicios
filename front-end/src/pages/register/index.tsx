@@ -9,6 +9,8 @@ import {
     Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useNotification } from "../../context/notification.context";
+import { RegisterValidate } from "../../utils/validateForm";
 
 type RegisterType = {
     username: string;
@@ -19,6 +21,7 @@ type RegisterType = {
 };
 
 export const RegisterPage: React.FC<{}> = () => {
+    const { getError, getSuccess } = useNotification();
     const [registerData, setRegisterData] = React.useState<RegisterType>({
         username: "",
         password: "",
@@ -27,14 +30,48 @@ export const RegisterPage: React.FC<{}> = () => {
         phone: "",
     });
 
+    // Crear referencias para los campos
+    const usernameRef = React.useRef<HTMLInputElement>(null);
+    const passwordRef = React.useRef<HTMLInputElement>(null);
+    const nameRef = React.useRef<HTMLInputElement>(null);
+    const lastnameRef = React.useRef<HTMLInputElement>(null);
+    const phoneRef = React.useRef<HTMLInputElement>(null);
+
     const dataLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setRegisterData({ ...registerData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(registerData);
-        //TODO: Send data to backend
+
+        RegisterValidate.validate(registerData)
+            .then(() => {
+                getSuccess("Se ha registrado correctamente");
+            })
+            .catch((error) => {
+                getError(error.message);
+
+                // Enfocar el campo que produjo el error
+                switch (error.path) {
+                    case "username":
+                        usernameRef.current?.focus();
+                        break;
+                    case "password":
+                        passwordRef.current?.focus();
+                        break;
+                    case "name":
+                        nameRef.current?.focus();
+                        break;
+                    case "lastname":
+                        lastnameRef.current?.focus();
+                        break;
+                    case "phone":
+                        phoneRef.current?.focus();
+                        break;
+                    default:
+                        break;
+                }
+            });
     };
 
     return (
@@ -67,7 +104,7 @@ export const RegisterPage: React.FC<{}> = () => {
                         >
                             Volver
                         </Button>
-                        <Typography sx={{ mt: 1, mb: 1 }} variant="h4"  >
+                        <Typography sx={{ mt: 1, mb: 1 }} variant="h4">
                             Regístrate
                         </Typography>
                         <Box component="form" onSubmit={handleSubmit}>
@@ -78,8 +115,8 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Correo electrónico"
+                                inputRef={usernameRef} // Asigna la referencia
                                 sx={{ mt: 1.5, mb: 1 }}
-                                required
                                 onChange={dataLogin}
                             />
                             <TextField
@@ -89,11 +126,10 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="password"
                                 fullWidth
                                 label="Contraseña"
+                                inputRef={passwordRef} // Asigna la referencia
                                 sx={{ mt: 1.5, mb: 1 }}
-                                required
                                 onChange={dataLogin}
                             />
-
                             <TextField
                                 size="small"
                                 name="name"
@@ -101,8 +137,8 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Nombre"
+                                inputRef={nameRef} // Asigna la referencia
                                 sx={{ mt: 1.5, mb: 1 }}
-                                required
                                 onChange={dataLogin}
                             />
                             <TextField
@@ -112,8 +148,8 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Apellido"
+                                inputRef={lastnameRef} // Asigna la referencia
                                 sx={{ mt: 1.5, mb: 1 }}
-                                required
                                 onChange={dataLogin}
                             />
                             <TextField
@@ -123,8 +159,8 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Teléfono"
+                                inputRef={phoneRef} // Asigna la referencia
                                 sx={{ mt: 1.5, mb: 1 }}
-                                required
                                 onChange={dataLogin}
                             />
 
@@ -135,11 +171,13 @@ export const RegisterPage: React.FC<{}> = () => {
                                 variant="contained"
                                 sx={{ mt: 1, mb: 1 }}
                             >
-                                Iniciar sesion
+                                Regístrate
                             </Button>
                             <Typography variant="body2">
                                 ¿Ya tienes cuenta?{" "}
-                                <Button component={Link} to="/login">Inicia sesión</Button>
+                                <Button component={Link} to="/login">
+                                    Inicia sesión
+                                </Button>
                             </Typography>
                         </Box>
                     </Paper>
