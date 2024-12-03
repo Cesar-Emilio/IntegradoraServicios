@@ -1,18 +1,18 @@
 import { instance } from './base.api';
 
-const endpoint = "users";
+const endpoint = "users"; 
 
 export const users = {
     getAll: function(){
         return instance.get(`${endpoint}/findAll`);
     },
-    get: function({id}: {id: number | string}){
+    get: function({id}: {id: number}){
         return instance.get(`${endpoint}/find/${id}`); 
     },
     create: async (data: Record<string, any>) => {
         return await instance.post(`${endpoint}/register`, data);
     },
-    update: async (id: number | string, data: Record<string, any>) => {
+    update: async (id: number, data: Record<string, any>) => {
         return await instance.put(`${endpoint}/update/${id}`, data);
     },
     changeStatus: async (id: number | string, status: string) => {

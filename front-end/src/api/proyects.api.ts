@@ -2,7 +2,7 @@ import { instance } from './base.api';
 
 const endpoint = "proyects";
 
-export const projects = {
+export const proyects = {
     getAll: async () => {
         return await instance.get(`${endpoint}/findAll`);
     },

@@ -24,7 +24,6 @@ export const LoginPage: React.FC<{}> = () => {
         password: "",
     });
 
-    // Crear referencias para los campos
     const usernameRef = React.useRef<HTMLInputElement>(null);
     const passwordRef = React.useRef<HTMLInputElement>(null);
 
@@ -42,7 +41,6 @@ export const LoginPage: React.FC<{}> = () => {
             .catch((error) => {
                 getError(error.message);
 
-                // Enfocar en el campo que generó el error
                 if (error.path === "username" && usernameRef.current) {
                     usernameRef.current.focus();
                 } else if (error.path === "password" && passwordRef.current) {
