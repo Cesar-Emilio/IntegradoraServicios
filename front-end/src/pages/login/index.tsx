@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Box,
     Button,
@@ -8,45 +8,76 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { login as authLogin } from "../../api/auth.api";
+import { Link, useNavigate } from "react-router-dom";
 import { useNotification } from "../../context/notification.context";
 import { LoginValidate } from "../../utils/validateForm";
+import { TypeUser } from "../../types/user.interface";
 
 type LoginType = {
-    username: string;
+    email: string;
     password: string;
 };
 
 export const LoginPage: React.FC<{}> = () => {
     const { getError, getSuccess } = useNotification();
     const [loginData, setLoginData] = React.useState<LoginType>({
-        username: "",
+        email: "",
         password: "",
     });
 
+    const navigate = useNavigate();
     const usernameRef = React.useRef<HTMLInputElement>(null);
     const passwordRef = React.useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const jwt = localStorage.getItem("jwt");
+        const user = localStorage.getItem("user");
+
+        if (jwt && user) {
+            navigate("/dashboard");
+        }
+    }, [navigate]);
 
     const dataLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        LoginValidate.validate(loginData)
-            .then(() => {
-                getSuccess("Se ha iniciado sesión correctamente");
-            })
-            .catch((error) => {
-                getError(error.message);
+        try {
+            await LoginValidate.validate(loginData);
 
-                if (error.path === "username" && usernameRef.current) {
-                    usernameRef.current.focus();
-                } else if (error.path === "password" && passwordRef.current) {
-                    passwordRef.current.focus();
-                }
-            });
+            const response = await authLogin(loginData);
+
+            const userData: TypeUser = response.data.result;
+            console.log(userData);
+            if (userData && userData.jwt) {
+                localStorage.setItem("jwt", userData.jwt);
+                localStorage.setItem("user", JSON.stringify(userData));
+
+                getSuccess("Inicio de sesión exitoso");
+                navigate("/dashboard");
+            } else {
+                getError("Datos de usuario incorrectos");
+            }
+
+            getSuccess("Inicio de sesión exitoso");
+            navigate("/dashboard");
+        } catch (error: any) {
+            if (error.response) {
+                getError(error.response.data.message);
+            } else {
+                getError(error.message);
+            }
+
+            if (error.path === "username" && usernameRef.current) {
+                usernameRef.current.focus();
+            } else if (error.path === "password" && passwordRef.current) {
+                passwordRef.current.focus();
+            }
+        }
     };
 
     return (
@@ -85,7 +116,7 @@ export const LoginPage: React.FC<{}> = () => {
                         <Box component="form" onSubmit={handleSubmit}>
                             <TextField
                                 size="small"
-                                name="username"
+                                name="email"
                                 margin="normal"
                                 type="text"
                                 fullWidth

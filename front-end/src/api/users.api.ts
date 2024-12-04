@@ -18,9 +18,6 @@ export const users = {
     changeStatus: async (id: number | string, status: string) => {
         return await instance.put(`${endpoint}/changeStatus/${id}`, { status });
     },
-    login: async (data: { username: string; password: string }) => {
-        return await instance.post(`${endpoint}/login`, data);
-    },
     logout: async () => {
         return await instance.post(`${endpoint}/logout`);
     },

@@ -1,6 +1,6 @@
 import { instance } from './base.api';
 
-export const login = async (credentials: { username: string; password: string }) => {
+export const login = async (credentials: { email: string; password: string }) => {
     return await instance.post('/login', credentials);
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Box,
     Button,
@@ -8,12 +8,14 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useNotification } from "../../context/notification.context";
 import { RegisterValidate } from "../../utils/validateForm";
+import { users } from "../../api/users.api";
+import { TypeUser } from "../../types/user.interface";
 
 type RegisterType = {
-    username: string;
+    email: string;
     password: string;
     name: string;
     lastname: string;
@@ -21,9 +23,10 @@ type RegisterType = {
 };
 
 export const RegisterPage: React.FC<{}> = () => {
+    const navigate = useNavigate();
     const { getError, getSuccess } = useNotification();
     const [registerData, setRegisterData] = React.useState<RegisterType>({
-        username: "",
+        email: "",
         password: "",
         name: "",
         lastname: "",
@@ -37,41 +40,74 @@ export const RegisterPage: React.FC<{}> = () => {
     const lastnameRef = React.useRef<HTMLInputElement>(null);
     const phoneRef = React.useRef<HTMLInputElement>(null);
 
+    useEffect(() => {
+        const jwt = localStorage.getItem("jwt");
+        const user = localStorage.getItem("user");
+
+        if (jwt && user) {
+            navigate("/dashboard"); // Redirigir a /dashboard si ya está autenticado
+        }
+    }, [navigate]);
+
     const dataLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setRegisterData({ ...registerData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        RegisterValidate.validate(registerData)
-            .then(() => {
-                getSuccess("Se ha registrado correctamente");
-            })
-            .catch((error) => {
-                getError(error.message);
+        try {
+            await RegisterValidate.validate(registerData);
 
-                // Enfocar el campo que produjo el error
-                switch (error.path) {
-                    case "username":
-                        usernameRef.current?.focus();
-                        break;
-                    case "password":
-                        passwordRef.current?.focus();
-                        break;
-                    case "name":
-                        nameRef.current?.focus();
-                        break;
-                    case "lastname":
-                        lastnameRef.current?.focus();
-                        break;
-                    case "phone":
-                        phoneRef.current?.focus();
-                        break;
-                    default:
-                        break;
-                }
+            const response = await users.create({
+                name: registerData.name,
+                lastname: registerData.lastname,
+                email: registerData.email, // Cambié `username` por `email`
+                phone: registerData.phone,
+                password: registerData.password,
+                admin: "ROLE_USER",
             });
+
+            if (response.data.type === "SUCCESS") {
+                const userData: TypeUser = response.data.result;
+                console.log(userData);
+
+                localStorage.setItem("jwt", userData.jwt);
+                localStorage.setItem("user", JSON.stringify(userData));
+
+                getSuccess("Se ha registrado correctamente");
+                navigate("/dashboard");
+            } else {
+                getError("Error al registrar el usuario");
+            }
+        } catch (error: any) {
+            if (error.response) {
+                getError(error.response.data.message);
+            } else {
+                getError(error.message);
+            }
+
+            // Enfocar el campo que produjo el error
+            switch (error.path) {
+                case "username":
+                    usernameRef.current?.focus();
+                    break;
+                case "password":
+                    passwordRef.current?.focus();
+                    break;
+                case "name":
+                    nameRef.current?.focus();
+                    break;
+                case "lastname":
+                    lastnameRef.current?.focus();
+                    break;
+                case "phone":
+                    phoneRef.current?.focus();
+                    break;
+                default:
+                    break;
+            }
+        }
     };
 
     return (
@@ -110,7 +146,7 @@ export const RegisterPage: React.FC<{}> = () => {
                         <Box component="form" onSubmit={handleSubmit}>
                             <TextField
                                 size="small"
-                                name="username"
+                                name="email"
                                 margin="normal"
                                 type="text"
                                 fullWidth

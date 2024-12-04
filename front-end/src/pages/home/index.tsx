@@ -1,9 +1,12 @@
 import React from "react";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { users } from "../../api/users.api";
 
 export const HomePage: React.FC<{}> = () => {
+    
+    const navigate = useNavigate();
+
     React.useEffect(() => {
         users
             .getAll()
@@ -14,6 +17,15 @@ export const HomePage: React.FC<{}> = () => {
                 console.log(error);
             });
     }, []);
+
+    React.useEffect(() => {
+        const jwt = localStorage.getItem("jwt");
+        const user = localStorage.getItem("user");
+
+        if (jwt && user) {
+            navigate("/dashboard"); // Redirigir a /dashboard si ya está autenticado
+        }
+    }, [navigate]);
 
     return (
         <Container maxWidth="md">
