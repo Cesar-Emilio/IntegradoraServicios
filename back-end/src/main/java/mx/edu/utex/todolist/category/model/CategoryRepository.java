@@ -10,6 +10,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findByStatusIsTrue();
     List<Category> findByStatusIsFalse() ;
     Optional<Category> findByName(String name);
+    Optional<Category> findById(Long id);
 
     @Query("SELECT c FROM Category c WHERE c.id = ?1 AND c.proyect.id = ?2")
     Optional<Category> findCategoryByIdAndProyectId(Long id, Long proyect_id);

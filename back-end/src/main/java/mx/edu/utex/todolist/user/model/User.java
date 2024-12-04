@@ -22,8 +22,8 @@ public class User {
     @Column(name = "email", columnDefinition = "VARCHAR(50)", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "phone", columnDefinition = "INTEGER(10)")
-    private int telefono;
+    @Column(name = "phone", columnDefinition = "BIGINT")
+    private long telefono;
 
     @Column(name = "password", columnDefinition = "VARCHAR(100)", nullable = false)
     private String password;
@@ -34,7 +34,7 @@ public class User {
     @Column(name = "admin", columnDefinition = "VARCHAR(20) DEFAULT 'ROLE_USER'")
     private String admin;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_proyect",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -42,7 +42,7 @@ public class User {
     )
     private List<Proyect> proyects;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_task",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -53,17 +53,16 @@ public class User {
     public User() {
     }
 
-    public User(String nombre, String apellido, String email, int telefono, String password, String admin) {
+    public User(String nombre, String apellido, String email, long telefono, String password, String admin) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.telefono = telefono;
         this.password = password;
-        this.status = status;
         this.admin = admin;
     }
 
-    public User(long id, String nombre, String apellido, String email, int telefono, String password, boolean status, String admin) {
+    public User(long id, String nombre, String apellido, String email, long telefono, String password, boolean status, String admin) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -106,11 +105,11 @@ public class User {
         this.email = email;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
@@ -144,5 +143,13 @@ public class User {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<Proyect> getProyects() {
+        return proyects;
+    }
+
+    public void setProyects(List<Proyect> proyects) {
+        this.proyects = proyects;
     }
 }

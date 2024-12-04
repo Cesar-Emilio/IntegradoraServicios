@@ -32,7 +32,12 @@ public class Proyect {
     @OneToMany(mappedBy = "proyect")
     private List<Task> tasks;
 
-    @ManyToMany(mappedBy = "proyects")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_proyect",
+            joinColumns = @JoinColumn(name = "proyect_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<User> users;
 
     public Proyect() {
@@ -43,6 +48,12 @@ public class Proyect {
         this.abreviation = abreviation;
         this.description = description;
         this.status = status;
+    }
+
+    public Proyect(String name, String abreviation, String description) {
+        this.name = name;
+        this.abreviation = abreviation;
+        this.description = description;
     }
 
     public Proyect(long id, String name, String abreviation, String description, boolean status) {
@@ -117,5 +128,17 @@ public class Proyect {
 
     public void setTasks(List<Task> proyect_tasks) {
         this.tasks = proyect_tasks;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

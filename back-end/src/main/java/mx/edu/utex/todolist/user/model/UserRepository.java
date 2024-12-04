@@ -13,6 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u JOIN u.proyects p WHERE u.id = ?1 AND p.id = ?2")
     Optional<User> findUserByIdAndProyectId(Long userId, Long proyectId);
 
-    @Query("SELECT u FROM User u JOIN u.tasks t WHERE u.id IN :userIds AND t.proyect.id = :proyectId")
+    @Query("SELECT u FROM User u JOIN u.proyects p WHERE u.id IN :userIds AND p.id = :proyectId")
     List<User> findUsersByIdsAndProyectId(@Param("userIds") List<Long> userIds, @Param("proyectId") Long proyectId);
+
 }

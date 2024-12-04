@@ -117,7 +117,7 @@ public class TaskService {
             return new ResponseEntity<>(new Message("Los atributos de la tarea no cumplen con las restricciones", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
 
-        if(!validateIdCategory(dto.getCategory_id(), id)) {
+        if(!validateIdCategory(dto.getCategory_id(), dto.getProyect_id())) {
             logger.error("Id de categoría inválido");
             return new ResponseEntity<>(new Message("Id de categoría inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
@@ -137,7 +137,7 @@ public class TaskService {
         task.setDescription(dto.getDescription());
         task.setStatus(true);
 
-        if(dto.getProyect_id() != null){
+        if(dto.getProyect_id() == null){
             logger.error("No se puede modificar el proyecto de la tarea");
             return new ResponseEntity<>(new Message("No se puede modificar el proyecto de la tarea", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
@@ -213,8 +213,8 @@ public class TaskService {
         return dto.getName() == null || dto.getName().length() > 50 || dto.getDescription() == null || dto.getDescription().length() > 50;
     }
 
-    private boolean validateIdCategory(Long categoryId, Long taskId) {
-        return categoryRepository.findCategoryByIdAndProyectId(categoryId, taskId).isPresent();
+    private boolean validateIdCategory(Long categoryId, Long proyectId) {
+        return categoryRepository.findCategoryByIdAndProyectId(categoryId, proyectId).isPresent();
     }
 
     private boolean validateIdProyect(Long proyectId) {

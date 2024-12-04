@@ -1,239 +1,170 @@
-2024-12-01T15:40:24.652-06:00  INFO 19292 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 19292 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T15:40:24.653-06:00  INFO 19292 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T15:40:25.178-06:00  INFO 19292 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T15:40:25.231-06:00  INFO 19292 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 4 JPA repository interfaces.
-2024-12-01T15:40:25.678-06:00  INFO 19292 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T15:40:25.689-06:00  INFO 19292 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T15:40:25.689-06:00  INFO 19292 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T15:40:25.737-06:00  INFO 19292 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T15:40:25.737-06:00  INFO 19292 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1053 ms
-2024-12-01T15:40:25.834-06:00  INFO 19292 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T15:40:25.896-06:00  INFO 19292 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T15:40:25.931-06:00  INFO 19292 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T15:40:26.187-06:00  INFO 19292 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T15:40:26.212-06:00  INFO 19292 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T15:40:26.487-06:00  INFO 19292 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c58d7be
-2024-12-01T15:40:26.488-06:00  INFO 19292 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T15:40:26.536-06:00  WARN 19292 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T15:40:26.537-06:00  WARN 19292 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T15:40:27.372-06:00  INFO 19292 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T15:40:27.837-06:00  INFO 19292 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T15:40:28.076-06:00  INFO 19292 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T15:40:28.530-06:00  INFO 19292 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T15:40:28.575-06:00  WARN 19292 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T15:40:29.038-06:00  INFO 19292 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T15:40:29.043-06:00  INFO 19292 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.704 seconds (process running for 5.193)
-2024-12-01T15:43:13.879-06:00  INFO 19292 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T15:43:13.881-06:00  INFO 19292 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T15:43:13.885-06:00  INFO 19292 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T16:00:35.485-06:00  INFO 17868 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 17868 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T16:00:35.487-06:00  INFO 17868 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T16:00:36.108-06:00  INFO 17868 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T16:00:36.167-06:00  INFO 17868 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 4 JPA repository interfaces.
-2024-12-01T16:00:36.744-06:00  INFO 17868 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T16:00:36.761-06:00  INFO 17868 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T16:00:36.761-06:00  INFO 17868 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T16:00:36.809-06:00  INFO 17868 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T16:00:36.810-06:00  INFO 17868 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1285 ms
-2024-12-01T16:00:36.915-06:00  INFO 17868 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T16:00:36.980-06:00  INFO 17868 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T16:00:37.017-06:00  INFO 17868 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T16:00:37.291-06:00  INFO 17868 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T16:00:37.322-06:00  INFO 17868 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T16:00:37.600-06:00  INFO 17868 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56881196
-2024-12-01T16:00:37.601-06:00  INFO 17868 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T16:00:37.642-06:00  WARN 17868 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T16:00:37.643-06:00  WARN 17868 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T16:00:38.502-06:00  INFO 17868 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T16:00:38.727-06:00  INFO 17868 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:00:38.995-06:00  INFO 17868 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T16:00:39.556-06:00  INFO 17868 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T16:00:39.605-06:00  WARN 17868 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T16:00:40.108-06:00  INFO 17868 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T16:00:40.113-06:00  INFO 17868 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 5.166 seconds (process running for 5.69)
-2024-12-01T16:07:01.613-06:00  INFO 17868 --- [todolist] [http-nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+2024-12-03T00:24:08.536-06:00  INFO 15152 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 15152 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T00:24:08.552-06:00  INFO 15152 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T00:24:09.373-06:00  INFO 15152 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T00:24:09.469-06:00  INFO 15152 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87 ms. Found 4 JPA repository interfaces.
+2024-12-03T00:24:10.104-06:00  INFO 15152 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T00:24:10.117-06:00  INFO 15152 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T00:24:10.118-06:00  INFO 15152 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T00:24:10.167-06:00  INFO 15152 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T00:24:10.168-06:00  INFO 15152 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1568 ms
+2024-12-03T00:24:10.274-06:00  INFO 15152 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T00:24:10.348-06:00  INFO 15152 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T00:24:10.388-06:00  INFO 15152 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T00:24:10.671-06:00  INFO 15152 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T00:24:10.706-06:00  INFO 15152 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T00:24:11.042-06:00  INFO 15152 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fd4312a
+2024-12-03T00:24:11.044-06:00  INFO 15152 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T00:24:11.083-06:00  WARN 15152 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T00:24:11.084-06:00  WARN 15152 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T00:24:12.309-06:00  INFO 15152 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T00:24:12.542-06:00  INFO 15152 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:24:12.861-06:00  INFO 15152 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T00:24:13.397-06:00  INFO 15152 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T00:24:13.461-06:00  WARN 15152 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T00:24:14.033-06:00  INFO 15152 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T00:24:14.040-06:00  INFO 15152 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 6.039 seconds (process running for 6.919)
+2024-12-03T00:24:45.474-06:00  INFO 15152 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T00:24:45.476-06:00  INFO 15152 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T00:24:45.477-06:00  INFO 15152 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T00:24:45.566-06:00  WARN 15152 --- [todolist] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `int` from String "7774805646": Overflow: numeric value (7774805646) out of range of int (-2147483648 -2147483647)]
+2024-12-03T00:24:52.811-06:00  WARN 15152 --- [todolist] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `int` from String "7774805646": Overflow: numeric value (7774805646) out of range of int (-2147483648 -2147483647)]
+2024-12-03T00:25:07.371-06:00  INFO 15152 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:25:07.373-06:00  INFO 15152 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T00:25:07.377-06:00  INFO 15152 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T00:25:10.115-06:00  INFO 28536 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 28536 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T00:25:10.116-06:00  INFO 28536 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T00:25:10.570-06:00  INFO 28536 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T00:25:10.616-06:00  INFO 28536 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+2024-12-03T00:25:11.004-06:00  INFO 28536 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T00:25:11.014-06:00  INFO 28536 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T00:25:11.014-06:00  INFO 28536 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T00:25:11.063-06:00  INFO 28536 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T00:25:11.063-06:00  INFO 28536 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 915 ms
+2024-12-03T00:25:11.151-06:00  INFO 28536 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T00:25:11.185-06:00  INFO 28536 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T00:25:11.210-06:00  INFO 28536 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T00:25:11.415-06:00  INFO 28536 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T00:25:11.436-06:00  INFO 28536 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T00:25:11.671-06:00  INFO 28536 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75c33608
+2024-12-03T00:25:11.674-06:00  INFO 28536 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T00:25:11.715-06:00  WARN 28536 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T00:25:11.716-06:00  WARN 28536 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T00:25:12.496-06:00  INFO 28536 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T00:25:13.056-06:00  INFO 28536 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:25:13.341-06:00  INFO 28536 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T00:25:13.769-06:00  INFO 28536 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T00:25:13.823-06:00  WARN 28536 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T00:25:14.253-06:00  INFO 28536 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T00:25:14.259-06:00  INFO 28536 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.45 seconds (process running for 4.951)
+2024-12-03T00:40:15.459-06:00  INFO 28536 --- [todolist] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T00:40:15.459-06:00  INFO 28536 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T00:40:15.461-06:00  INFO 28536 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-03T00:40:15.544-06:00  WARN 28536 --- [todolist] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `int` from String "7774805646": Overflow: numeric value (7774805646) out of range of int (-2147483648 -2147483647)]
+2024-12-03T00:41:14.633-06:00  WARN 28536 --- [todolist] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `int` from String "7774805646": Overflow: numeric value (7774805646) out of range of int (-2147483648 -2147483647)]
+2024-12-03T00:42:01.204-06:00  WARN 28536 --- [todolist] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Numeric value (7774805646) out of range of int (-2147483648 - 2147483647)]
+2024-12-03T00:42:16.137-06:00  WARN 28536 --- [todolist] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Numeric value (7774806546) out of range of int (-2147483648 - 2147483647)]
+2024-12-03T00:45:41.430-06:00  INFO 28536 --- [todolist] [http-nio-8080-exec-7] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T00:49:21.027-06:00  INFO 28536 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:49:21.032-06:00  INFO 28536 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T00:49:21.064-06:00  INFO 28536 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T00:49:25.217-06:00  INFO 6036 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 6036 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T00:49:25.218-06:00  INFO 6036 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T00:49:25.670-06:00  INFO 6036 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T00:49:25.714-06:00  INFO 6036 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 4 JPA repository interfaces.
+2024-12-03T00:49:26.092-06:00  INFO 6036 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T00:49:26.103-06:00  INFO 6036 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T00:49:26.103-06:00  INFO 6036 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T00:49:26.146-06:00  INFO 6036 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T00:49:26.147-06:00  INFO 6036 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 900 ms
+2024-12-03T00:49:26.227-06:00  INFO 6036 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T00:49:26.261-06:00  INFO 6036 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T00:49:26.284-06:00  INFO 6036 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T00:49:26.488-06:00  INFO 6036 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T00:49:26.506-06:00  INFO 6036 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T00:49:26.733-06:00  INFO 6036 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fde487b
+2024-12-03T00:49:26.735-06:00  INFO 6036 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T00:49:26.793-06:00  WARN 6036 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T00:49:26.794-06:00  WARN 6036 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T00:49:27.562-06:00  INFO 6036 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T00:49:28.088-06:00  INFO 6036 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:49:28.274-06:00  INFO 6036 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T00:49:28.731-06:00  INFO 6036 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T00:49:28.775-06:00  WARN 6036 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T00:49:29.205-06:00  INFO 6036 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T00:49:29.210-06:00  INFO 6036 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.259 seconds (process running for 4.66)
+2024-12-03T00:49:32.402-06:00  INFO 6036 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T00:49:32.403-06:00  INFO 6036 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T00:49:32.404-06:00  INFO 6036 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-03T00:49:42.047-06:00  INFO 6036 --- [todolist] [http-nio-8080-exec-2] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T00:49:51.883-06:00  WARN 6036 --- [todolist] [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Numeric value (7774806546) out of range of int (-2147483648 - 2147483647)]
+2024-12-03T00:50:33.296-06:00  INFO 6036 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:50:33.298-06:00  INFO 6036 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T00:50:33.304-06:00  INFO 6036 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T00:50:37.302-06:00  INFO 22052 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 22052 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T00:50:37.303-06:00  INFO 22052 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T00:50:37.777-06:00  INFO 22052 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T00:50:37.824-06:00  INFO 22052 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+2024-12-03T00:50:38.217-06:00  INFO 22052 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T00:50:38.228-06:00  INFO 22052 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T00:50:38.229-06:00  INFO 22052 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T00:50:38.271-06:00  INFO 22052 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T00:50:38.271-06:00  INFO 22052 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 941 ms
+2024-12-03T00:50:38.350-06:00  INFO 22052 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T00:50:38.383-06:00  INFO 22052 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T00:50:38.407-06:00  INFO 22052 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T00:50:38.611-06:00  INFO 22052 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T00:50:38.630-06:00  INFO 22052 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T00:50:38.849-06:00  INFO 22052 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ea3a513
+2024-12-03T00:50:38.850-06:00  INFO 22052 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T00:50:38.892-06:00  WARN 22052 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T00:50:38.893-06:00  WARN 22052 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T00:50:39.616-06:00  INFO 22052 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T00:50:40.141-06:00  INFO 22052 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:50:40.341-06:00  INFO 22052 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T00:50:40.737-06:00  INFO 22052 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T00:50:40.781-06:00  WARN 22052 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T00:50:41.167-06:00  INFO 22052 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T00:50:41.172-06:00  INFO 22052 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.151 seconds (process running for 4.554)
+2024-12-03T00:50:45.480-06:00  INFO 22052 --- [todolist] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T00:50:45.480-06:00  INFO 22052 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T00:50:45.483-06:00  INFO 22052 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T00:50:45.565-06:00  WARN 22052 --- [todolist] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Numeric value (7774806546) out of range of int (-2147483648 - 2147483647)]
+2024-12-03T00:53:39.353-06:00  INFO 22052 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:53:39.354-06:00  INFO 22052 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T00:53:39.360-06:00  INFO 22052 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T00:53:43.141-06:00  INFO 21448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 21448 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T00:53:43.143-06:00  INFO 21448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T00:53:43.600-06:00  INFO 21448 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T00:53:43.647-06:00  INFO 21448 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+2024-12-03T00:53:44.025-06:00  INFO 21448 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T00:53:44.035-06:00  INFO 21448 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T00:53:44.035-06:00  INFO 21448 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T00:53:44.077-06:00  INFO 21448 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T00:53:44.078-06:00  INFO 21448 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 905 ms
+2024-12-03T00:53:44.158-06:00  INFO 21448 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T00:53:44.190-06:00  INFO 21448 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T00:53:44.210-06:00  INFO 21448 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T00:53:44.409-06:00  INFO 21448 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T00:53:44.428-06:00  INFO 21448 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T00:53:44.634-06:00  INFO 21448 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b808af5
+2024-12-03T00:53:44.636-06:00  INFO 21448 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T00:53:44.678-06:00  WARN 21448 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T00:53:44.679-06:00  WARN 21448 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T00:53:45.395-06:00  INFO 21448 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T00:53:45.892-06:00  INFO 21448 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:53:46.078-06:00  INFO 21448 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T00:53:46.460-06:00  INFO 21448 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T00:53:46.502-06:00  WARN 21448 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T00:53:46.933-06:00  INFO 21448 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T00:53:46.938-06:00  INFO 21448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.076 seconds (process running for 4.477)
+2024-12-03T00:57:20.230-06:00  INFO 21448 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T00:57:20.230-06:00  INFO 21448 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T00:57:20.231-06:00  INFO 21448 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T00:57:20.464-06:00  WARN 21448 --- [todolist] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1264, SQLState: 22001
+2024-12-03T00:57:20.464-06:00 ERROR 21448 --- [todolist] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncation: Out of range value for column 'phone' at row 1
+2024-12-03T00:57:20.472-06:00 ERROR 21448 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DataIntegrityViolationException: could not execute statement [Data truncation: Out of range value for column 'phone' at row 1] [insert into user (admin,lastname,email,name,password,status,phone) values (?,?,?,?,?,?,?)]; SQL [insert into user (admin,lastname,email,name,password,status,phone) values (?,?,?,?,?,?,?)]] with root cause
 
-java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x000xf70x010x000x000xf30x030x03^0x1f0x910x030x09G0x170xcc0xf4$0x940x1b0xf50xaf0x0c0xfd0x090xe40xa7H0x120xec|I0x870x070x1e#G0xb0nD ]. HTTP method names must be tokens
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:406) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:257) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-
-2024-12-01T16:07:18.800-06:00  INFO 17868 --- [todolist] [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-01T16:07:18.800-06:00  INFO 17868 --- [todolist] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-01T16:07:18.801-06:00  INFO 17868 --- [todolist] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-01T16:08:27.641-06:00  INFO 17868 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:08:27.643-06:00  INFO 17868 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T16:08:27.647-06:00  INFO 17868 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T16:08:30.111-06:00  INFO 6048 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 6048 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T16:08:30.112-06:00  INFO 6048 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T16:08:30.549-06:00  INFO 6048 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T16:08:30.592-06:00  INFO 6048 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 4 JPA repository interfaces.
-2024-12-01T16:08:30.963-06:00  INFO 6048 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T16:08:30.973-06:00  INFO 6048 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T16:08:30.973-06:00  INFO 6048 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T16:08:31.013-06:00  INFO 6048 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T16:08:31.014-06:00  INFO 6048 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 872 ms
-2024-12-01T16:08:31.086-06:00  INFO 6048 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T16:08:31.119-06:00  INFO 6048 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T16:08:31.142-06:00  INFO 6048 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T16:08:31.346-06:00  INFO 6048 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T16:08:31.364-06:00  INFO 6048 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T16:08:31.571-06:00  INFO 6048 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56881196
-2024-12-01T16:08:31.572-06:00  INFO 6048 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T16:08:31.611-06:00  WARN 6048 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T16:08:31.612-06:00  WARN 6048 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T16:08:32.312-06:00  INFO 6048 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T16:08:32.846-06:00  INFO 6048 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:08:32.999-06:00  INFO 6048 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T16:08:33.414-06:00  INFO 6048 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T16:08:33.453-06:00  WARN 6048 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T16:08:33.818-06:00  INFO 6048 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T16:08:33.823-06:00  INFO 6048 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.001 seconds (process running for 4.395)
-2024-12-01T16:08:39.904-06:00  INFO 6048 --- [todolist] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-01T16:08:39.904-06:00  INFO 6048 --- [todolist] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-01T16:08:39.905-06:00  INFO 6048 --- [todolist] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-01T16:14:13.288-06:00  WARN 6048 --- [todolist] [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2024-12-01T16:14:19.962-06:00  WARN 6048 --- [todolist] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
-2024-12-01T16:14:49.464-06:00  INFO 6048 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:14:49.466-06:00  INFO 6048 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T16:14:49.470-06:00  INFO 6048 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T16:14:52.250-06:00  INFO 18208 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 18208 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T16:14:52.251-06:00  INFO 18208 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T16:14:52.707-06:00  INFO 18208 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T16:14:52.756-06:00  INFO 18208 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 4 JPA repository interfaces.
-2024-12-01T16:14:53.137-06:00  INFO 18208 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T16:14:53.149-06:00  INFO 18208 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T16:14:53.150-06:00  INFO 18208 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T16:14:53.195-06:00  INFO 18208 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T16:14:53.195-06:00  INFO 18208 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 914 ms
-2024-12-01T16:14:53.284-06:00  INFO 18208 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T16:14:53.322-06:00  INFO 18208 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T16:14:53.350-06:00  INFO 18208 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T16:14:53.593-06:00  INFO 18208 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T16:14:53.612-06:00  INFO 18208 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T16:14:53.856-06:00  INFO 18208 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56881196
-2024-12-01T16:14:53.857-06:00  INFO 18208 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T16:14:53.903-06:00  WARN 18208 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T16:14:53.904-06:00  WARN 18208 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T16:14:54.674-06:00  INFO 18208 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T16:14:55.167-06:00  INFO 18208 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:14:55.317-06:00  INFO 18208 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T16:14:55.754-06:00  INFO 18208 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T16:14:55.793-06:00  WARN 18208 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T16:14:56.205-06:00  INFO 18208 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T16:14:56.210-06:00  INFO 18208 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.249 seconds (process running for 4.649)
-2024-12-01T16:17:24.358-06:00  INFO 18208 --- [todolist] [http-nio-8080-exec-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-01T16:17:24.358-06:00  INFO 18208 --- [todolist] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-01T16:17:24.359-06:00  INFO 18208 --- [todolist] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-01T16:17:24.392-06:00  WARN 18208 --- [todolist] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
-2024-12-01T16:21:11.221-06:00  WARN 18208 --- [todolist] [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2024-12-01T16:22:59.313-06:00  WARN 18208 --- [todolist] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2024-12-01T16:29:39.279-06:00  INFO 18208 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:29:39.281-06:00  INFO 18208 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T16:29:39.285-06:00  INFO 18208 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T16:29:44.635-06:00  INFO 1140 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 1140 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T16:29:44.636-06:00  INFO 1140 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T16:29:45.110-06:00  INFO 1140 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T16:29:45.159-06:00  INFO 1140 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 4 JPA repository interfaces.
-2024-12-01T16:29:45.575-06:00  INFO 1140 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T16:29:45.588-06:00  INFO 1140 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T16:29:45.588-06:00  INFO 1140 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T16:29:45.635-06:00  INFO 1140 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T16:29:45.635-06:00  INFO 1140 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 965 ms
-2024-12-01T16:29:45.712-06:00  INFO 1140 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T16:29:45.745-06:00  INFO 1140 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T16:29:45.768-06:00  INFO 1140 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T16:29:45.986-06:00  INFO 1140 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T16:29:46.007-06:00  INFO 1140 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T16:29:46.230-06:00  INFO 1140 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b808af5
-2024-12-01T16:29:46.232-06:00  INFO 1140 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T16:29:46.272-06:00  WARN 1140 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T16:29:46.273-06:00  WARN 1140 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T16:29:47.028-06:00  INFO 1140 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T16:29:47.541-06:00  INFO 1140 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:29:47.725-06:00  INFO 1140 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T16:29:48.099-06:00  INFO 1140 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T16:29:48.140-06:00  WARN 1140 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T16:29:48.509-06:00  INFO 1140 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T16:29:48.514-06:00  INFO 1140 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.163 seconds (process running for 4.561)
-2024-12-01T16:30:06.991-06:00  INFO 1140 --- [todolist] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-01T16:30:06.992-06:00  INFO 1140 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-01T16:30:06.993-06:00  INFO 1140 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-01T16:38:27.669-06:00  INFO 1140 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:38:27.671-06:00  INFO 1140 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T16:38:27.675-06:00  INFO 1140 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T16:38:30.831-06:00  INFO 21800 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 21800 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T16:38:30.833-06:00  INFO 21800 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T16:38:31.303-06:00  INFO 21800 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T16:38:31.349-06:00  INFO 21800 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
-2024-12-01T16:38:31.754-06:00  INFO 21800 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T16:38:31.774-06:00  INFO 21800 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T16:38:31.774-06:00  INFO 21800 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T16:38:31.842-06:00  INFO 21800 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T16:38:31.843-06:00  INFO 21800 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 980 ms
-2024-12-01T16:38:31.943-06:00  INFO 21800 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T16:38:31.976-06:00  INFO 21800 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T16:38:32.004-06:00  INFO 21800 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T16:38:32.231-06:00  INFO 21800 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T16:38:32.251-06:00  INFO 21800 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T16:38:32.455-06:00  INFO 21800 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fde487b
-2024-12-01T16:38:32.456-06:00  INFO 21800 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T16:38:32.494-06:00  WARN 21800 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T16:38:32.495-06:00  WARN 21800 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T16:38:33.204-06:00  INFO 21800 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T16:38:33.697-06:00  INFO 21800 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T16:38:33.851-06:00  INFO 21800 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T16:38:34.270-06:00  INFO 21800 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T16:38:34.310-06:00  WARN 21800 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T16:38:34.678-06:00  INFO 21800 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T16:38:34.682-06:00  INFO 21800 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.162 seconds (process running for 4.557)
-2024-12-01T16:38:42.882-06:00  INFO 21800 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-01T16:38:42.882-06:00  INFO 21800 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-01T16:38:42.884-06:00  INFO 21800 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-12-01T18:15:20.314-06:00  INFO 21800 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T18:15:20.315-06:00  INFO 21800 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T18:15:20.320-06:00  INFO 21800 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T18:15:31.871-06:00  INFO 14380 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 14380 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T18:15:31.872-06:00  INFO 14380 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T18:15:32.394-06:00  INFO 14380 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T18:15:32.457-06:00  INFO 14380 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 4 JPA repository interfaces.
-2024-12-01T18:15:32.907-06:00  INFO 14380 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T18:15:32.923-06:00  INFO 14380 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T18:15:32.923-06:00  INFO 14380 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T18:15:32.975-06:00  INFO 14380 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T18:15:32.975-06:00  INFO 14380 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1070 ms
-2024-12-01T18:15:33.075-06:00  INFO 14380 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T18:15:33.112-06:00  INFO 14380 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T18:15:33.139-06:00  INFO 14380 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T18:15:33.346-06:00  INFO 14380 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T18:15:33.367-06:00  INFO 14380 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T18:15:33.612-06:00  INFO 14380 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2166c48a
-2024-12-01T18:15:33.613-06:00  INFO 14380 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T18:15:33.646-06:00  WARN 14380 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T18:15:33.647-06:00  WARN 14380 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T18:15:34.425-06:00  INFO 14380 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T18:15:34.977-06:00  INFO 14380 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T18:15:35.138-06:00  INFO 14380 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T18:15:35.594-06:00  INFO 14380 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T18:15:35.641-06:00  WARN 14380 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T18:15:36.062-06:00  INFO 14380 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T18:15:36.068-06:00  INFO 14380 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.484 seconds (process running for 5.949)
-2024-12-01T18:16:10.042-06:00  INFO 14380 --- [todolist] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-01T18:16:10.042-06:00  INFO 14380 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-01T18:16:10.044-06:00  INFO 14380 --- [todolist] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-01T18:16:20.559-06:00  WARN 14380 --- [todolist] [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1406, SQLState: 22001
-2024-12-01T18:16:20.559-06:00 ERROR 14380 --- [todolist] [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncation: Data too long for column 'password' at row 1
-2024-12-01T18:16:20.572-06:00 ERROR 14380 --- [todolist] [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DataIntegrityViolationException: could not execute statement [Data truncation: Data too long for column 'password' at row 1] [insert into user (admin,surname,email,name,password,status,cellphone) values (?,?,?,?,?,?,?)]; SQL [insert into user (admin,surname,email,name,password,status,cellphone) values (?,?,?,?,?,?,?)]] with root cause
-
-com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'password' at row 1
+com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Out of range value for column 'phone' at row 1
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
 	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
 	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
@@ -301,7 +232,7 @@ com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.1.14.jar:6.1.14]
 	at jdk.proxy2/jdk.proxy2.$Proxy130.saveAndFlush(Unknown Source) ~[na:na]
-	at mx.edu.utex.todolist.user.control.UserService.register(UserService.java:70) ~[classes/:na]
+	at mx.edu.utex.todolist.user.control.UserService.register(UserService.java:69) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.14.jar:6.1.14]
@@ -414,96 +345,219 @@ com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
-2024-12-01T18:18:17.457-06:00  WARN 14380 --- [todolist] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1406, SQLState: 22001
-2024-12-01T18:18:17.457-06:00 ERROR 14380 --- [todolist] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncation: Data too long for column 'password' at row 1
-2024-12-01T18:18:17.460-06:00 ERROR 14380 --- [todolist] [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DataIntegrityViolationException: could not execute statement [Data truncation: Data too long for column 'password' at row 1] [insert into user (admin,surname,email,name,password,status,cellphone) values (?,?,?,?,?,?,?)]; SQL [insert into user (admin,surname,email,name,password,status,cellphone) values (?,?,?,?,?,?,?)]] with root cause
+2024-12-03T00:58:50.939-06:00  INFO 21448 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:58:50.941-06:00  INFO 21448 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T00:58:50.949-06:00  INFO 21448 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T00:58:54.480-06:00  INFO 18076 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 18076 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T00:58:54.481-06:00  INFO 18076 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T00:58:54.966-06:00  INFO 18076 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T00:58:55.013-06:00  INFO 18076 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 4 JPA repository interfaces.
+2024-12-03T00:58:55.396-06:00  INFO 18076 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T00:58:55.408-06:00  INFO 18076 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T00:58:55.408-06:00  INFO 18076 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T00:58:55.449-06:00  INFO 18076 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T00:58:55.450-06:00  INFO 18076 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 936 ms
+2024-12-03T00:58:55.541-06:00  INFO 18076 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T00:58:55.576-06:00  INFO 18076 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T00:58:55.597-06:00  INFO 18076 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T00:58:55.837-06:00  INFO 18076 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T00:58:55.863-06:00  INFO 18076 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T00:58:56.135-06:00  INFO 18076 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b808af5
+2024-12-03T00:58:56.136-06:00  INFO 18076 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T00:58:56.189-06:00  WARN 18076 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T00:58:56.189-06:00  WARN 18076 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T00:58:57.016-06:00  INFO 18076 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T00:58:57.496-06:00  INFO 18076 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T00:58:57.646-06:00  INFO 18076 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T00:58:58.061-06:00  INFO 18076 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T00:58:58.107-06:00  WARN 18076 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T00:58:58.503-06:00  INFO 18076 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T00:58:58.508-06:00  INFO 18076 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.296 seconds (process running for 4.697)
+2024-12-03T00:59:04.267-06:00  INFO 18076 --- [todolist] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T00:59:04.268-06:00  INFO 18076 --- [todolist] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T00:59:04.269-06:00  INFO 18076 --- [todolist] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T00:59:04.489-06:00  INFO 18076 --- [todolist] [http-nio-8080-exec-3] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T01:08:03.936-06:00  INFO 18076 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:08:03.937-06:00  INFO 18076 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T01:08:03.943-06:00  INFO 18076 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T01:08:07.452-06:00  INFO 24612 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 24612 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T01:08:07.454-06:00  INFO 24612 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T01:08:07.926-06:00  INFO 24612 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T01:08:07.974-06:00  INFO 24612 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+2024-12-03T01:08:08.373-06:00  INFO 24612 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T01:08:08.383-06:00  INFO 24612 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T01:08:08.383-06:00  INFO 24612 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T01:08:08.431-06:00  INFO 24612 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T01:08:08.431-06:00  INFO 24612 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 948 ms
+2024-12-03T01:08:08.512-06:00  INFO 24612 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T01:08:08.546-06:00  INFO 24612 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T01:08:08.569-06:00  INFO 24612 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T01:08:08.771-06:00  INFO 24612 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T01:08:08.791-06:00  INFO 24612 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T01:08:09.004-06:00  INFO 24612 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fd4312a
+2024-12-03T01:08:09.006-06:00  INFO 24612 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T01:08:09.037-06:00  WARN 24612 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T01:08:09.038-06:00  WARN 24612 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T01:08:09.752-06:00  INFO 24612 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T01:08:10.220-06:00  INFO 24612 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:08:10.402-06:00  INFO 24612 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T01:08:10.777-06:00  INFO 24612 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T01:08:10.818-06:00  WARN 24612 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T01:08:11.183-06:00  INFO 24612 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T01:08:11.187-06:00  INFO 24612 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.007 seconds (process running for 4.408)
+2024-12-03T01:08:17.837-06:00  INFO 24612 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T01:08:17.837-06:00  INFO 24612 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T01:08:17.839-06:00  INFO 24612 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T01:08:18.051-06:00  INFO 24612 --- [todolist] [http-nio-8080-exec-1] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T01:17:31.284-06:00  INFO 24612 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:17:31.286-06:00  INFO 24612 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T01:17:31.294-06:00  INFO 24612 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T01:17:40.700-06:00  INFO 19868 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 19868 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T01:17:40.702-06:00  INFO 19868 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T01:17:41.171-06:00  INFO 19868 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T01:17:41.220-06:00  INFO 19868 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 4 JPA repository interfaces.
+2024-12-03T01:17:41.610-06:00  INFO 19868 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T01:17:41.621-06:00  INFO 19868 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T01:17:41.621-06:00  INFO 19868 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T01:17:41.664-06:00  INFO 19868 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T01:17:41.664-06:00  INFO 19868 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 932 ms
+2024-12-03T01:17:41.747-06:00  INFO 19868 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T01:17:41.781-06:00  INFO 19868 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T01:17:41.803-06:00  INFO 19868 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T01:17:42.003-06:00  INFO 19868 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T01:17:42.022-06:00  INFO 19868 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T01:17:42.234-06:00  INFO 19868 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b808af5
+2024-12-03T01:17:42.236-06:00  INFO 19868 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T01:17:42.267-06:00  WARN 19868 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T01:17:42.269-06:00  WARN 19868 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T01:17:42.979-06:00  INFO 19868 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T01:17:43.395-06:00  INFO 19868 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:17:43.586-06:00  INFO 19868 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T01:17:43.980-06:00  INFO 19868 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T01:17:44.022-06:00  WARN 19868 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T01:17:44.399-06:00  INFO 19868 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T01:17:44.404-06:00  INFO 19868 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 3.98 seconds (process running for 4.42)
+2024-12-03T01:18:18.873-06:00  INFO 19868 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T01:18:18.873-06:00  INFO 19868 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T01:18:18.874-06:00  INFO 19868 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T01:18:19.087-06:00  INFO 19868 --- [todolist] [http-nio-8080-exec-1] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T01:26:54.923-06:00  INFO 19868 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:26:54.925-06:00  INFO 19868 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T01:26:54.931-06:00  INFO 19868 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T01:29:14.191-06:00  INFO 24780 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 24780 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T01:29:14.192-06:00  INFO 24780 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T01:29:14.650-06:00  INFO 24780 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T01:29:14.697-06:00  INFO 24780 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+2024-12-03T01:29:15.074-06:00  INFO 24780 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T01:29:15.086-06:00  INFO 24780 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T01:29:15.087-06:00  INFO 24780 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T01:29:15.129-06:00  INFO 24780 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T01:29:15.129-06:00  INFO 24780 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 907 ms
+2024-12-03T01:29:15.205-06:00  INFO 24780 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T01:29:15.237-06:00  INFO 24780 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T01:29:15.257-06:00  INFO 24780 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T01:29:15.473-06:00  INFO 24780 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T01:29:15.492-06:00  INFO 24780 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T01:29:15.701-06:00  INFO 24780 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3eee08f5
+2024-12-03T01:29:15.703-06:00  INFO 24780 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T01:29:15.741-06:00  WARN 24780 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T01:29:15.742-06:00  WARN 24780 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T01:29:16.591-06:00  INFO 24780 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T01:29:17.125-06:00  INFO 24780 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:29:17.313-06:00  INFO 24780 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T01:29:17.699-06:00  INFO 24780 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T01:29:17.738-06:00  WARN 24780 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T01:29:18.112-06:00  INFO 24780 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T01:29:18.117-06:00  INFO 24780 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.199 seconds (process running for 4.612)
+2024-12-03T01:29:25.796-06:00  INFO 24780 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T01:29:25.796-06:00  INFO 24780 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T01:29:25.797-06:00  INFO 24780 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T01:29:26.008-06:00  INFO 24780 --- [todolist] [http-nio-8080-exec-1] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T01:32:48.362-06:00  INFO 24780 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:32:48.364-06:00  INFO 24780 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T01:32:48.371-06:00  INFO 24780 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T01:32:51.769-06:00  INFO 8180 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 8180 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T01:32:51.771-06:00  INFO 8180 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T01:32:52.242-06:00  INFO 8180 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T01:32:52.293-06:00  INFO 8180 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 4 JPA repository interfaces.
+2024-12-03T01:32:52.702-06:00  INFO 8180 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T01:32:52.712-06:00  INFO 8180 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T01:32:52.712-06:00  INFO 8180 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T01:32:52.754-06:00  INFO 8180 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T01:32:52.755-06:00  INFO 8180 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 951 ms
+2024-12-03T01:32:52.838-06:00  INFO 8180 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T01:32:52.873-06:00  INFO 8180 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T01:32:52.896-06:00  INFO 8180 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T01:32:53.123-06:00  INFO 8180 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T01:32:53.143-06:00  INFO 8180 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T01:32:53.360-06:00  INFO 8180 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b808af5
+2024-12-03T01:32:53.362-06:00  INFO 8180 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T01:32:53.402-06:00  WARN 8180 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T01:32:53.403-06:00  WARN 8180 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T01:32:54.168-06:00  INFO 8180 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T01:32:54.740-06:00  INFO 8180 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:32:54.942-06:00  INFO 8180 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T01:32:55.336-06:00  INFO 8180 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T01:32:55.382-06:00  WARN 8180 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T01:32:55.795-06:00  INFO 8180 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T01:32:55.800-06:00  INFO 8180 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.373 seconds (process running for 4.794)
+2024-12-03T01:33:05.226-06:00  INFO 8180 --- [todolist] [http-nio-8080-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T01:33:05.227-06:00  INFO 8180 --- [todolist] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T01:33:05.227-06:00  INFO 8180 --- [todolist] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-03T01:33:05.450-06:00  INFO 8180 --- [todolist] [http-nio-8080-exec-9] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T01:38:07.522-06:00  INFO 8180 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:38:07.524-06:00  INFO 8180 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T01:38:07.531-06:00  INFO 8180 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T01:41:19.747-06:00  INFO 3724 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 3724 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T01:41:19.748-06:00  INFO 3724 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T01:41:20.315-06:00  INFO 3724 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T01:41:20.364-06:00  INFO 3724 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 4 JPA repository interfaces.
+2024-12-03T01:41:20.755-06:00  INFO 3724 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T01:41:20.765-06:00  INFO 3724 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T01:41:20.765-06:00  INFO 3724 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T01:41:20.809-06:00  INFO 3724 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T01:41:20.809-06:00  INFO 3724 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1030 ms
+2024-12-03T01:41:20.885-06:00  INFO 3724 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T01:41:20.918-06:00  INFO 3724 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T01:41:20.941-06:00  INFO 3724 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T01:41:21.147-06:00  INFO 3724 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T01:41:21.165-06:00  INFO 3724 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T01:41:21.374-06:00  INFO 3724 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56881196
+2024-12-03T01:41:21.377-06:00  INFO 3724 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T01:41:21.419-06:00  WARN 3724 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T01:41:21.420-06:00  WARN 3724 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T01:41:22.134-06:00  INFO 3724 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T01:41:22.602-06:00  INFO 3724 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:41:22.792-06:00  INFO 3724 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T01:41:23.184-06:00  INFO 3724 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T01:41:23.229-06:00  WARN 3724 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T01:41:23.604-06:00  INFO 3724 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T01:41:23.610-06:00  INFO 3724 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.152 seconds (process running for 4.57)
+2024-12-03T01:41:40.646-06:00  INFO 3724 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T01:41:40.646-06:00  INFO 3724 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T01:41:40.647-06:00  INFO 3724 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-03T01:41:40.736-06:00 ERROR 3724 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class mx.edu.utex.todolist.user.model.UserDTO]] with root cause
 
-com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'password' at row 1
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.1.0.jar:na]
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.id.insert.GetGeneratedKeysDelegate.performMutation(GetGeneratedKeysDelegate.java:116) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:47) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:194) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:132) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:95) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:85) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:671) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:292) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:273) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:323) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:391) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:305) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:224) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:137) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:175) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:93) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:77) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:54) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:757) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:741) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:364) ~[spring-orm-6.1.14.jar:6.1.14]
-	at jdk.proxy2/jdk.proxy2.$Proxy124.persist(Unknown Source) ~[na:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:319) ~[spring-orm-6.1.14.jar:6.1.14]
-	at jdk.proxy2/jdk.proxy2.$Proxy124.persist(Unknown Source) ~[na:na]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:628) ~[spring-data-jpa-3.3.5.jar:3.3.5]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.saveAndFlush(SimpleJpaRepository.java:639) ~[spring-data-jpa-3.3.5.jar:3.3.5]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:173) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:148) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.3.5.jar:3.3.5]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379) ~[spring-tx-6.1.14.jar:6.1.14]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165) ~[spring-data-jpa-3.3.5.jar:3.3.5]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.1.14.jar:6.1.14]
-	at jdk.proxy2/jdk.proxy2.$Proxy130.saveAndFlush(Unknown Source) ~[na:na]
-	at mx.edu.utex.todolist.user.control.UserService.register(UserService.java:70) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379) ~[spring-tx-6.1.14.jar:6.1.14]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.14.jar:6.1.14]
-	at mx.edu.utex.todolist.user.control.UserService$$SpringCGLIB$$0.register(<generated>) ~[classes/:na]
-	at mx.edu.utex.todolist.user.control.UserController.register(UserController.java:21) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `mx.edu.utex.todolist.user.model.UserDTO` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 2, column: 5]
+	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:67) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DeserializationContext.reportBadDefinition(DeserializationContext.java:1887) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DatabindContext.reportBadDefinition(DatabindContext.java:414) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DeserializationContext.handleMissingInstantiator(DeserializationContext.java:1375) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1508) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:348) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:185) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:342) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.ObjectReader._bindAndClose(ObjectReader.java:2125) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.ObjectReader.readValue(ObjectReader.java:1501) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:395) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:354) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:184) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:161) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:135) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:178) ~[spring-web-6.1.14.jar:6.1.14]
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
@@ -599,66 +653,272 @@ com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
-2024-12-01T18:59:43.339-06:00  INFO 14380 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T18:59:43.342-06:00  INFO 14380 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T18:59:43.346-06:00  INFO 14380 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T18:59:46.396-06:00  INFO 7492 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 7492 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T18:59:46.397-06:00  INFO 7492 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T18:59:46.854-06:00  INFO 7492 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T18:59:46.899-06:00  INFO 7492 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 4 JPA repository interfaces.
-2024-12-01T18:59:47.274-06:00  INFO 7492 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T18:59:47.285-06:00  INFO 7492 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T18:59:47.285-06:00  INFO 7492 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T18:59:47.329-06:00  INFO 7492 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T18:59:47.329-06:00  INFO 7492 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 902 ms
-2024-12-01T18:59:47.406-06:00  INFO 7492 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T18:59:47.439-06:00  INFO 7492 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T18:59:47.460-06:00  INFO 7492 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T18:59:47.667-06:00  INFO 7492 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T18:59:47.686-06:00  INFO 7492 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T18:59:47.898-06:00  INFO 7492 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fd4312a
-2024-12-01T18:59:47.900-06:00  INFO 7492 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T18:59:47.939-06:00  WARN 7492 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T18:59:47.940-06:00  WARN 7492 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T18:59:48.656-06:00  INFO 7492 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T18:59:49.181-06:00  INFO 7492 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T18:59:49.378-06:00  INFO 7492 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T18:59:49.772-06:00  INFO 7492 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T18:59:49.814-06:00  WARN 7492 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T18:59:50.204-06:00  INFO 7492 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T18:59:50.208-06:00  INFO 7492 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.081 seconds (process running for 4.483)
-2024-12-01T19:00:49.888-06:00  INFO 7492 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-01T19:00:49.889-06:00  INFO 7492 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-01T19:00:49.890-06:00  INFO 7492 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-01T19:00:50.116-06:00  INFO 7492 --- [todolist] [http-nio-8080-exec-1] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
-2024-12-01T19:19:47.237-06:00  INFO 7492 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T19:19:47.238-06:00  INFO 7492 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T19:19:47.243-06:00  INFO 7492 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-01T23:50:50.493-06:00  INFO 28448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 28448 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
-2024-12-01T23:50:50.494-06:00  INFO 28448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T23:50:50.961-06:00  INFO 28448 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-01T23:50:51.012-06:00  INFO 28448 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 4 JPA repository interfaces.
-2024-12-01T23:50:51.404-06:00  INFO 28448 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-12-01T23:50:51.412-06:00  INFO 28448 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-01T23:50:51.412-06:00  INFO 28448 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-01T23:50:51.453-06:00  INFO 28448 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-01T23:50:51.453-06:00  INFO 28448 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 930 ms
-2024-12-01T23:50:51.537-06:00  INFO 28448 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-01T23:50:51.570-06:00  INFO 28448 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-01T23:50:51.590-06:00  INFO 28448 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-01T23:50:51.807-06:00  INFO 28448 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-01T23:50:51.825-06:00  INFO 28448 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-01T23:50:52.033-06:00  INFO 28448 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6248cfab
-2024-12-01T23:50:52.034-06:00  INFO 28448 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-01T23:50:52.069-06:00  WARN 28448 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-12-01T23:50:52.069-06:00  WARN 28448 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-12-01T23:50:52.786-06:00  INFO 28448 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-01T23:50:52.941-06:00  INFO 28448 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T23:50:53.105-06:00  INFO 28448 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-12-01T23:50:53.525-06:00  INFO 28448 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2024-12-01T23:50:53.570-06:00  WARN 28448 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-01T23:50:53.944-06:00  INFO 28448 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-12-01T23:50:53.949-06:00  INFO 28448 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 3.764 seconds (process running for 4.217)
-2024-12-01T23:51:06.288-06:00  INFO 28448 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-01T23:51:06.289-06:00  INFO 28448 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-01T23:51:06.293-06:00  INFO 28448 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T01:44:12.866-06:00 ERROR 3724 --- [todolist] [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class mx.edu.utex.todolist.user.model.UserDTO]] with root cause
+
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `mx.edu.utex.todolist.user.model.UserDTO` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 2, column: 5]
+	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:67) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DeserializationContext.reportBadDefinition(DeserializationContext.java:1887) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DatabindContext.reportBadDefinition(DatabindContext.java:414) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DeserializationContext.handleMissingInstantiator(DeserializationContext.java:1375) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1508) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:348) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:185) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:342) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.ObjectReader._bindAndClose(ObjectReader.java:2125) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.ObjectReader.readValue(ObjectReader.java:1501) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:395) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:354) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:184) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:161) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:135) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:178) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at mx.edu.utex.todolist.security.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:62) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-03T01:44:54.924-06:00 ERROR 3724 --- [todolist] [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class mx.edu.utex.todolist.user.model.UserDTO]] with root cause
+
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `mx.edu.utex.todolist.user.model.UserDTO` (no Creators, like default constructor, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 2, column: 5]
+	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:67) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DeserializationContext.reportBadDefinition(DeserializationContext.java:1887) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DatabindContext.reportBadDefinition(DatabindContext.java:414) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.DeserializationContext.handleMissingInstantiator(DeserializationContext.java:1375) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1508) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:348) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:185) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:342) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.ObjectReader._bindAndClose(ObjectReader.java:2125) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.ObjectReader.readValue(ObjectReader.java:1501) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:395) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:354) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:184) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:161) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:135) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:178) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at mx.edu.utex.todolist.security.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:62) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2024-12-03T01:45:10.976-06:00  INFO 3724 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:45:10.979-06:00  INFO 3724 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T01:45:10.991-06:00  INFO 3724 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-03T01:45:13.978-06:00  INFO 3812 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Starting TodolistApplication using Java 21.0.4 with PID 3812 (C:\Users\erick\IdeaProjects\IntegradoraServicios\back-end\target\classes started by erick in C:\Users\erick\IdeaProjects\IntegradoraServicios)
+2024-12-03T01:45:13.980-06:00  INFO 3812 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T01:45:14.432-06:00  INFO 3812 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03T01:45:14.484-06:00  INFO 3812 --- [todolist] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 4 JPA repository interfaces.
+2024-12-03T01:45:14.910-06:00  INFO 3812 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-03T01:45:14.920-06:00  INFO 3812 --- [todolist] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-03T01:45:14.920-06:00  INFO 3812 --- [todolist] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-03T01:45:14.960-06:00  INFO 3812 --- [todolist] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-03T01:45:14.961-06:00  INFO 3812 --- [todolist] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 953 ms
+2024-12-03T01:45:15.038-06:00  INFO 3812 --- [todolist] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03T01:45:15.071-06:00  INFO 3812 --- [todolist] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03T01:45:15.093-06:00  INFO 3812 --- [todolist] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-03T01:45:15.347-06:00  INFO 3812 --- [todolist] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03T01:45:15.386-06:00  INFO 3812 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-03T01:45:15.616-06:00  INFO 3812 --- [todolist] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4cc4d454
+2024-12-03T01:45:15.620-06:00  INFO 3812 --- [todolist] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-03T01:45:15.662-06:00  WARN 3812 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03T01:45:15.663-06:00  WARN 3812 --- [todolist] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-12-03T01:45:16.370-06:00  INFO 3812 --- [todolist] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03T01:45:16.821-06:00  INFO 3812 --- [todolist] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T01:45:16.973-06:00  INFO 3812 --- [todolist] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-03T01:45:17.384-06:00  INFO 3812 --- [todolist] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2024-12-03T01:45:17.425-06:00  WARN 3812 --- [todolist] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03T01:45:17.804-06:00  INFO 3812 --- [todolist] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-03T01:45:17.809-06:00  INFO 3812 --- [todolist] [main] m.edu.utex.todolist.TodolistApplication  : Started TodolistApplication in 4.098 seconds (process running for 4.502)
+2024-12-03T01:45:26.740-06:00  INFO 3812 --- [todolist] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-03T01:45:26.740-06:00  INFO 3812 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-03T01:45:26.741-06:00  INFO 3812 --- [todolist] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-03T01:45:26.949-06:00  INFO 3812 --- [todolist] [http-nio-8080-exec-1] m.e.u.todolist.user.control.UserService  : El registro ha sido realizada correctamente
+2024-12-03T02:11:37.043-06:00  INFO 3812 --- [todolist] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03T02:11:37.044-06:00  INFO 3812 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-03T02:11:37.051-06:00  INFO 3812 --- [todolist] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

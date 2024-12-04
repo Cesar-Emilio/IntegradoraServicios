@@ -10,19 +10,17 @@ public class CategoryDTO {
     @NotNull(groups = {Register.class, Modify.class},message = "La descripción es requerida")
     private String description;
 
-    @NotNull(groups = {Modify.class},message = "El id del proyecto es requerido")
+    @NotNull(groups = {Register.class, Modify.class},message = "El id del proyecto es requerido")
     private Long proyect_id;
 
-    @NotNull(groups = {Modify.class},message = "El id de la tarea es requerido")
-    private Long task_id;
+    @NotNull(groups = {ProyectDTO.ChangeStatus.class},message = "El estado es requerido")
+    private boolean status;
 
-    public CategoryDTO() {
-
-    }
-
-    public CategoryDTO(String name, String  description) {
+    public CategoryDTO(String name, String  description, Long proyect_id, boolean status) {
         this.name = name;
         this.description = description;
+        this.proyect_id = proyect_id;
+        this.status = status;
     }
 
     public String getName() {
@@ -49,12 +47,13 @@ public class CategoryDTO {
         this.proyect_id = proyect_id;
     }
 
-    public Long getTask_id() {
-        return task_id;
+    @NotNull(groups = {ProyectDTO.ChangeStatus.class}, message = "El estado es requerido")
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setTask_id(Long task_id) {
-        this.task_id = task_id;
+    public void setStatus(@NotNull(groups = {ProyectDTO.ChangeStatus.class}, message = "El estado es requerido") boolean status) {
+        this.status = status;
     }
 
     public interface Register {

@@ -2,6 +2,8 @@ package mx.edu.utex.todolist.proyect.model;
 
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 public class ProyectDTO {
     @NotNull(groups = {Register.class, Modify.class},message = "El nombre es requerido")
     private String name;
@@ -15,29 +17,14 @@ public class ProyectDTO {
     @NotNull(groups = {ChangeStatus.class},message = "El estado es requerido")
     private boolean status;
 
-    @NotNull(groups = {Modify.class},message = "El id de la categoría es requerido")
-    private Long category_id;
+    @NotNull(groups = {Register.class, Modify.class},message = "El id del usuario es requerido")
+    private List<Long> user_id;
 
-    @NotNull(groups = {Modify.class},message = "El id de la tarea es requerido")
-    private Long task_id;
-
-    @NotNull(groups = {Modify.class},message = "El id del usuario es requerido")
-    private Long user_id;
-
-    public ProyectDTO() {
-    }
-
-    public ProyectDTO(String name, String abreviation, String  description, boolean status) {
+    public ProyectDTO(String name, String abreviation,String description, List<Long> user_id) {
         this.name = name;
         this.abreviation = abreviation;
         this.description = description;
-        this.status = status;
-    }
-
-    public ProyectDTO(String name, String abreviation,String description) {
-        this.name = name;
-        this.abreviation = abreviation;
-        this.description = description;
+        this.user_id = user_id;
     }
 
     public String getName() {
@@ -70,6 +57,14 @@ public class ProyectDTO {
 
     public void setAbreviation(String abreviation) {
         this.abreviation = abreviation;
+    }
+
+    public List<Long> getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(List<Long> user_id) {
+        this.user_id = user_id;
     }
 
     public interface Register {

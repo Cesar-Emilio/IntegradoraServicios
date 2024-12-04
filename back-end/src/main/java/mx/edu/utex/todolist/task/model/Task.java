@@ -44,13 +44,10 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String name, String description, boolean status, Category category, Proyect proyect, List<User> responsibles) {
+    public Task(String name, String description, Category category) {
         this.name = name;
         this.description = description;
-        this.status = status;
         this.category = category;
-        this.proyect = proyect;
-        this.responsibles = responsibles;
     }
 
     public Task(Long id, String name, String description, boolean status, Category category, Proyect proyect, List<User> responsibles) {

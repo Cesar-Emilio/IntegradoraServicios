@@ -4,6 +4,7 @@ import mx.edu.utex.todolist.user.control.UserService;
 import mx.edu.utex.todolist.user.model.User;
 import mx.edu.utex.todolist.user.model.UserDTO;
 import mx.edu.utex.todolist.user.model.UserRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,11 @@ public class UserServiceTest{
 
     @BeforeEach
     void setUp() {
+        userRepository.deleteAll();
+
+    }
+    @AfterEach
+    void setup2() {
         userRepository.deleteAll();
     }
 

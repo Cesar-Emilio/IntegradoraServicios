@@ -32,10 +32,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, String description, boolean status) {
+    public Category(String name, String description, Proyect proyect) {
         this.name = name;
         this.description = description;
-        this.status = status;
+        this.proyect = proyect;
     }
 
     public Category(long id, String name, String description, boolean status) {

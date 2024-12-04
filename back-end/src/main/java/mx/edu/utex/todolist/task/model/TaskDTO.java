@@ -23,14 +23,6 @@ public class TaskDTO {
             "El id del usuario es requerido")
     private List<Long> responsibles_id;
 
-
-    public TaskDTO() {}
-
-    public TaskDTO(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
     public TaskDTO(String name, String description, long category_id, long proyect_id, List<Long> responsibles_id) {
         this.name = name;
         this.description = description;

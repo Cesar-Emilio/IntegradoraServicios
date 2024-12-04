@@ -4,6 +4,8 @@ import jakarta.transaction.Transactional;
 import mx.edu.utex.todolist.category.model.Category;
 import mx.edu.utex.todolist.category.model.CategoryDTO;
 import mx.edu.utex.todolist.category.model.CategoryRepository;
+import mx.edu.utex.todolist.proyect.model.Proyect;
+import mx.edu.utex.todolist.proyect.model.ProyectRepository;
 import mx.edu.utex.todolist.utils.Message;
 import mx.edu.utex.todolist.utils.TypesResponse;
 import org.slf4j.Logger;
@@ -22,10 +24,12 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final Logger logger = LoggerFactory.getLogger(CategoryService.class);
+    private final ProyectRepository proyectRepository;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, ProyectRepository proyectRepository) {
         this.categoryRepository = categoryRepository;
+        this.proyectRepository = proyectRepository;
     }
 
     // Registrar Categoria
@@ -38,6 +42,12 @@ public class CategoryService {
         category.setName(dto.getName());
         category.setDescription(dto.getDescription());
         category.setStatus(true);
+        Optional<Proyect> proyectOptional = proyectRepository.findById(dto.getProyect_id());
+        if (!proyectOptional.isPresent()) {
+            logger.error("Proyecto con ID " + dto.getProyect_id() + " no encontrado.");
+            return new ResponseEntity<>(new Message("Proyecto no encontrado", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+        category.setProyect(proyectOptional.get());
 
         category = categoryRepository.saveAndFlush(category);
         if (category == null) {

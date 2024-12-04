@@ -1,11 +1,15 @@
 package mx.edu.utex.todolist.user.control;
 
+import mx.edu.utex.todolist.proyect.model.Proyect;
 import mx.edu.utex.todolist.proyect.model.ProyectRepository;
 import mx.edu.utex.todolist.security.JwtUtil;
+import mx.edu.utex.todolist.security.UserDetailsServiceImpl;
+import mx.edu.utex.todolist.security.dto.AuthResponse;
 import mx.edu.utex.todolist.task.model.TaskRepository;
 import mx.edu.utex.todolist.user.model.UserDTO;
 import mx.edu.utex.todolist.utils.EmailSender;
-import org.springframework.security.core.token.TokenService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import mx.edu.utex.todolist.user.model.UserRepository;
@@ -20,6 +24,7 @@ import mx.edu.utex.todolist.user.model.User;
 import mx.edu.utex.todolist.utils.TypesResponse;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,14 +39,17 @@ public class UserService {
     private final JwtUtil jwtUtil;
     private final EmailSender emailSender;
 
+    UserDetailsServiceImpl userDetailsService;
+
     @Autowired
-    public UserService(UserRepository userRepository, ProyectRepository proyectRepository, TaskRepository taskRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, EmailSender emailSender) {
+    public UserService(UserRepository userRepository, ProyectRepository proyectRepository, TaskRepository taskRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, EmailSender emailSender, UserDetailsServiceImpl userDetailsService) {
         this.userRepository = userRepository;
         this.proyectRepository = proyectRepository;
         this.taskRepository = taskRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.emailSender = emailSender;
+        this.userDetailsService = userDetailsService;
     }
 
     @Transactional(readOnly = true)
@@ -55,7 +63,7 @@ public class UserService {
     public ResponseEntity<Message> register(UserDTO dto) {
         if(validateDTOAttributes(dto)) {
             logger.error("Los atributos exceden el número de caracteres");
-            return new ResponseEntity<>(new Message("Los atributos exceden el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("Los atributos exceden el número de caracteres", TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         User user = new User();
@@ -63,17 +71,18 @@ public class UserService {
         user.setApellido(dto.getLastname());
         user.setEmail(dto.getEmail());
         user.setTelefono(dto.getPhone());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setStatus(true);
+        user.setAdmin("ROLE_USER");
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setAdmin(dto.getAdmin());
 
         user = userRepository.saveAndFlush(user);
         if(user == null) {
             return new ResponseEntity<>(new Message("El usuario no se registró correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-
+        AuthResponse response = authenticateAndGenerateToken(user.getEmail());
         logger.info("El registro ha sido realizada correctamente");
-        return new ResponseEntity<>(new Message(user, "El usuario se registró correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
+        return new ResponseEntity<>(new Message(response, "El usuario se registró correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
 
     @Transactional(rollbackFor = {SQLException.class})
@@ -220,10 +229,6 @@ public class UserService {
         return dto.getName().length() > 50 || dto.getLastname().length() > 50 || dto.getEmail().length() > 50 || String.valueOf(dto.getPhone()).length() > 10 || dto.getPassword().length() > 50;
     }
 
-    private boolean validateIdProyect(Long id) {
-        return proyectRepository.findById(id).isPresent();
-    }
-
     private boolean validateIdTask(Long id) {
         return taskRepository.findById(id).isPresent();
     }
@@ -234,5 +239,15 @@ public class UserService {
 
     private boolean isTaskInProyectAndHasUser(Long idProyect, Long idTask, Long idUser) {
         return taskRepository.findByIdAndProyectIdAndResponsible(idTask, idProyect, idUser).isPresent();
+    }
+    private AuthResponse authenticateAndGenerateToken(String email) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+
+        String jwt = jwtUtil.generateToken(userDetails);
+        long expirationTime = jwtUtil.getExpirationTime();
+
+        return new AuthResponse(jwt, user.getId(), user.getEmail(), expirationTime);
     }
 }

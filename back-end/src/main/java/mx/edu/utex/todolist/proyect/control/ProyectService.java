@@ -4,6 +4,9 @@ import mx.edu.utex.todolist.proyect.model.Proyect;
 import mx.edu.utex.todolist.proyect.model.ProyectDTO;
 import mx.edu.utex.todolist.proyect.model.ProyectRepository;
 import mx.edu.utex.todolist.task.model.TaskRepository;
+import mx.edu.utex.todolist.user.control.UserService;
+import mx.edu.utex.todolist.user.model.User;
+import mx.edu.utex.todolist.user.model.UserRepository;
 import mx.edu.utex.todolist.utils.Message;
 import mx.edu.utex.todolist.utils.TypesResponse;
 import org.slf4j.Logger;
@@ -24,11 +27,15 @@ public class ProyectService {
 
     private final ProyectRepository proyectRepository;
     private final TaskRepository taskRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProyectService(ProyectRepository proyectRepository, TaskRepository taskRepository) {
+    public ProyectService(ProyectRepository proyectRepository, TaskRepository taskRepository, UserService userService, UserRepository userRepository) {
         this.proyectRepository = proyectRepository;
         this.taskRepository = taskRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @Transactional(readOnly = true)
@@ -74,6 +81,26 @@ public class ProyectService {
         proyect.setStatus(true);
 
         proyect = proyectRepository.saveAndFlush(proyect);
+        if (proyect == null) {
+            return new ResponseEntity<>(
+                    new Message("El proyecto no se registró correctamente", TypesResponse.ERROR),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        List<User> users = userRepository.findAllById(proyectDTO.getUser_id());
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(
+                    new Message("No se encontraron usuarios con los IDs proporcionados", TypesResponse.ERROR),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        for (User user : users) {
+            user.getProyects().add(proyect);
+        }
+
+        userRepository.saveAll(users);
         if(proyect == null) {
             return new ResponseEntity<>(new Message("El proyecto no se registró correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }

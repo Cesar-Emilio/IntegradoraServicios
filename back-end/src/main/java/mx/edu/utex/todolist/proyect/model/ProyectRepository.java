@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProyectRepository extends JpaRepository<Proyect, Long> {
-    Proyect findByName(String name);
+    Optional<Proyect> findByName(String name);
 
     List<Proyect> findByStatusIsTrue();
 
