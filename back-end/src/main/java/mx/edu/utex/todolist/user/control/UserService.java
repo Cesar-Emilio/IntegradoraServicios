@@ -248,6 +248,6 @@ public class UserService {
         String jwt = jwtUtil.generateToken(userDetails);
         long expirationTime = jwtUtil.getExpirationTime();
 
-        return new AuthResponse(jwt, user.getId(), user.getEmail(), expirationTime);
+        return new AuthResponse(jwt, user.getId(), user.getEmail(), user.getAdmin(), expirationTime);
     }
 }

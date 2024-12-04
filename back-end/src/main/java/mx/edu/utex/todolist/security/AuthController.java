@@ -48,7 +48,7 @@ public class AuthController {
             String jwt = jwtUtil.generateToken(userDetails);
             long expirationTime = jwtUtil.getExpirationTime();
 
-            AuthResponse response = new AuthResponse(jwt, user.getId(), user.getEmail(), expirationTime);
+            AuthResponse response = new AuthResponse(jwt, user.getId(), user.getEmail(), user.getAdmin(), expirationTime);
             return new ResponseEntity<>(new Message(response, "Inicio de sesión exitoso", TypesResponse.SUCCESS), HttpStatus.OK);
 
         } catch (BadCredentialsException e) {
