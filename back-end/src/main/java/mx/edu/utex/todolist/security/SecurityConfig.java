@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/users/register").permitAll()
 
                         //Rutas protegidas para ROLE_USER y ROLE_ADMIN
-                        .requestMatchers("/users/login", "/users/logout", "/users/changePassword/**",
+                        .requestMatchers("/users/login", "/users/logout", "/users/changePassword/**", "/users/findAll",
                                 "/users/edit/**", "/users/solicitudeChangePassword/**",
                                 "/users/changePasswordBySolicitude/**", "/users/update/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         .requestMatchers("/proyects/findAll", "/proyects/find/**","/proyects/active", "/proyects/inactive",
@@ -44,7 +44,7 @@ public class SecurityConfig {
                         .requestMatchers("/category/findAll").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 
                         // Rutas protegidas exclusivas para ROLE_ADMIN
-                        .requestMatchers("/users/changeStatus/**", "/users/find/**", "/users/findAll")
+                        .requestMatchers("/users/changeStatus/**", "/users/find/**")
                         .hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/proyects/register", "/proyects/update/**", "/proyects/changeStatus/**"
                                 ).hasAuthority("ROLE_ADMIN")

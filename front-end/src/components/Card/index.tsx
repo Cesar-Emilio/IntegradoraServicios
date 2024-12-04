@@ -3,15 +3,23 @@ import { Card, CardContent, Typography, CardActions, Button, Divider } from "@mu
 import { Link } from "react-router-dom";
 
 type ProjectProps = {
+    id: number
     name: string;
     abreviation: string;
     description: string;
 };
 
-export const CardComponent: React.FC<ProjectProps> = ({ name, abreviation, description }) => {
+export const CardComponent: React.FC<ProjectProps> = ({ id, name, abreviation, description }) => {
     return (
-        <Card sx={{ maxWidth: 345, margin: 2 }}>
-            <CardContent>
+        <Card sx={{ 
+            minWidth: 300,
+            maxWidth: 350,
+            minHeight: 300,
+            margin: 2, 
+            display: "flex",
+            flexDirection: "column",
+        }}>
+            <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h5" component="div">
                     {name}
                 </Typography>
@@ -24,7 +32,7 @@ export const CardComponent: React.FC<ProjectProps> = ({ name, abreviation, descr
                 </Typography>
             </CardContent>
             <CardActions>
-                <Link to={`/proyect/${name}`} style={{ textDecoration: "none" }}>
+                <Link to={`/proyect/${name}/${id}`} style={{ textDecoration: "none", margin:10 }}>
                     <Button variant="contained" size="small">
                         Ver Detalles
                     </Button>

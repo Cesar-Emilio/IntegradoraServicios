@@ -57,10 +57,17 @@ public class TaskService {
             logger.error("Id de proyecto inválido");
             return new ResponseEntity<>(new Message("Id de proyecto inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(dto.getResponsibles_id().stream().anyMatch(userId -> !validateIdUser(userId, dto.getProyect_id()))) {
+        if (dto.getResponsibles_id().isEmpty()) {
             logger.error("Id de usuario inválido");
             return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
+        if(!validateIdUser(dto.getResponsibles_id().get(0), dto.getProyect_id())){
+            logger.error("Id user: " + dto.getResponsibles_id().get(0));
+            logger.error("Id proyect: " + dto.getProyect_id());
+            logger.error("Id de usuario inválido: " + dto.getResponsibles_id().get(0));
+            return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+
 
         Task task = new Task(dto.getName(), dto.getDescription(), true);
 

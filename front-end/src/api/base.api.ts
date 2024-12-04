@@ -1,7 +1,16 @@
-import axios from 'axios';
-
-const BASE_URL = 'http://127.0.0.1:8080/';
+import axios from "axios";
 
 export const instance = axios.create({
-    baseURL: BASE_URL,
+    baseURL: "http://localhost:8080",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
+
+instance.interceptors.request.use((config) => {
+    const token = localStorage.getItem("jwt"); 
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
 });

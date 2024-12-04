@@ -55,7 +55,7 @@ public class CategoryService {
             return new ResponseEntity<>(new Message("Error al registrar la categoría", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
         logger.info("Categoría registrada");
-        return new ResponseEntity<>(new Message("Categoría registrada", TypesResponse.SUCCESS), HttpStatus.CREATED);
+        return new ResponseEntity<>(new Message(category, "Categoría registrada", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
 
     public ResponseEntity<Message> findAllByProyect(Long proyectId) {
