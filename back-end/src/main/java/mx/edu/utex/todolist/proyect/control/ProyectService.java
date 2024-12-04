@@ -78,6 +78,7 @@ public class ProyectService {
         proyect.setName(proyectDTO.getName());
         proyect.setAbreviation(proyectDTO.getAbreviation());
         proyect.setDescription(proyectDTO.getDescription());
+        proyect.setUsers(userRepository.findAllById(proyectDTO.getUser_id()));
         proyect.setStatus(true);
 
         proyect = proyectRepository.saveAndFlush(proyect);
