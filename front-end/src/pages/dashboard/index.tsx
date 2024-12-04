@@ -29,6 +29,7 @@ export const DashboardPage: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        document.title = "Dashboard";
         const user = localStorage.getItem("user");
 
         if (!user) {

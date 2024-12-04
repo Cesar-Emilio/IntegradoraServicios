@@ -8,17 +8,7 @@ export const HomePage: React.FC<{}> = () => {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        users
-            .getAll()
-            .then((r) => {
-                console.log(r.data.result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
-
-    React.useEffect(() => {
+        document.title = "Inicio de sesión";
         const jwt = localStorage.getItem("jwt");
         const user = localStorage.getItem("user");
 

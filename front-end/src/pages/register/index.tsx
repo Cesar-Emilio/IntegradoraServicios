@@ -41,6 +41,7 @@ export const RegisterPage: React.FC<{}> = () => {
     const phoneRef = React.useRef<HTMLInputElement>(null);
 
     useEffect(() => {
+        document.title = "Regístrate";
         const jwt = localStorage.getItem("jwt");
         const user = localStorage.getItem("user");
 

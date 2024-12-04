@@ -31,6 +31,7 @@ export const LoginPage: React.FC<{}> = () => {
     const passwordRef = React.useRef<HTMLInputElement>(null);
 
     useEffect(() => {
+        document.title = "Inicio de sesión";
         const jwt = localStorage.getItem("jwt");
         const user = localStorage.getItem("user");
 

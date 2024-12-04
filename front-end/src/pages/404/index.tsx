@@ -1,7 +1,13 @@
 import { Box, Typography, Button } from '@mui/material';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const NotFound = () => {
+
+  useEffect(() => {
+    document.title = '404';
+  }, []);
+
   return (
     <Box
       sx={{

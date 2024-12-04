@@ -44,6 +44,7 @@ export const ProjectPage: React.FC = () => {
     const { getError, getSuccess } = useNotification();
 
     useEffect(() => {
+        document.title = "Proyecto";
         const user = localStorage.getItem("user");
 
         if (!user) {
