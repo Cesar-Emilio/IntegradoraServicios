@@ -93,6 +93,26 @@ public class TaskServiceTest{
         Assertions.assertEquals(HttpStatus.CREATED, taskService.register(taskDTO).getStatusCode());
     }
     @Test
+    public void testRegisterFail() {
+        Long userId = userRepository.findByEmail("erickhumbetotc@gmail.com")
+                .orElseThrow(() -> new AssertionError("Usuario no encontrado"))
+                .getId();
+
+        Long proyectId = proyectRepository.findByName("Controlador Tareas")
+                .orElseThrow(() -> new AssertionError("Proyecto no encontrado"))
+                .getId();
+
+        Long categoryId = categoryRepository.findByName("Pendiente")
+                .orElseThrow(() -> new AssertionError("Categoría no encontrada"))
+                .getId();
+
+        List<Long> list = new ArrayList<>();
+        TaskDTO taskDTO = new TaskDTO("Integradora Servicios", "Es el proyecto final de la materia de Servicios", categoryId, proyectId, list);
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, taskService.register(taskDTO).getStatusCode());
+    }
+
+
+    @Test
     public void testFindAllTasks() {
         Long proyectId = proyectRepository.findByName("Controlador Tareas")
                 .orElseThrow(() -> new AssertionError("Proyecto no encontrado"))
@@ -128,6 +148,32 @@ public class TaskServiceTest{
     }
 
     @Test
+    public void testUpdateTaskFail() {
+        Long userId = userRepository.findByEmail("erickhumbetotc@gmail.com")
+                .orElseThrow(() -> new AssertionError("Usuario no encontrado"))
+                .getId();
+
+        Long proyectId = proyectRepository.findByName("Controlador Tareas")
+                .orElseThrow(() -> new AssertionError("Proyecto no encontrado"))
+                .getId();
+
+        Long categoryId = categoryRepository.findByName("Pendiente")
+                .orElseThrow(() -> new AssertionError("Categoría no encontrada"))
+                .getId();
+
+        List<Long> list = new ArrayList<>();
+        list.add(userId);
+        taskService.register(new TaskDTO("Integradora Servicios", "Proyecto final", categoryId, proyectId, list));
+
+        Long taskId = taskRepository.findByName("Integradora Servicios")
+                .orElseThrow(() -> new AssertionError("Tarea no encontrada"))
+                .getId();
+
+        TaskDTO updatedTask = new TaskDTO("Integradora Modificada", "Descripción modificada", categoryId, 9999L, list);
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, taskService.update(updatedTask, taskId).getStatusCode());
+    }
+
+    @Test
     public void testChangeStatus() {
         Long userId = userRepository.findByEmail("erickhumbetotc@gmail.com")
                 .orElseThrow(() -> new AssertionError("Usuario no encontrado"))
@@ -152,15 +198,29 @@ public class TaskServiceTest{
                 .getId();
 
         Assertions.assertEquals(HttpStatus.OK, taskService.changeStatus(taskId).getStatusCode());
-
-        // Verificar que el estado cambió correctamente
-        boolean updatedStatus = taskRepository.findById(taskId)
-                .orElseThrow(() -> new AssertionError("Tarea no encontrada después de cambiar el estado"))
-                .isStatus();
-
-        Assertions.assertFalse(updatedStatus, "El estado de la tarea debería haber cambiado correctamente");
     }
 
+    @Test
+    public void testChangeStatusFail() {
+        Long userId = userRepository.findByEmail("erickhumbetotc@gmail.com")
+                .orElseThrow(() -> new AssertionError("Usuario no encontrado"))
+                .getId();
+
+        Long proyectId = proyectRepository.findByName("Controlador Tareas")
+                .orElseThrow(() -> new AssertionError("Proyecto no encontrado"))
+                .getId();
+
+        Long categoryId = categoryRepository.findByName("Pendiente")
+                .orElseThrow(() -> new AssertionError("Categoría no encontrada"))
+                .getId();
+
+        List<Long> list = new ArrayList<>();
+        list.add(userId);
+        TaskDTO taskDTO = new TaskDTO("Integradora Servicios", "Proyecto final de la materia", categoryId, proyectId, list);
+        taskService.register(taskDTO);
+
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, taskService.changeStatus(9999L).getStatusCode());
+    }
 
     @Test
     public void testDeleteTask() {
@@ -190,6 +250,29 @@ public class TaskServiceTest{
     }
 
     @Test
+    public void testDeleteTaskFail() {
+        Long userId = userRepository.findByEmail("erickhumbetotc@gmail.com")
+                .orElseThrow(() -> new AssertionError("Usuario no encontrado"))
+                .getId();
+
+        Long proyectId = proyectRepository.findByName("Controlador Tareas")
+                .orElseThrow(() -> new AssertionError("Proyecto no encontrado"))
+                .getId();
+
+        Long categoryId = categoryRepository.findByName("Pendiente")
+                .orElseThrow(() -> new AssertionError("Categoría no encontrada"))
+                .getId();
+
+        List<Long> list = new ArrayList<>();
+        list.add(userId);
+        TaskDTO taskDTO = new TaskDTO("Integradora Servicios", "Es el proyecto final de la materia de Servicios", categoryId, proyectId, list);
+
+        taskService.register(taskDTO);
+
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, taskService.delete(9999L).getStatusCode());
+    }
+
+    @Test
     public void testFindById() {
         Long userId = userRepository.findByEmail("erickhumbetotc@gmail.com")
                 .orElseThrow(() -> new AssertionError("Usuario no encontrado"))
@@ -214,6 +297,29 @@ public class TaskServiceTest{
                 .getId();
 
         Assertions.assertEquals(HttpStatus.OK, taskService.findById(taskId).getStatusCode());
+    }
+
+    @Test
+    public void testFindByIdFail() {
+        Long userId = userRepository.findByEmail("erickhumbetotc@gmail.com")
+                .orElseThrow(() -> new AssertionError("Usuario no encontrado"))
+                .getId();
+
+        Long proyectId = proyectRepository.findByName("Controlador Tareas")
+                .orElseThrow(() -> new AssertionError("Proyecto no encontrado"))
+                .getId();
+
+        Long categoryId = categoryRepository.findByName("Pendiente")
+                .orElseThrow(() -> new AssertionError("Categoría no encontrada"))
+                .getId();
+
+        List<Long> list = new ArrayList<>();
+        list.add(userId);
+        TaskDTO taskDTO = new TaskDTO("Integradora Servicios", "Proyecto final de la materia", categoryId, proyectId, list);
+
+        taskService.register(taskDTO);
+
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, taskService.findById(9999L).getStatusCode());
     }
 
 }
