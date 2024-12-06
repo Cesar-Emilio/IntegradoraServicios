@@ -99,6 +99,15 @@ public class TaskService {
             return new ResponseEntity<>(new Message("No se pudo registrar la tarea", TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+        List<User> users = userRepository.findAllById(dto.getResponsibles_id());
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(new Message("No se encontraron usuarios con los IDs proporcionados", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
+
+        for (User user : users) {
+            user.getTasks().add(task);
+        }
+
         logger.info("Tarea registrada correctamente");
         return new ResponseEntity<>(new Message("Tarea registrada correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }

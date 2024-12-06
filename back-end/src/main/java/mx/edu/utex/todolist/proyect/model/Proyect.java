@@ -28,11 +28,11 @@ public class Proyect {
     @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
     private boolean status;
 
-    @OneToMany(mappedBy = "proyect")
+    @OneToMany(mappedBy = "proyect", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private List<Category> categories;
 
-    @OneToMany(mappedBy = "proyect")
+    @OneToMany(mappedBy = "proyect", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private List<Task> tasks;
 

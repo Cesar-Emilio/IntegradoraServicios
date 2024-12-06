@@ -65,6 +65,10 @@ public class UserService {
             logger.error("Los atributos exceden el número de caracteres");
             return new ResponseEntity<>(new Message("Los atributos exceden el número de caracteres", TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
+            logger.error("El correo ya esta registrado");
+            return new ResponseEntity<>(new Message("El correo ya esta registrado", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
+        }
 
         User user = new User();
         user.setNombre(dto.getName());

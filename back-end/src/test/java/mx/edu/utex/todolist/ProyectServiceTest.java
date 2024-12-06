@@ -55,6 +55,12 @@ public class ProyectServiceTest{
     }
 
     @Test
+    public void testEmptyFindAll() {
+        List<Proyect> proyects = (List<Proyect>) proyectService.findAll().getBody().getResult();
+        Assertions.assertTrue(proyects.isEmpty());
+    }
+
+    @Test
     public void testFindById() {
         List<Long> list = new ArrayList<>();
         list.add(userRepository.findByEmail("erickhumbetotc@gmail.com").get().getId());
@@ -64,6 +70,12 @@ public class ProyectServiceTest{
         Assertions.assertEquals(HttpStatus.OK, proyectService.findById(proyectRepository.findByName(dto.getName()).get().getId()).getStatusCode());
         //Assertions.assertEquals(user.getEmail(), ((User) userService.findById(user.getId()).getBody().getResult()).getEmail());
     }
+
+    @Test
+    public void testFindByIdNotFound() {
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, proyectService.findById(9999L).getStatusCode());
+    }
+
 
     @Test
     public void testFindActive() {
@@ -99,6 +111,17 @@ public class ProyectServiceTest{
     }
 
     @Test
+    public void testRegisterInvalidProyect() {
+        List<Long> list = new ArrayList<>();
+
+        // Proyecto sin una id
+        ProyectDTO dto = new ProyectDTO("Controlador Tareas", "CT", "Una aplicación para controlar tus tareas", list);
+
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, proyectService.register(dto).getStatusCode());
+    }
+
+
+    @Test
     public void testUpdateProyect() {
         List<Long> list = new ArrayList<>();
         list.add(userRepository.findByEmail("erickhumbetotc@gmail.com").get().getId());
@@ -111,6 +134,16 @@ public class ProyectServiceTest{
     }
 
     @Test
+    public void testUpdateProyectNotFound() {
+        List<Long> list = new ArrayList<>();
+        list.add(userRepository.findByEmail("erickhumbetotc@gmail.com").get().getId());
+        ProyectDTO dto = new ProyectDTO("Controlador Tareas", "CT", "Una aplicación para controlar tus tareas", list);
+
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, proyectService.update(9999L, dto).getStatusCode());
+    }
+
+
+    @Test
     public void testChangeStatus() {
         List<Long> list = new ArrayList<>();
         list.add(userRepository.findByEmail("erickhumbetotc@gmail.com").get().getId());
@@ -121,6 +154,12 @@ public class ProyectServiceTest{
     }
 
     @Test
+    public void testChangeStatusNotFound() {
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, proyectService.changeStatus(9999L).getStatusCode());
+    }
+
+
+    @Test
     public void testFindTasks() {
         List<Long> list = new ArrayList<>();
         list.add(userRepository.findByEmail("erickhumbetotc@gmail.com").get().getId());
@@ -129,4 +168,10 @@ public class ProyectServiceTest{
 
         Assertions.assertEquals(HttpStatus.OK, proyectService.findTasks(proyectRepository.findByName(dto.getName()).get().getId()).getStatusCode());
     }
+
+    @Test
+    public void testFindTasksNotFound() {
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, proyectService.findTasks(9999L).getStatusCode());
+    }
+
 }

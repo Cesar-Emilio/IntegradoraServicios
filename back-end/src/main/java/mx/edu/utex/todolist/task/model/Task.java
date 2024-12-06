@@ -33,7 +33,7 @@ public class Task {
     @JsonBackReference
     private Proyect proyect;
 
-    @ManyToMany(mappedBy = "tasks")
+    @ManyToMany(mappedBy = "tasks", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<User> responsibles;
 
     // Constructores

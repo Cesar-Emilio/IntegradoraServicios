@@ -63,14 +63,19 @@ public class CategoryServiceTest{
         CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true);
 
         Assertions.assertEquals(HttpStatus.CREATED, categoryService.registerCategory(dto).getStatusCode());
-        //List<User> users = (List<User>) userService.findAll().getBody().getResult();
-        //Assertions.assertTrue(users.stream().anyMatch(u -> u.getEmail().equals(dto.getEmail())));
+    }
+
+    @Test
+    public void testBadRegisterCategory() {
+        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", 9999L, true);
+
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, categoryService.registerCategory(dto).getStatusCode());
     }
 
     @Test
     public void testFindAllByProyect() {
         categoryService.registerCategory(new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true));
-        Assertions.assertEquals(HttpStatus.OK, categoryService.findAllByProyect(1L).getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, categoryService.findAllByProyect(proyectRepository.findByName("Controlador Tareas").get().getId()).getStatusCode());
     }
 
     @Test
@@ -78,7 +83,6 @@ public class CategoryServiceTest{
         categoryService.registerCategory(new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true));
 
         Assertions.assertEquals(HttpStatus.OK, categoryService.findActive().getStatusCode());
-        //Assertions.assertEquals(user.getEmail(), ((User) userService.findById(user.getId()).getBody().getResult()).getEmail());
     }
 
     @Test
@@ -86,47 +90,61 @@ public class CategoryServiceTest{
         categoryService.registerCategory(new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true));
 
         Assertions.assertEquals(HttpStatus.OK, categoryService.findById(categoryRepository.findByName("Pendiente").get().getId()).getStatusCode());
-        //Assertions.assertEquals(user.getEmail(), ((User) userService.findById(user.getId()).getBody().getResult()).getEmail());
     }
-    /*
 
     @Test
     public void testDeleteCategory() {
-        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", 1L);
-        categoryService.registerCategory(dto);
+        categoryService.registerCategory(new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true));
 
-        Assertions.assertEquals(HttpStatus.OK, categoryService.deleteCategory(categoryRepository.findByName(dto.getName()).get().getId()).getStatusCode());
-        //Assertions.assertEquals(user.getEmail(), ((User) userService.findById(user.getId()).getBody().getResult()).getEmail());
+        Assertions.assertEquals(HttpStatus.OK, categoryService.deleteCategory(categoryRepository.findByName("Pendiente").get().getId()).getStatusCode());
     }
 
     @Test
     public void testUpdateCategory() {
-        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", 1L);
+        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true);
         categoryService.registerCategory(dto);
 
         dto.setDescription("Esta es una categoria de tareas pendientes y atrasados");
 
-        Assertions.assertEquals(HttpStatus.OK, categoryService.updateCategory(dto, categoryRepository.findByName(dto.getName()).get().getId()).getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, categoryService.updateCategory(dto, categoryRepository.findByName("Pendiente").get().getId()).getStatusCode());
         //Assertions.assertEquals(user.getEmail(), ((User) userService.findById(user.getId()).getBody().getResult()).getEmail());
     }
+
+    @Test
+    public void testUpdateCategoryFail() {
+        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true);
+
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, categoryService.updateCategory(dto, 9999L).getStatusCode());
+    }
+
 
     @Test
     public void testActivateCategory() {
-        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", 1L);
+        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true);
         categoryService.registerCategory(dto);
 
-        Assertions.assertEquals(HttpStatus.OK, categoryService.activateCategory(categoryRepository.findByName(dto.getName()).get().getId()).getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, categoryService.activateCategory(categoryRepository.findByName("Pendiente").get().getId()).getStatusCode());
         //Assertions.assertEquals(user.getEmail(), ((User) userService.findById(user.getId()).getBody().getResult()).getEmail());
     }
 
     @Test
-    public void testDesactivateCategory() {
-        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", 1L);
-        categoryService.registerCategory(dto);
+    public void testActivateCategoryFail() {
 
-        Assertions.assertEquals(HttpStatus.OK, categoryService.desactivateCategory(categoryRepository.findByName(dto.getName()).get().getId()).getStatusCode());
-        //Assertions.assertEquals(user.getEmail(), ((User) userService.findById(user.getId()).getBody().getResult()).getEmail());
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, categoryService.activateCategory(9999L).getStatusCode());
     }
 
-     */
+
+    @Test
+    public void testDesactivateCategory() {
+        CategoryDTO dto = new CategoryDTO("Pendiente", "Esta es una categoria de tareas pendientes", proyectRepository.findByName("Controlador Tareas").get().getId(), true);
+        categoryService.registerCategory(dto);
+
+        Assertions.assertEquals(HttpStatus.OK, categoryService.desactivateCategory(categoryRepository.findByName("Pendiente").get().getId()).getStatusCode());
+    }
+
+    @Test
+    public void testDesactivateCategoryFail() {
+
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, categoryService.desactivateCategory(9999L).getStatusCode());
+    }
 }
