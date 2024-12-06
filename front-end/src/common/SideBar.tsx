@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
-import { TypeProject } from "../pages/dashboard/interface/project.interface";
+import { TypeProject } from "../types/project.interface";
 import { proyects } from "../api/proyects.api";
 
 export const SideBar: React.FC = () => {
@@ -101,7 +101,7 @@ export const SideBar: React.FC = () => {
                             {projectList.map((project) => (
                                 <ListItem
                                     component={Link}
-                                    to={`/proyect/${project.name}`}
+                                    to={`/proyect/${project.name}/${project.id}`}
                                     key={project.id}
                                     onClick={handleOptionClick}
                                     color="primary"

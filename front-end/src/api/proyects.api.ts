@@ -6,7 +6,7 @@ export const proyects = {
     getAll: async () => {
         return await instance.get(`${endpoint}/findAll`);
     },
-    get: async (id: number | string) => {
+    get: async (id: number | undefined) => {
         return await instance.get(`${endpoint}/find/${id}`);
     },
     create: async (data: Record<string, any>) => {

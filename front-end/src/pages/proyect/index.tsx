@@ -23,6 +23,7 @@ import { categories } from "../../api/categories.api";
 import { useNotification } from "../../context/notification.context";
 import { tasks } from "../../api/tasks.api";
 import { users } from "../../api/users.api";
+import {TypeProject} from "../../types/project.interface";
 
 type TypeCategory = {
     name: string;
@@ -66,6 +67,15 @@ export const ProjectPage: React.FC = () => {
     const [taskDescription, setTaskDescription] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<number | "">("");
     const [selectedUser, setSelectedUser] = useState<number | "">("");
+    const [project, setProject] = useState<TypeProject>({
+        id: 0,
+        name: "",
+        abreviation: "",
+        description: "",
+        status: false,
+        categories: [],
+        tasks: [],
+    });
 
     const [openCategoryDialog, setOpenCategoryDialog] = useState(false);
     const [categoryName, setCategoryName] = useState("");
@@ -101,8 +111,20 @@ export const ProjectPage: React.FC = () => {
         }
     };
 
+    const fetchProyect = async () => {
+        try {
+            const response = await proyects.get(proyect_id);
+            console.log("Proyecto obtenido:", response);
+            setProject(response.data.result);
+            console.log("Proyecto:", project);
+        } catch (error) {
+            console.error("Error al obtener el proyecto:", error);
+        }
+    }
+
     useEffect(() => {
         if (proyect_id) {
+            fetchProyect();
             fetchCategories();
             fetchUsers();
         }
@@ -197,14 +219,14 @@ export const ProjectPage: React.FC = () => {
                         component="h1"
                         sx={{ marginRight: 2 }}
                     >
-                        Nombre del Proyecto
+                        {project.name}
                     </Typography>
                     <Typography
                         variant="h6"
                         color="primary"
                         sx={{ marginRight: 2 }}
                     >
-                        PIA
+                        {project.abreviation}
                     </Typography>
                 </Box>
 
