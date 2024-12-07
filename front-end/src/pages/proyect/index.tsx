@@ -68,7 +68,7 @@ export const ProjectPage: React.FC = () => {
     const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<number | "">("");
-    const [selectedUser, setSelectedUser] = useState<string | number>("");
+    const [selectedUser, setSelectedUser] = useState<number | string>(0);
     const [project, setProject] = useState<TypeProject>({
         id: 0,
         name: "",
@@ -154,37 +154,38 @@ export const ProjectPage: React.FC = () => {
     };
 
     const handleCreateTask = async () => {
-
+        console.log("selectedUser antes de validar:", selectedUser);
+    
         try {
             const selectedUserId = Number(selectedUser);
-            if (isNaN(selectedUserId)) {
-                console.log("selectedUser antes de validar:", selectedUser);
-
+    
+            // Validar manualmente si selectedUserId es válido
+            if (isNaN(selectedUserId) || selectedUserId <= 0) {
                 throw new Yup.ValidationError(
                     "Debes seleccionar un responsable válido.",
                     selectedUser,
                     "responsibles_id"
                 );
             }
-
+    
             await TaskValidate.validate({
                 name: taskName,
                 description: taskDescription,
-                category_id: selectedCategory,
-                responsibles_id: [parseInt(String(selectedUser))],
+                category_id: Number(selectedCategory),
+                responsibles_id: [selectedUserId], // Usar selectedUserId validado
             });
-
+    
             const taskData: TypeTask = {
                 name: taskName,
                 description: taskDescription,
                 category_id: Number(selectedCategory),
                 proyect_id: Number(proyect_id),
-                responsibles_id: [Number(selectedUser)],
+                responsibles_id: [selectedUserId],
             };
-
+    
             const response = await tasks.create(taskData);
             getSuccess("Tarea creada exitosamente");
-
+    
             handleCloseTaskDialog();
         } catch (error: any) {
             if (error.response) {
@@ -192,7 +193,7 @@ export const ProjectPage: React.FC = () => {
             } else {
                 getError(error.message);
             }
-
+    
             if (error.path === "name" && taskNameRef.current) {
                 taskNameRef.current.focus();
             } else if (error.path === "description" && taskDescriptionRef.current) {
@@ -204,6 +205,7 @@ export const ProjectPage: React.FC = () => {
             }
         }
     };
+    
 
     const handleCreateCategory = async () => {
         const categoryData: TypeCategory = {
@@ -230,7 +232,10 @@ export const ProjectPage: React.FC = () => {
 
             if (error.path === "name" && categoryNameRef.current) {
                 categoryNameRef.current.focus();
-            } else if (error.path === "description" && categoryDescriptionRef.current) {
+            } else if (
+                error.path === "description" &&
+                categoryDescriptionRef.current
+            ) {
                 categoryDescriptionRef.current.focus();
             }
         }
@@ -335,15 +340,14 @@ export const ProjectPage: React.FC = () => {
                             Categoría
                         </InputLabel>
                         <Select
-                            labelId="category-select-label"
-                            value={selectedCategory}
-                            onChange={(e) =>
-                                setSelectedCategory(
-                                    Number(e.target.value) || ""
-                                )
-                            }
-                            label="Categoría"
-                            inputRef={taskCategoryRef}
+                            labelId="user-select-label"
+                            value={selectedUser}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                setSelectedUser(value ? Number(value) : 0);
+                            }}
+                            label="Responsable"
+                            inputRef={taskResponsiblesRef}
                         >
                             {listCategories.map((category) => (
                                 <MenuItem key={category.id} value={category.id}>
@@ -361,7 +365,7 @@ export const ProjectPage: React.FC = () => {
                             labelId="user-select-label"
                             value={selectedUser}
                             onChange={(e) =>
-                                setSelectedUser(Number(e.target.value) || "")
+                                setSelectedUser(Number(e.target.value) || 0)
                             }
                             label="Responsable"
                             inputRef={taskResponsiblesRef}

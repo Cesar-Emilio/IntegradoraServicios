@@ -36,16 +36,16 @@ export const CategoryValidate = Yup.object().shape({
   });
   
 export const TaskValidate = Yup.object().shape({
-    name: Yup.string()
-        .required("El nombre de la tarea es obligatorio")
-        .max(50, "El nombre no puede superar los 50 caracteres"),
-    description: Yup.string()
-        .required("La descripción de la tarea es obligatoria")
-        .max(200, "La descripción no puede superar los 200 caracteres"),
-    category_id: Yup.number()
-        .required("La categoría es obligatoria")
-        .typeError("Debe seleccionar una categoría válida"),
     responsibles_id: Yup.array()
         .of(Yup.number())
         .min(1, "Debe asignar un responsable"),
+    category_id: Yup.number()
+        .required("La categoría es obligatoria")
+        .typeError("Debe seleccionar una categoría válida"),
+    description: Yup.string()
+        .required("La descripción de la tarea es obligatoria")
+        .max(200, "La descripción no puede superar los 200 caracteres"),
+    name: Yup.string()
+        .required("El nombre de la tarea es obligatorio")
+        .max(50, "El nombre no puede superar los 50 caracteres"),
   });
