@@ -34,7 +34,7 @@ export const RegisterPage: React.FC<{}> = () => {
     });
 
     // Crear referencias para los campos
-    const usernameRef = React.useRef<HTMLInputElement>(null);
+    const emailRef = React.useRef<HTMLInputElement>(null);
     const passwordRef = React.useRef<HTMLInputElement>(null);
     const nameRef = React.useRef<HTMLInputElement>(null);
     const lastnameRef = React.useRef<HTMLInputElement>(null);
@@ -46,7 +46,7 @@ export const RegisterPage: React.FC<{}> = () => {
         const user = localStorage.getItem("user");
 
         if (jwt && user) {
-            navigate("/dashboard"); // Redirigir a /dashboard si ya está autenticado
+            navigate("/dashboard");
         }
     }, [navigate]);
 
@@ -63,7 +63,7 @@ export const RegisterPage: React.FC<{}> = () => {
             const response = await users.create({
                 name: registerData.name,
                 lastname: registerData.lastname,
-                email: registerData.email, // Cambié `username` por `email`
+                email: registerData.email,
                 phone: registerData.phone,
                 password: registerData.password,
                 admin: "ROLE_USER",
@@ -88,10 +88,9 @@ export const RegisterPage: React.FC<{}> = () => {
                 getError(error.message);
             }
 
-            // Enfocar el campo que produjo el error
             switch (error.path) {
-                case "username":
-                    usernameRef.current?.focus();
+                case "email":
+                    emailRef.current?.focus();
                     break;
                 case "password":
                     passwordRef.current?.focus();
@@ -152,7 +151,7 @@ export const RegisterPage: React.FC<{}> = () => {
                                 type="text"
                                 fullWidth
                                 label="Correo electrónico"
-                                inputRef={usernameRef}
+                                inputRef={emailRef}
                                 sx={{ mt: 1.5, mb: 1 }}
                                 onChange={dataLogin}
                             />
