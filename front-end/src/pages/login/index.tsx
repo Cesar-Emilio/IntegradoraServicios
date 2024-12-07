@@ -49,7 +49,8 @@ export const LoginPage: React.FC<{}> = () => {
 
         try {
             await LoginValidate.validate(loginData);
-
+            // localhost:8080/login
+            // authLogin(loginData) 
             const response = await authLogin(loginData);
 
             const userData: TypeUser = response.data.result;

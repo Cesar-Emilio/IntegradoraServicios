@@ -45,11 +45,11 @@ public class DataInitializer {
                 );
                 userRepository.saveAndFlush(user);
             }
-            if (!userRepository.findByEmail("carlos.sanchez@admin.com").isPresent()) {
+            if (!userRepository.findByEmail("admin@admin.com").isPresent()) {
                 User admin = new User(
                         "Carlos",
                         "Sánchez",
-                        "carlos.sanchez@admin.com",
+                        "admin@admin.com",
                         633456789L,
                         passwordEncoder.encode("12345"),
                         "ROLE_ADMIN"

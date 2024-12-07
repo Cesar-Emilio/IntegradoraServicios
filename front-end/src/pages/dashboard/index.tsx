@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
     Grid,
     Box,
@@ -15,6 +15,7 @@ import { proyects } from "../../api/proyects.api";
 import { CardComponent } from "../../components";
 import { useNotification } from "../../context/notification.context";
 import { useNavigate } from 'react-router-dom';
+import { ProyectValidate } from "../../utils/validateForm";
 
 type TypeProject = {
     id: number;
@@ -48,6 +49,11 @@ export const DashboardPage: React.FC = () => {
     const [proyectAbreviation, setProyectAbreviation] = useState("");
     const [proyectDescription, setProyectDescription] = useState("");
 
+    const nameRef = useRef<HTMLInputElement>(null);
+    const abreviationRef = useRef<HTMLInputElement>(null);
+    const descriptionRef = useRef<HTMLInputElement>(null);
+
+
     const handleOpenProyectDialog = () => setOpenProyectDialog(true);
     const handleCloseProyectDialog = () => {
         setOpenProyectDialog(false);
@@ -67,26 +73,40 @@ export const DashboardPage: React.FC = () => {
     };
 
     const handleCreateProyect = async () => {
-        if (!proyectName || !proyectAbreviation || !proyectDescription) {
-            getError("Todos los campos son obligatorios.");
-            return;
-        }
-
         try {
+            await ProyectValidate.validate(
+              {
+                proyectName,
+                proyectAbreviation,
+                proyectDescription,
+              },
+            );
+        
             const response = await proyects.create({
-                name: proyectName,
-                abreviation: proyectAbreviation,
-                description: proyectDescription,
-                user_id: [1],
+              name: proyectName,
+              abreviation: proyectAbreviation,
+              description: proyectDescription,
+              user_id: [1],
             });
-
+        
             getSuccess("Proyecto creado exitosamente");
-
             fetchProjects();
             handleCloseProyectDialog();
-        } catch (error) {
-            getError("Error al crear el proyecto");
-            console.error("Error al crear el proyecto:", error);
+        
+        } catch (error: any) {
+            if (error.response) {
+                getError(error.response.data.message);
+            } else {
+                getError(error.message);
+            }
+
+            if (error.path === "proyectName" && nameRef.current) {
+                nameRef.current.focus();
+            } else if (error.path === "proyectAbreviation" && abreviationRef.current) {
+                abreviationRef.current.focus();
+            } else if (error.path === "proyectDescription" && descriptionRef.current) {
+                descriptionRef.current.focus();
+            }
         }
     };
 
@@ -163,6 +183,7 @@ export const DashboardPage: React.FC = () => {
                         variant="outlined"
                         value={proyectName}
                         onChange={(e) => setProyectName(e.target.value)}
+                        inputRef={nameRef}
                     />
                     <TextField
                         margin="dense"
@@ -171,6 +192,7 @@ export const DashboardPage: React.FC = () => {
                         variant="outlined"
                         value={proyectAbreviation}
                         onChange={(e) => setProyectAbreviation(e.target.value)}
+                        inputRef={abreviationRef}
                     />
                     <TextField
                         margin="dense"
@@ -179,6 +201,7 @@ export const DashboardPage: React.FC = () => {
                         variant="outlined"
                         value={proyectDescription}
                         onChange={(e) => setProyectDescription(e.target.value)}
+                        inputRef={descriptionRef}
                     />
                 </DialogContent>
                 <DialogActions>

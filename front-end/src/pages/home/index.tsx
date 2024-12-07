@@ -13,7 +13,7 @@ export const HomePage: React.FC<{}> = () => {
         const user = localStorage.getItem("user");
 
         if (jwt && user) {
-            navigate("/dashboard"); // Redirigir a /dashboard si ya está autenticado
+            navigate("/dashboard");
         }
     }, [navigate]);
 

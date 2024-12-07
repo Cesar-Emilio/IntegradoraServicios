@@ -23,7 +23,9 @@ import { categories } from "../../api/categories.api";
 import { useNotification } from "../../context/notification.context";
 import { tasks } from "../../api/tasks.api";
 import { users } from "../../api/users.api";
-import {TypeProject} from "../../types/project.interface";
+import { TypeProject } from "../../types/project.interface";
+import { CategoryValidate, TaskValidate } from "../../utils/validateForm";
+import * as Yup from "yup";
 
 type TypeCategory = {
     name: string;
@@ -66,7 +68,7 @@ export const ProjectPage: React.FC = () => {
     const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<number | "">("");
-    const [selectedUser, setSelectedUser] = useState<number | "">("");
+    const [selectedUser, setSelectedUser] = useState<string | number>("");
     const [project, setProject] = useState<TypeProject>({
         id: 0,
         name: "",
@@ -86,6 +88,13 @@ export const ProjectPage: React.FC = () => {
 
     const [listCategories, setListCategories] = useState<any[]>([]);
     const [listUsers, setListUsers] = useState<any[]>([]);
+
+    const categoryNameRef = React.useRef<HTMLInputElement>(null);
+    const categoryDescriptionRef = React.useRef<HTMLInputElement>(null);
+    const taskNameRef = React.useRef<HTMLInputElement>(null);
+    const taskDescriptionRef = React.useRef<HTMLInputElement>(null);
+    const taskResponsiblesRef = React.useRef<HTMLInputElement>(null);
+    const taskCategoryRef = React.useRef<HTMLInputElement>(null);
 
     const fetchUsers = async () => {
         if (!proyect_id) return;
@@ -120,7 +129,7 @@ export const ProjectPage: React.FC = () => {
         } catch (error) {
             console.error("Error al obtener el proyecto:", error);
         }
-    }
+    };
 
     useEffect(() => {
         if (proyect_id) {
@@ -145,40 +154,58 @@ export const ProjectPage: React.FC = () => {
     };
 
     const handleCreateTask = async () => {
-        if (
-            !taskName ||
-            !taskDescription ||
-            !selectedCategory ||
-            !selectedUser
-        ) {
-            getError("Todos los campos son obligatorios.");
-            return;
-        }
-        const taskData: TypeTask = {
-            name: taskName,
-            description: taskDescription,
-            category_id: selectedCategory,
-            proyect_id: Number(proyect_id),
-            responsibles_id: [parseInt(String(selectedUser))]
-        };
 
         try {
-            console.log(taskData.responsibles_id);
+            const selectedUserId = Number(selectedUser);
+            if (isNaN(selectedUserId)) {
+                console.log("selectedUser antes de validar:", selectedUser);
+
+                throw new Yup.ValidationError(
+                    "Debes seleccionar un responsable válido.",
+                    selectedUser,
+                    "responsibles_id"
+                );
+            }
+
+            await TaskValidate.validate({
+                name: taskName,
+                description: taskDescription,
+                category_id: selectedCategory,
+                responsibles_id: [parseInt(String(selectedUser))],
+            });
+
+            const taskData: TypeTask = {
+                name: taskName,
+                description: taskDescription,
+                category_id: Number(selectedCategory),
+                proyect_id: Number(proyect_id),
+                responsibles_id: [Number(selectedUser)],
+            };
+
             const response = await tasks.create(taskData);
             getSuccess("Tarea creada exitosamente");
 
             handleCloseTaskDialog();
-        } catch (error) {
-            getError("Error al crear la tarea");
+        } catch (error: any) {
+            if (error.response) {
+                getError(error.response.data.message);
+            } else {
+                getError(error.message);
+            }
+
+            if (error.path === "name" && taskNameRef.current) {
+                taskNameRef.current.focus();
+            } else if (error.path === "description" && taskDescriptionRef.current) {
+                taskDescriptionRef.current.focus();
+            } else if (error.path === "category_id" && taskCategoryRef.current) {
+                taskCategoryRef.current.focus();
+            } else if (error.path === "responsibles_id" && taskResponsiblesRef.current) {
+                taskResponsiblesRef.current.focus();
+            }
         }
     };
 
     const handleCreateCategory = async () => {
-        if (!categoryName || !categoryDescription) {
-            getError("Todos los campos son obligatorios.");
-            return;
-        }
-
         const categoryData: TypeCategory = {
             name: categoryName,
             description: categoryDescription,
@@ -189,6 +216,7 @@ export const ProjectPage: React.FC = () => {
         console.log("Creando categoría:", categoryData);
 
         try {
+            await CategoryValidate.validate(categoryData);
             const response = await categories.create(categoryData);
             console.log("Categoría creada exitosamente:", response);
             getSuccess("Categoría creada exitosamente");
@@ -196,8 +224,15 @@ export const ProjectPage: React.FC = () => {
             fetchCategories();
 
             handleCloseCategoryDialog();
-        } catch (error) {
+        } catch (error: any) {
+            getError("Error al crear la categoría");
             console.error("Error al crear la categoría:", error);
+
+            if (error.path === "name" && categoryNameRef.current) {
+                categoryNameRef.current.focus();
+            } else if (error.path === "description" && categoryDescriptionRef.current) {
+                categoryDescriptionRef.current.focus();
+            }
         }
     };
 
@@ -283,6 +318,7 @@ export const ProjectPage: React.FC = () => {
                         variant="outlined"
                         value={taskName}
                         onChange={(e) => setTaskName(e.target.value)}
+                        inputRef={taskNameRef}
                     />
                     <TextField
                         margin="dense"
@@ -291,6 +327,7 @@ export const ProjectPage: React.FC = () => {
                         variant="outlined"
                         value={taskDescription}
                         onChange={(e) => setTaskDescription(e.target.value)}
+                        inputRef={taskDescriptionRef}
                     />
 
                     <FormControl fullWidth margin="dense">
@@ -306,6 +343,7 @@ export const ProjectPage: React.FC = () => {
                                 )
                             }
                             label="Categoría"
+                            inputRef={taskCategoryRef}
                         >
                             {listCategories.map((category) => (
                                 <MenuItem key={category.id} value={category.id}>
@@ -326,6 +364,7 @@ export const ProjectPage: React.FC = () => {
                                 setSelectedUser(Number(e.target.value) || "")
                             }
                             label="Responsable"
+                            inputRef={taskResponsiblesRef}
                         >
                             {listUsers.map((user) => (
                                 <MenuItem key={user.id} value={user.id}>
@@ -359,6 +398,7 @@ export const ProjectPage: React.FC = () => {
                         variant="outlined"
                         value={categoryName}
                         onChange={(e) => setCategoryName(e.target.value)}
+                        inputRef={categoryNameRef}
                     />
                     <TextField
                         margin="dense"
@@ -367,6 +407,7 @@ export const ProjectPage: React.FC = () => {
                         variant="outlined"
                         value={categoryDescription}
                         onChange={(e) => setCategoryDescription(e.target.value)}
+                        inputRef={categoryDescriptionRef}
                     />
                 </DialogContent>
                 <DialogActions>
