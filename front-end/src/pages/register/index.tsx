@@ -13,13 +13,14 @@ import { useNotification } from "../../context/notification.context";
 import { RegisterValidate } from "../../utils/validateForm";
 import { users } from "../../api/users.api";
 import { TypeUser } from "../../types/user.interface";
+import * as Yup from "yup";
 
 type RegisterType = {
     email: string;
     password: string;
     name: string;
     lastname: string;
-    phone: string;
+    phone: number;
 };
 
 export const RegisterPage: React.FC<{}> = () => {
@@ -30,10 +31,9 @@ export const RegisterPage: React.FC<{}> = () => {
         password: "",
         name: "",
         lastname: "",
-        phone: "",
+        phone: 0,
     });
 
-    // Crear referencias para los campos
     const emailRef = React.useRef<HTMLInputElement>(null);
     const passwordRef = React.useRef<HTMLInputElement>(null);
     const nameRef = React.useRef<HTMLInputElement>(null);
@@ -58,6 +58,15 @@ export const RegisterPage: React.FC<{}> = () => {
         e.preventDefault();
 
         try {
+            const phoneNumber = Number(registerData.phone);
+    
+            if (isNaN(phoneNumber)) {
+                throw new Yup.ValidationError(
+                    "El teléfono debe ser un número válido.",
+                    registerData.phone,
+                    "phone"
+                );
+            }
             await RegisterValidate.validate(registerData);
 
             const response = await users.create({

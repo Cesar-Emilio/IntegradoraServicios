@@ -6,7 +6,7 @@ export const LoginValidate = Yup.object().shape({
 });
 
 export const RegisterValidate = Yup.object().shape({
-    phone: Yup.number().required('El teléfono es requerido'),
+    phone: Yup.number().min(100000000, "Ingrese un número valido").required('El teléfono es requerido'),
     lastname: Yup.string().required('El apellido es requerido'),
     name: Yup.string().required('El nombre es requerido'),
     password: Yup.string().required('La contraseña es requerida'),
