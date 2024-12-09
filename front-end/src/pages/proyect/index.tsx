@@ -68,7 +68,7 @@ export const ProjectPage: React.FC = () => {
     const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<number | "">("");
-    const [selectedUser, setSelectedUser] = useState<number | string>(0);
+    const [selectedUser, setSelectedUser] = useState<number | "">("");
     const [project, setProject] = useState<TypeProject>({
         id: 0,
         name: "",
@@ -172,7 +172,7 @@ export const ProjectPage: React.FC = () => {
                 name: taskName,
                 description: taskDescription,
                 category_id: Number(selectedCategory),
-                responsibles_id: [selectedUserId], // Usar selectedUserId validado
+                responsibles_id: [selectedUserId],
             });
     
             const taskData: TypeTask = {
@@ -341,10 +341,10 @@ export const ProjectPage: React.FC = () => {
                         </InputLabel>
                         <Select
                             labelId="user-select-label"
-                            value={selectedUser}
+                            value={selectedCategory}
                             onChange={(e) => {
                                 const value = e.target.value;
-                                setSelectedUser(value ? Number(value) : 0);
+                                setSelectedCategory(value ? Number(value) : 0);
                             }}
                             label="Responsable"
                             inputRef={taskResponsiblesRef}

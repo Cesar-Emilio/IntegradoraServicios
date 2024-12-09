@@ -54,20 +54,17 @@ public class TaskService {
         }
 
         if(!validateIdProyect(dto.getProyect_id())) {
-            logger.error("Id de proyecto inválido");
+            logger.error("Id de proyecto inválido: " + dto.getProyect_id());
             return new ResponseEntity<>(new Message("Id de proyecto inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
         if (dto.getResponsibles_id().isEmpty()) {
             logger.error("Id de usuario inválido");
             return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(!validateIdUser(dto.getResponsibles_id().get(0), dto.getProyect_id())){
+        if(!validateIdUser(dto.getResponsibles_id().get(0))){
             logger.error("Id user: " + dto.getResponsibles_id().get(0));
-            logger.error("Id proyect: " + dto.getProyect_id());
-            logger.error("Id de usuario inválido: " + dto.getResponsibles_id().get(0));
             return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-
 
         Task task = new Task(dto.getName(), dto.getDescription(), true);
 
@@ -86,12 +83,15 @@ public class TaskService {
         }
         task.setCategory(category.get());
 
-        List<User> responsibles = userRepository.findUsersByIdsAndProyectId(dto.getResponsibles_id(), dto.getProyect_id());
-        if(responsibles.isEmpty()) {
-            logger.error("No se encontraron los usuarios");
+        Optional<User> optionalUser = userRepository.findById(dto.getResponsibles_id().getFirst());
+
+        if (optionalUser.isPresent()) {
+            List<User> responsibles = List.of(optionalUser.get());
+            task.setResponsibles(responsibles);
+        } else {
+            logger.error("Usuario no encontrado");
             return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
         }
-        task.setResponsibles(responsibles);
 
         task = taskRepository.saveAndFlush(task);
         if(task == null) {
@@ -144,7 +144,7 @@ public class TaskService {
                     TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
 
-        if(dto.getResponsibles_id().stream().anyMatch(userId -> !validateIdUser(userId, dto.getProyect_id()))) {
+        if(dto.getResponsibles_id().stream().anyMatch(userId -> !validateIdUser(userId))) {
             logger.error("Id de usuario inválido");
             return new ResponseEntity<>(new Message("Id de usuario inválido", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
@@ -237,7 +237,7 @@ public class TaskService {
         return proyectRepository.findById(proyectId).isPresent();
     }
 
-    private boolean validateIdUser(Long userId, Long proyectId) {
-        return userRepository.findUserByIdAndProyectId(userId, proyectId).isPresent();
+    private boolean validateIdUser(Long userId) {
+        return userRepository.findById(userId).isPresent();
     }
 }
