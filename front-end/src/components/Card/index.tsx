@@ -1,4 +1,5 @@
 import React from "react";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Card, CardContent, Typography, CardActions, Button, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -33,7 +34,7 @@ export const CardComponent: React.FC<ProjectProps> = ({ id, name, abreviation, d
             </CardContent>
             <CardActions>
                 <Link to={`/proyect/${name}/${id}`} style={{ textDecoration: "none", margin:10 }}>
-                    <Button variant="contained" size="small">
+                    <Button variant="contained" size="small" startIcon={<VisibilityIcon />}>
                         Ver Detalles
                     </Button>
                 </Link>
