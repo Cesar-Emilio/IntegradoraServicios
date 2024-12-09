@@ -27,7 +27,7 @@ export const users = {
     requestPasswordChange: async (email: string) => {
         return await instance.post(`${endpoint}/solicitudeChangePassword/${encodeURIComponent(email)}`);
     },    
-    changePasswordBySolicitude: async (data: { token: string; password: string }) => {
-        return await instance.post(`${endpoint}/changePasswordBySolicitude`, data);
+    resetPassword: async (data: { token: string; password: string }) => {
+        return await instance.put(`${endpoint}/changePasswordBySolicitude/${data.token}`, { password: data.password });
     },
 };

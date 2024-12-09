@@ -54,3 +54,13 @@ export const TaskValidate = Yup.object().shape({
 export const EmailValidate = Yup.object().shape({
     email: Yup.string().trim().email('Correo electónico invalido').required('El correo electrónico es requerido'),
 });
+
+export const PasswordValidate = Yup.object().shape({
+    password: Yup.string()
+        .min(8, "La contraseña debe tener al menos 8 caracteres")
+        .max(100, "La contraseña no puede tener más de 100 caracteres")
+        .required("La contraseña es requerida"),
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password")], "Las contraseñas no coinciden")
+        .required("La confirmación de contraseña es requerida"),
+});

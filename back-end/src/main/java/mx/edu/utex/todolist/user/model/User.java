@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import mx.edu.utex.todolist.proyect.model.Proyect;
 import mx.edu.utex.todolist.task.model.Task;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,12 @@ public class User {
 
     @Column(name = "admin", columnDefinition = "VARCHAR(20) DEFAULT 'ROLE_USER'")
     private String admin;
+
+    @Column(name = "reset_token", columnDefinition = "VARCHAR(100)", unique = true)
+    private String resetToken;
+
+    @Column(name = "reset_token_expiration")
+    private LocalDateTime resetTokenExpiration;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
@@ -72,6 +79,19 @@ public class User {
         this.password = password;
         this.status = status;
         this.admin = admin;
+    }
+
+    public User(long id, String nombre, String apellido, String email, long telefono, String password, boolean status, String admin, String resetToken, LocalDateTime resetTokenExpiration) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        this.password = password;
+        this.status = status;
+        this.admin = admin;
+        this.resetToken = resetToken;
+        this.resetTokenExpiration = resetTokenExpiration;
     }
 
     public long getId() {
@@ -152,5 +172,21 @@ public class User {
 
     public void setProyects(List<Proyect> proyects) {
         this.proyects = proyects;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public LocalDateTime getResetTokenExpiration() {
+        return resetTokenExpiration;
+    }
+
+    public void setResetTokenExpiration(LocalDateTime resetTokenExpiration) {
+        this.resetTokenExpiration = resetTokenExpiration;
     }
 }

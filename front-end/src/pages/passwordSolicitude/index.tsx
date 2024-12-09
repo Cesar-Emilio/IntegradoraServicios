@@ -11,13 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useNotification } from "../../context/notification.context";
 import { users } from "../../api/users.api";
 import * as Yup from "yup";
-
-const EmailValidate = Yup.object().shape({
-    email: Yup.string()
-        .trim()
-        .email("Correo electrónico inválido")
-        .required("El correo electrónico es requerido"),
-});
+import { EmailValidate } from "../../utils/validateForm";
 
 export const PasswordSolicitudePage: React.FC = () => {
     const navigate = useNavigate();
@@ -45,7 +39,7 @@ export const PasswordSolicitudePage: React.FC = () => {
                     "Solicitud de cambio de contraseña enviada. Por favor, revisa tu correo."
                 );
             } else {
-                getError("Error al enviar la solicitud de cambio de contraseña");
+                getError("Error al enviar el correo, ingresa un correo válido.");
             }
         } catch (err: any) {
             if (err.name === "ValidationError") {

@@ -1,5 +1,6 @@
 package mx.edu.utex.todolist.utils;
 
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,50 +18,22 @@ public class EmailSender {
     @Autowired
     private JavaMailSender emailSender;
 
-    String generateContentId(String prefix) {
-        return String.format("%s-%s", prefix, UUID.randomUUID());
+    public EmailSender(JavaMailSender mailSender) {
+        this.emailSender = mailSender;
     }
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public void sendEmail(String to, String subject, String body) {
+        MimeMessage message = emailSender.createMimeMessage();
+
         try {
-            MimeMessage mimeMessage = emailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-            String htlmMsg = "<h3 style='color:rgb(0,46,93);'>Gestor de tareas</h3><br>" +
-                    text + "<br><hr style='border-color:rgb(0,171,132);'/><p style='text-align:justify;'>Si no solicitaste este cambio, ignora el correo.</p>" +
-                    "<p style='text-align:justify;'>Esta cuenta de correo no es supervisada, no responder este mensaje.</p>";
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText(htlmMsg, true);
-            emailSender.send(mimeMessage);
-        } catch (Exception e) {
-            logger.error("No se pudo enviar el correo");
-        }
-    }
-
-    public void sendPasswordResetEmail(String to, String resetToken) {
-        try {
-            MimeMessage mimeMessage = emailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-
-            String resetLink = "http://localhost:8080/reset-password?token=" + resetToken;
-
-            String htmlMsg = "<h3 style='color:rgb(0,46,93);'>Restablecer tu contraseña</h3><br>" +
-                    "<p style='text-align:justify;'>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>" +
-                    "<p><a href='" + resetLink + "' style='color:rgb(0,171,132);'>Restablecer mi contraseña</a></p>" +
-                    "<br><hr style='border-color:rgb(0,171,132);'/>" +
-                    "<p style='text-align:justify;'>Si no solicitaste este cambio, por favor ignora este correo.</p>" +
-                    "<p style='text-align:justify;'>Esta cuenta de correo no es supervisada, no respondas a este mensaje.</p>";
-
-            // Configuración del correo
-            helper.setTo(to);
-            helper.setSubject("Restablecer tu contraseña");
-            helper.setText(htmlMsg, true);
-
-            // Enviar el correo
-            emailSender.send(mimeMessage);
-        } catch (Exception e) {
-            logger.error("No se pudo enviar el correo de restablecimiento de contraseña", e);
+            helper.setText(body, true); // `true` para indicar que el contenido es HTML
+            emailSender.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException("Error al enviar correo: " + e.getMessage());
         }
     }
 

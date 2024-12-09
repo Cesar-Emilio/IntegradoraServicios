@@ -10,6 +10,7 @@ import { MenuLayout } from "./common/MenuLayout";
 import { UserPage } from "./pages/profile";
 import { ChangePasswordPage } from "./pages/authPassword";
 import { PasswordSolicitudePage } from "./pages/passwordSolicitude";
+import { ResetPasswordSolicitudePage } from "./pages/resetPasswordSolicitude";
 
 export const AppRouter: React.FC<{}> = () => {
     return (
@@ -18,6 +19,7 @@ export const AppRouter: React.FC<{}> = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/forgotPassword" element={< PasswordSolicitudePage />} />
+            <Route path="/reset-password" element={<ResetPasswordSolicitudePage />} />
             <Route path="/" element={<MenuLayout />} >
                 <Route path="/proyect/:projectId/:id" element={<ProjectPage />} />
                 <Route path="/dashboard" element={<DashboardPage />} />

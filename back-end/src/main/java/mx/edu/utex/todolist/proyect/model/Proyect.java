@@ -2,6 +2,7 @@ package mx.edu.utex.todolist.proyect.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -29,11 +30,9 @@ public class Proyect {
     private boolean status;
 
     @OneToMany(mappedBy = "proyect", cascade = CascadeType.REMOVE)
-    @JsonManagedReference
     private List<Category> categories;
 
     @OneToMany(mappedBy = "proyect", cascade = CascadeType.REMOVE)
-    @JsonManagedReference
     private List<Task> tasks;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -42,6 +41,7 @@ public class Proyect {
             joinColumns = @JoinColumn(name = "proyect_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @JsonIgnore
     private List<User> users;
 
     public Proyect() {

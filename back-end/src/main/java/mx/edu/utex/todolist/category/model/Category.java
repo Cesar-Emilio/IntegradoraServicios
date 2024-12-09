@@ -2,6 +2,7 @@ package mx.edu.utex.todolist.category.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import mx.edu.utex.todolist.proyect.model.Proyect;
@@ -26,11 +27,11 @@ public class Category {
     private boolean status;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
-    @JsonManagedReference
+    @JsonIgnore
     private List<Task> tasks;
 
     @ManyToOne()
-    @JsonBackReference
+    @JsonIgnore
     private Proyect proyect;
 
     public Category() {

@@ -1,6 +1,7 @@
 package mx.edu.utex.todolist.user.control;
 
 import mx.edu.utex.todolist.user.model.ChangePasswordDTO;
+import mx.edu.utex.todolist.user.model.SolicitudePasswordDTO;
 import mx.edu.utex.todolist.user.model.User;
 import mx.edu.utex.todolist.user.model.UserDTO;
 import mx.edu.utex.todolist.utils.Message;
@@ -47,7 +48,6 @@ public class UserController {
         return userService.changePassword(id, dto);
     }
 
-    //TODO: Realizar los siguientes métodos
     @PostMapping("/logout")
     public ResponseEntity<Message> logout(@RequestHeader("Authorization") String token) {
         return userService.logout(token.replace("Bearer ", ""));

@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u JOIN u.proyects p WHERE u.id IN :userIds AND p.id = :proyectId")
     List<User> findUsersByIdsAndProyectId(@Param("userIds") List<Long> userIds, @Param("proyectId") Long proyectId);
 
+    Optional<User> findByResetToken(String resetToken);
+
 }

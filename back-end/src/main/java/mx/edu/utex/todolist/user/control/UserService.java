@@ -6,14 +6,12 @@ import mx.edu.utex.todolist.security.JwtUtil;
 import mx.edu.utex.todolist.security.UserDetailsServiceImpl;
 import mx.edu.utex.todolist.security.dto.AuthResponse;
 import mx.edu.utex.todolist.task.model.TaskRepository;
-import mx.edu.utex.todolist.user.model.ChangePasswordDTO;
-import mx.edu.utex.todolist.user.model.UserDTO;
+import mx.edu.utex.todolist.user.model.*;
 import mx.edu.utex.todolist.utils.EmailSender;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import mx.edu.utex.todolist.user.model.UserRepository;
 import mx.edu.utex.todolist.utils.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +19,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import mx.edu.utex.todolist.user.model.User;
 import mx.edu.utex.todolist.utils.TypesResponse;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Transactional
 @Service
@@ -207,36 +206,51 @@ public class UserService {
 
     @Transactional
     public ResponseEntity<Message> solicitudeChangePassword(String email) {
-
-        logger.info("Se ha solicitado un cambio de contraseña");
-
         User user = userRepository.findByEmail(email).orElse(null);
         if (user == null) {
             logger.error("Correo no registrado");
             return new ResponseEntity<>(new Message("Correo no registrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
-        String resetToken = jwtUtil.generateTemporaryToken(email);
-        logger.info("Correo de restablecimiento enviado");
-        emailSender.sendPasswordResetEmail(user.getEmail(), resetToken);
+        String resetToken = createResetToken(email);
+        logger.info("Correo de restablecimiento enviado, token: " + resetToken);
+        String subject = "Restablecimiento de contraseña";
+        String body = "<p>Hola, " + user.getNombre() + ":</p>"
+                + "<p>Haz clic en el siguiente enlace para restablecer tu contraseña: localhost:3000/reset-password?token=" + resetToken + "</p>"
+                + "<a href='localhost:3000/reset-password?token=" + resetToken + "'>Restablecer contraseña</a>"
+                + "<p>Este enlace expirará en 30 minutos.</p>";
+
+        emailSender.sendEmail(email, subject, body);
         return ResponseEntity.ok(new Message("Correo de restablecimiento enviado", TypesResponse.SUCCESS));
     }
 
     @Transactional
     public ResponseEntity<Message> changePasswordBySolicitude(String token, String password) {
-        String email = jwtUtil.validateTemporaryToken(token);
+        if(password.length() > 100 ){
+            logger.error("La contraseña excede el número de caracteres");
+            return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+        if(!validateResetToken(token)) {
+            logger.error("Token inválido o expirado");
+            return new ResponseEntity<>(new Message("Token inválido o expirado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
 
-        User user = userRepository.findByEmail(email).orElse(null);
+        User user = userRepository.findByResetToken(token).orElse(null);
         if (user == null) {
             return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
         user.setPassword(passwordEncoder.encode(password));
+        logger.info("Contraseña actualizada: " + passwordEncoder.encode(password));
+        user.setResetToken(null);
+        user.setResetTokenExpiration(null);
+
         user = userRepository.saveAndFlush(user);
         if(user == null) {
+            logger.info("El usuario no se actualizó correctamente");
             return new ResponseEntity<>(new Message("El usuario no se actualizó correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-
+        logger.info("Contraseña actualizada correctamente");
         return ResponseEntity.ok(new Message("Contraseña actualizada correctamente", TypesResponse.SUCCESS));
     }
 
@@ -264,5 +278,25 @@ public class UserService {
         long expirationTime = jwtUtil.getExpirationTime();
 
         return new AuthResponse(jwt, user.getId(), user.getEmail(), user.getAdmin(), expirationTime);
+    }
+
+    public String createResetToken(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        String token = UUID.randomUUID().toString();
+        LocalDateTime expirationTime = LocalDateTime.now().plusMinutes(30);
+
+        user.setResetToken(token);
+        user.setResetTokenExpiration(expirationTime);
+
+        userRepository.save(user);
+        return token;
+    }
+
+    public boolean validateResetToken(String token) {
+        return userRepository.findByResetToken(token)
+                .filter(user -> user.getResetTokenExpiration().isAfter(LocalDateTime.now()))
+                .isPresent();
     }
 }
