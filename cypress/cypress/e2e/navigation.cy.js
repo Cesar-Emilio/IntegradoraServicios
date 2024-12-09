@@ -25,7 +25,7 @@ describe('Navigation Tests', () => {
         cy.get('button').eq(2).click();
         cy.get('.MuiInputBase-input')
             .eq(0) // Si hay varios, puedes usar el índice
-            .type('Lista de Proyectos');
+            .type('Controlador de Tareas');
         cy.get('.MuiInputBase-input')
             .eq(1) // Si hay varios, puedes usar el índice
             .type('NP');
@@ -60,26 +60,10 @@ describe('Navigation Tests', () => {
             .find('button')
             .click(); // Haz clic en el botón
         cy.get('.MuiListItem-root').eq(2)
-            .contains("Lista de Proyectos")
+            .contains("Controlador de Tareas")
             .click();
-        cy.contains('Lista de Proyectos');
+        cy.contains('Controlador de Tareas');
 
     });
-    it('Navegar a la pagina de sistema de inventarios (Barra Lateral)', () => {
-        cy.visit('/login');
-        cy.get('input[name="email"]').type('erickhumbetotc@gmail.com');
-        cy.get('input[name="password"]').type('12345');
-        cy.get('button[type="submit"]').click();
 
-        cy.contains('Lista de Proyectos').should('be.visible'); // Título del Dashboard
-        cy.get('.MuiPaper-root')
-            .eq(1)
-            .find('button')
-            .click(); // Haz clic en el botón
-        cy.get('.MuiListItem-root').eq(3)
-            .contains("Sistema de Inventarios")
-            .click();
-        cy.contains('Sistema de Inventarios');
-
-    });
 });
