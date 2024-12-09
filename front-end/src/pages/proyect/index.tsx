@@ -16,6 +16,11 @@ import {
     Select,
     InputLabel,
     FormControl,
+    Grid,
+    Card,
+    CardContent,
+    Chip,
+    Paper,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { proyects } from "../../api/proyects.api";
@@ -41,6 +46,30 @@ type TypeTask = {
     proyect_id: number;
     responsibles_id: number[];
 };
+
+interface Responsible {
+    id: number;
+    nombre: string;
+    apellido: string;
+    email: string;
+    telefono: number;
+  }
+  
+  interface Category {
+    id: number;
+    name: string;
+    description: string;
+    status: boolean;
+  }
+
+interface Task {
+    id: number;
+    name: string;
+    description: string;
+    status: boolean;
+    category: Category;
+    responsibles: Responsible[];
+}
 
 export const ProjectPage: React.FC = () => {
     const navigate = useNavigate();
@@ -88,6 +117,8 @@ export const ProjectPage: React.FC = () => {
 
     const [listCategories, setListCategories] = useState<any[]>([]);
     const [listUsers, setListUsers] = useState<any[]>([]);
+    const [listTasks, setListTasks] = React.useState<Task[]>([]);
+
 
     const categoryNameRef = React.useRef<HTMLInputElement>(null);
     const categoryDescriptionRef = React.useRef<HTMLInputElement>(null);
@@ -101,10 +132,8 @@ export const ProjectPage: React.FC = () => {
 
         try {
             const response = await users.getAll();
-            console.log("Usuarios obtenidos:", response);
             setListUsers(response.data.result);
         } catch (error) {
-            console.error("Error al obtener los usuarios:", error);
         }
     };
 
@@ -113,21 +142,28 @@ export const ProjectPage: React.FC = () => {
 
         try {
             const response = await categories.getAll(proyect_id);
-            console.log("Categorías obtenidas:", response);
             setListCategories(response.data.result);
         } catch (error) {
-            console.error("Error al obtener las categorías:", error);
         }
     };
 
     const fetchProyect = async () => {
         try {
             const response = await proyects.get(proyect_id);
-            console.log("Proyecto obtenido:", response);
             setProject(response.data.result);
-            console.log("Proyecto:", project);
         } catch (error) {
-            console.error("Error al obtener el proyecto:", error);
+            getError("Error al obtener los proyectos");
+        }
+    };
+
+    const fetchTasks = async () => {
+        try {
+            const response = await tasks.getAll(proyect_id);
+            console.log("Response::", response);
+            console.log("Response data r:", response.data.result);
+            setListTasks(response.data.result);
+            console.log("Tareas:", listTasks);
+        } catch (error) {
         }
     };
 
@@ -136,6 +172,7 @@ export const ProjectPage: React.FC = () => {
             fetchProyect();
             fetchCategories();
             fetchUsers();
+            fetchTasks();
         }
     }, [proyect_id]);
 
@@ -154,7 +191,6 @@ export const ProjectPage: React.FC = () => {
     };
 
     const handleCreateTask = async () => {
-        console.log("selectedUser antes de validar:", selectedUser);
     
         try {
             const selectedUserId = Number(selectedUser);
@@ -182,10 +218,10 @@ export const ProjectPage: React.FC = () => {
                 proyect_id: Number(proyect_id),
                 responsibles_id: [selectedUserId],
             };
-    
+
             const response = await tasks.create(taskData);
             getSuccess("Tarea creada exitosamente");
-    
+            fetchTasks();
             handleCloseTaskDialog();
         } catch (error: any) {
             if (error.response) {
@@ -215,12 +251,10 @@ export const ProjectPage: React.FC = () => {
             status: true,
         };
 
-        console.log("Creando categoría:", categoryData);
 
         try {
             await CategoryValidate.validate(categoryData);
             const response = await categories.create(categoryData);
-            console.log("Categoría creada exitosamente:", response);
             getSuccess("Categoría creada exitosamente");
 
             fetchCategories();
@@ -228,7 +262,6 @@ export const ProjectPage: React.FC = () => {
             handleCloseCategoryDialog();
         } catch (error: any) {
             getError("Error al crear la categoría");
-            console.error("Error al crear la categoría:", error);
 
             if (error.path === "name" && categoryNameRef.current) {
                 categoryNameRef.current.focus();
@@ -299,17 +332,58 @@ export const ProjectPage: React.FC = () => {
             <Typography variant="h6" sx={{ marginBottom: 2 }}>
                 Tareas del Proyecto
             </Typography>
-            <List>
-                {/* Aquí agregarías las tareas, utilizando mock data o la data real */}
-                {/* exampleTasks.map((task) => (
-                    <ListItem key={task.id}>
-                        <ListItemText
-                            primary={task.name}
-                            secondary={task.description}
+            {listTasks.length > 0 ? (
+                listTasks.map((task) => (
+                    <Grid item xs={12} sm={6} md={4} key={task.id}>
+                    <Paper
+                        elevation={3}
+                        sx={{
+                        padding: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        height: '100%',
+                        }}
+                    >
+                        <Box>
+                        <Typography variant="h6" component="div" sx={{ marginBottom: 1 }}>
+                            {task.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" paragraph>
+                            {task.description}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" paragraph>
+                            <strong>Responsable:</strong>{' '}
+                            {task.responsibles.map((responsible) => `${responsible.nombre} ${responsible.apellido}`).join(', ')}
+                        </Typography>
+                        </Box>
+                        <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'flex-end',
+                            marginTop: 2,
+                        }}
+                        >
+                        <Chip
+                            label={`Categoría: ${task.category.name}`}
+                            sx={{
+                            backgroundColor: '#d1c4e9', // Color personalizado
+                            color: '#4527a0', // Contraste con el fondo
+                            fontWeight: 'bold',
+                            alignSelf: 'flex-end',
+                            }}
                         />
-                    </ListItem>
-                )) */}
-            </List>
+                        </Box>
+                    </Paper>
+                    </Grid>
+                ))
+                ) : (
+                <Typography variant="h6" color="text.secondary">
+                    No hay tareas disponibles.
+                </Typography>
+                )}
+
             <Divider />
 
             <Dialog open={openTaskDialog} onClose={handleCloseTaskDialog}>

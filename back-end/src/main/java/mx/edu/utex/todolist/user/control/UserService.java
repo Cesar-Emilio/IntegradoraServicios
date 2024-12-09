@@ -239,7 +239,8 @@ public class UserService {
         if (user == null) {
             return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
-
+        logger.info(user.getPassword());
+        logger.info(password);
         user.setPassword(passwordEncoder.encode(password));
         logger.info("Contraseña actualizada: " + passwordEncoder.encode(password));
         user.setResetToken(null);

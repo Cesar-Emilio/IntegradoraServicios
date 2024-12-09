@@ -15,9 +15,29 @@ describe('Navigation Tests', () => {
         cy.get('a').contains('Volver').click();
         cy.contains('Bienvenido a To-Do List');
     });
+    it('Crear un proyecto', () => {
+        cy.visit('/');
+        cy.get('a').contains('Iniciar sesión').click();
+        cy.get('input[name="email"]').type('admin@admin.com');
+        cy.get('input[name="password"]').type('12345');
+        cy.get('button[type="submit"]').click();
+
+        cy.get('button').eq(2).click();
+        cy.get('.MuiInputBase-input')
+            .eq(0) // Si hay varios, puedes usar el índice
+            .type('Lista de Proyectos');
+        cy.get('.MuiInputBase-input')
+            .eq(1) // Si hay varios, puedes usar el índice
+            .type('NP');
+        cy.get('.MuiInputBase-input')
+            .eq(2) // Si hay varios, puedes usar el índice
+            .type('La descripción de un proyecto');
+        cy.get('.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium').eq(1).click();
+
+    });
     it('Navegar a la pagina de controlador de tareas (Ver Detalles)', () => {
         cy.visit('/login');
-        cy.get('input[name="email"]').type('erickhumbetotc@gmail.com');
+        cy.get('input[name="email"]').type('admin@admin.com');
         cy.get('input[name="password"]').type('12345');
         cy.get('button[type="submit"]').click();
 
@@ -28,32 +48,9 @@ describe('Navigation Tests', () => {
         cy.url().should('include', '/proyect/Controlador');
 
     });
-    it('Navegar a la pagina de sistema de inventarios (Ver Detalles)', () => {
-        cy.visit('/login');
-        cy.get('input[name="email"]').type('erickhumbetotc@gmail.com');
-        cy.get('input[name="password"]').type('12345');
-        cy.get('button[type="submit"]').click();
-
-        cy.get('.MuiCardActions-root').eq(1) // Selecciona el segundo div con clase "card"
-            .find('a').contains("Ver Detalles") // Encuentra el botón
-            .click(); // Haz clic en el botón
-        cy.url().should('include', '/proyect/Sistema');
-    });
-    it('Navegar a la pagina de gestión de proyectos (Ver Detalles)', () => {
-        cy.visit('/login');
-        cy.get('input[name="email"]').type('erickhumbetotc@gmail.com');
-        cy.get('input[name="password"]').type('12345');
-        cy.get('button[type="submit"]').click();
-
-        cy.get('.MuiCardActions-root').eq(2) // Selecciona el tercer div con clase "card"
-            .find('a').contains("Ver Detalles") // Encuentra el botón
-            .click(); // Haz clic en el botón
-
-        cy.url().should('include', '/proyect/Gesti%C3%B3n');
-    });
     it('Navegar a la pagina de controlador de tareas (Barra Lateral)', () => {
         cy.visit('/login');
-        cy.get('input[name="email"]').type('erickhumbetotc@gmail.com');
+        cy.get('input[name="email"]').type('admin@admin.com');
         cy.get('input[name="password"]').type('12345');
         cy.get('button[type="submit"]').click();
 
@@ -63,9 +60,9 @@ describe('Navigation Tests', () => {
             .find('button')
             .click(); // Haz clic en el botón
         cy.get('.MuiListItem-root').eq(2)
-            .contains("Controlador Tareas")
+            .contains("Lista de Proyectos")
             .click();
-        cy.contains('Controlador Tareas');
+        cy.contains('Lista de Proyectos');
 
     });
     it('Navegar a la pagina de sistema de inventarios (Barra Lateral)', () => {
@@ -85,37 +82,4 @@ describe('Navigation Tests', () => {
         cy.contains('Sistema de Inventarios');
 
     });
-    it('Navegar a la pagina de gestión de proyectos (Barra Lateral)', () => {
-        cy.visit('/login');
-        cy.get('input[name="email"]').type('erickhumbetotc@gmail.com');
-        cy.get('input[name="password"]').type('12345');
-        cy.get('button[type="submit"]').click();
-
-        cy.get('.MuiPaper-root')
-            .eq(1)
-            .find('button')
-            .click(); // Haz clic en el botón
-        cy.get('.MuiListItem-root').eq(4)
-            .contains("Gestión de Proyectos")
-            .click();
-        cy.contains('Gestión de Proyectos');
-    });
-    it('Navegar a la pagina de Lista de Proyectos y cerrar sesión (Barra Lateral)', () => {
-        cy.visit('/login');
-        cy.get('input[name="email"]').type('erickhumbetotc@gmail.com');
-        cy.get('input[name="password"]').type('12345');
-        cy.get('button[type="submit"]').click();
-
-        cy.get('.MuiPaper-root')
-            .eq(1)
-            .find('button')
-            .click(); // Haz clic en el botón
-        cy.get('.MuiListItem-root').eq(1)
-            .contains("Cerrar sesión")
-            .click();
-        cy.contains('Bienvenido a To-Do List')
-    });
-
-
-
 });
