@@ -113,9 +113,10 @@ public class ProyectServiceTest{
     @Test
     public void testRegisterInvalidProyect() {
         List<Long> list = new ArrayList<>();
+        list.add(userRepository.findByEmail("erickhumbetotc@gmail.com").get().getId());
 
         // Proyecto sin una id
-        ProyectDTO dto = new ProyectDTO("Controlador Tareas", "CT", "Una aplicación para controlar tus tareas", list);
+        ProyectDTO dto = new ProyectDTO("Controlador Tareas, ESTE PROYECTO EXCEDE EL LIMITE DE CARACTERES COMO NOMBRE PARA UN PROYECTO", "CT", "Una aplicación para controlar tus tareas", list);
 
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, proyectService.register(dto).getStatusCode());
     }

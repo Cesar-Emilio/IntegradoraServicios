@@ -24,8 +24,6 @@ interface UserDTO {
     phone: number;
     password: string;
     admin: string;
-    proyect_id: number[];
-    task_id: number[];
 }
 
 export const UserPage: React.FC = () => {
@@ -94,8 +92,6 @@ export const UserPage: React.FC = () => {
                 phone: userData.telefono,
                 password: userData.password,
                 admin: userData.admin,
-                proyect_id: userData.proyects.map((p) => p.id),
-                task_id: userData.tasks.map((t) => t.id),
             };
 
             const response = await users.update(userData.id, updatedUser);
@@ -327,7 +323,7 @@ export const UserPage: React.FC = () => {
                                 component={Link}
                                 to="/changePassword"
                             >
-                                Olvidaste tu contraseña?
+                                Cambiar contraseña
                             </Typography>
                         </Box>
 

@@ -6,10 +6,10 @@ export const tasks = {
     create: async (data: Record<string, any>) => {
         return await instance.post(`${endpoint}/register`, data);
     },
-    getAll: async (proyectId: number | string) => {
+    getAll: async (proyectId: number | undefined) => {
         return await instance.get(`${endpoint}/findAll/${proyectId}`);
     },
-    get: async (id: number | string) => {
+    get: async (id: number | undefined) => {
         return await instance.get(`${endpoint}/find/${id}`);
     },
     update: async (id: number | string, data: Record<string, any>) => {

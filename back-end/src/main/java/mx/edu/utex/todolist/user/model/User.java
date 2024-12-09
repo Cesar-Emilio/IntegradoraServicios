@@ -1,5 +1,6 @@
 package mx.edu.utex.todolist.user.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import mx.edu.utex.todolist.proyect.model.Proyect;
 import mx.edu.utex.todolist.task.model.Task;
@@ -47,6 +48,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "proyect_id")
     )
+    @JsonIgnore
     private List<Proyect> proyects;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -55,6 +57,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "task_id")
     )
+    @JsonIgnore
     private List<Task> tasks;
 
     public User() {

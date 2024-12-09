@@ -88,23 +88,6 @@ public class ProyectService {
                     HttpStatus.BAD_REQUEST
             );
         }
-
-        List<User> users = userRepository.findAllById(proyectDTO.getUser_id());
-        if (users.isEmpty()) {
-            return new ResponseEntity<>(
-                    new Message("No se encontraron usuarios con los IDs proporcionados", TypesResponse.ERROR),
-                    HttpStatus.BAD_REQUEST
-            );
-        }
-
-        for (User user : users) {
-            user.getProyects().add(proyect);
-        }
-
-        userRepository.saveAll(users);
-        if(proyect == null) {
-            return new ResponseEntity<>(new Message("El proyecto no se registró correctamente", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
-        }
         logger.info("El registro ha sido realizada correctamente");
         return new ResponseEntity<>(new Message(proyect, "El proyecto se registró correctamente", TypesResponse.SUCCESS), HttpStatus.CREATED);
     }
