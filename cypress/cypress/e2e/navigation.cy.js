@@ -59,11 +59,40 @@ describe('Navigation Tests', () => {
             .eq(1)
             .find('button')
             .click(); // Haz clic en el botón
-        cy.get('.MuiListItem-root').eq(2)
+        cy.get('.MuiListItem-root').eq(3)
             .contains("Controlador de Tareas")
             .click();
         cy.contains('Controlador de Tareas');
 
     });
+    it('Editar Perfil (Barra Lateral)', () => {
+        cy.visit('/login');
+        cy.get('input[name="email"]').type('admin@admin.com');
+        cy.get('input[name="password"]').type('12345');
+        cy.get('button[type="submit"]').click();
 
+        cy.contains('Lista de Proyectos').should('be.visible'); // Título del Dashboard
+        cy.get('.MuiPaper-root')
+            .eq(1)
+            .find('button')
+            .click(); // Haz clic en el botón
+        cy.get('.MuiListItem-root').eq(1)
+            .click();
+        cy.contains("Perfil")
+    });
+    it('Cerrar sesión (Barra Lateral)', () => {
+        cy.visit('/login');
+        cy.get('input[name="email"]').type('admin@admin.com');
+        cy.get('input[name="password"]').type('12345');
+        cy.get('button[type="submit"]').click();
+
+        cy.contains('Lista de Proyectos').should('be.visible'); // Título del Dashboard
+        cy.get('.MuiPaper-root')
+            .eq(1)
+            .find('button')
+            .click(); // Haz clic en el botón
+        cy.get('.MuiListItem-root').eq(2)
+            .click();
+        cy.contains("Bienvenido a To-Do List")
+    });
 });

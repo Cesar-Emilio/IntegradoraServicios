@@ -117,4 +117,30 @@ describe('Start to End Tests', () => {
         cy.visit('/dashboard')
 
     });
+    it('Editar Perfil', () => {
+        cy.visit('/login');
+        cy.get('input[name="email"]').type('admin@admin.com');
+        cy.get('input[name="password"]').type('12345');
+        cy.get('button[type="submit"]').click();
+
+        cy.contains('Lista de Proyectos').should('be.visible'); // Título del Dashboard
+        cy.get('.MuiPaper-root')
+            .eq(1)
+            .find('button')
+            .click(); // Haz clic en el botón
+        cy.get('.MuiListItem-root').eq(1)
+            .click();
+        cy.contains("Perfil");
+        cy.get('.MuiButtonBase-root.MuiButton-root').eq(1).click();
+        cy.get('.MuiInputBase-input.MuiInput-input').eq(0).clear().type('Erick');
+        cy.get('.MuiInputBase-input.MuiInput-input').eq(1).clear().type('Teja');
+        cy.get('.MuiInputBase-input.MuiInput-input').eq(2).clear().type('7774806546');
+
+        cy.get('.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary').eq(1).click();
+
+        cy.contains('Erick');
+        cy.contains('Teja');
+        cy.contains('7774806546');
+
+    });
 });
