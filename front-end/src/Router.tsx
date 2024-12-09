@@ -7,6 +7,9 @@ import { DashboardPage } from "./pages/dashboard";
 import NotFound from "./pages/404";
 import { ProjectPage } from "./pages/proyect";
 import { MenuLayout } from "./common/MenuLayout";
+import { UserPage } from "./pages/profile";
+import { ChangePasswordPage } from "./pages/authPassword";
+import { PasswordSolicitudePage } from "./pages/passwordSolicitude";
 
 export const AppRouter: React.FC<{}> = () => {
     return (
@@ -14,9 +17,12 @@ export const AppRouter: React.FC<{}> = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forgotPassword" element={< PasswordSolicitudePage />} />
             <Route path="/" element={<MenuLayout />} >
                 <Route path="/proyect/:projectId/:id" element={<ProjectPage />} />
                 <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/profile" element={<UserPage />} />
+                <Route path="/changePassword" element={<ChangePasswordPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>

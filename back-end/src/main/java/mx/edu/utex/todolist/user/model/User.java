@@ -60,6 +60,7 @@ public class User {
         this.telefono = telefono;
         this.password = password;
         this.admin = admin;
+        this.status = true;
     }
 
     public User(long id, String nombre, String apellido, String email, long telefono, String password, boolean status, String admin) {

@@ -6,6 +6,7 @@ import mx.edu.utex.todolist.security.JwtUtil;
 import mx.edu.utex.todolist.security.UserDetailsServiceImpl;
 import mx.edu.utex.todolist.security.dto.AuthResponse;
 import mx.edu.utex.todolist.task.model.TaskRepository;
+import mx.edu.utex.todolist.user.model.ChangePasswordDTO;
 import mx.edu.utex.todolist.user.model.UserDTO;
 import mx.edu.utex.todolist.utils.EmailSender;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -168,16 +169,23 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> changePassword(Long id, String password) {
+    public ResponseEntity<Message> changePassword(Long id, ChangePasswordDTO password) {
         User user = userRepository.findById(id).orElse(null);
         if(user == null) {
+            logger.error("El usuario no se encontró");
             return new ResponseEntity<>(new Message("El usuario no se encontró", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
-        if(password.length() > 50) {
+        if(password.getNewPassword().length() > 100) {
+            logger.error("La contraseña excede el número de caracteres");
             return new ResponseEntity<>(new Message("La contraseña excede el número de caracteres", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
-        user.setPassword(passwordEncoder.encode(password));
+        if(!passwordEncoder.matches(password.getOldPassword(), user.getPassword())) {
+            logger.error("La contraseña actual no coincide");
+            return new ResponseEntity<>(new Message("La contraseña actual no coincide", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        }
+
+        user.setPassword(passwordEncoder.encode(password.getNewPassword()));
 
         user = userRepository.saveAndFlush(user);
         if(user == null) {
@@ -200,13 +208,16 @@ public class UserService {
     @Transactional
     public ResponseEntity<Message> solicitudeChangePassword(String email) {
 
+        logger.info("Se ha solicitado un cambio de contraseña");
+
         User user = userRepository.findByEmail(email).orElse(null);
         if (user == null) {
+            logger.error("Correo no registrado");
             return new ResponseEntity<>(new Message("Correo no registrado", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         }
 
         String resetToken = jwtUtil.generateTemporaryToken(email);
-
+        logger.info("Correo de restablecimiento enviado");
         emailSender.sendPasswordResetEmail(user.getEmail(), resetToken);
         return ResponseEntity.ok(new Message("Correo de restablecimiento enviado", TypesResponse.SUCCESS));
     }
@@ -230,7 +241,7 @@ public class UserService {
     }
 
     private boolean validateDTOAttributes(UserDTO dto) {
-        return dto.getName().length() > 50 || dto.getLastname().length() > 50 || dto.getEmail().length() > 50 || String.valueOf(dto.getPhone()).length() > 10 || dto.getPassword().length() > 50;
+        return dto.getName().length() > 50 || dto.getLastname().length() > 50 || dto.getEmail().length() > 50 || String.valueOf(dto.getPhone()).length() > 10 || dto.getPassword().length() > 100;
     }
 
     private boolean validateIdTask(Long id) {

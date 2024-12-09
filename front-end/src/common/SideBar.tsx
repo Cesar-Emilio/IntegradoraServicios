@@ -86,6 +86,15 @@ export const SideBar: React.FC = () => {
                                 />
                             </ListItem>
 
+                            <ListItem component={Link} to="/profile">
+                                <ListItemText
+                                    color="primary"
+                                    sx={{ cursor: "pointer", color: "#DEDEDE" }}
+                                    primary="Perfil"
+                                    onClick={handleOptionClick}
+                                />
+                            </ListItem>
+
                             <ListItem
                                 sx={{ cursor: "pointer", color: "#DEDEDE" }}
                                 onClick={() => {

@@ -1,5 +1,6 @@
 package mx.edu.utex.todolist.user.control;
 
+import mx.edu.utex.todolist.user.model.ChangePasswordDTO;
 import mx.edu.utex.todolist.user.model.User;
 import mx.edu.utex.todolist.user.model.UserDTO;
 import mx.edu.utex.todolist.utils.Message;
@@ -41,9 +42,9 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PutMapping("/changePassword /{id}")
-    public ResponseEntity<Message> changePassword(@PathVariable Long id, @RequestBody String password) {
-        return userService.changePassword(id, password);
+    @PutMapping("/changePassword/{id}")
+    public ResponseEntity<Message> changePassword(@PathVariable Long id, @RequestBody ChangePasswordDTO dto) {
+        return userService.changePassword(id, dto);
     }
 
     //TODO: Realizar los siguientes métodos

@@ -29,6 +29,12 @@ const theme = createTheme({
         primary: {
             main: themePalette.LIME,
         },
+        secondary: {
+            main: themePalette.LIME,
+        },
+        error: {
+            main: themePalette.ERROR_MAIN,
+        },
     },
     typography: {
         fontFamily: themePalette.FONT_GLOBAL,

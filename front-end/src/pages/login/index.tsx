@@ -3,6 +3,7 @@ import {
     Box,
     Button,
     Container,
+    Divider,
     Grid,
     Paper,
     TextField,
@@ -49,8 +50,6 @@ export const LoginPage: React.FC<{}> = () => {
 
         try {
             await LoginValidate.validate(loginData);
-            // localhost:8080/login
-            // authLogin(loginData) 
             const response = await authLogin(loginData);
 
             const userData: TypeUser = response.data.result;
@@ -148,6 +147,25 @@ export const LoginPage: React.FC<{}> = () => {
                             >
                                 Iniciar sesión
                             </Button>
+                            <Typography
+                                variant="caption"
+                                color="textSecondary"
+                                align="center"
+                            >
+                                Olvidaste tu contraseña?{" "}
+                                <Button
+                                    size="small"
+                                    variant="text"
+                                    component={Link}
+                                    to="/forgotPassword"
+                                    style={{ fontSize: "inherit", textTransform: "none" }}
+                                >
+                                    Cambiar contraseña
+                                </Button>
+                            </Typography>
+
+                            <Divider />
+
                             <Typography variant="body2">
                                 ¿No tienes cuenta?{" "}
                                 <Button component={Link} to="/register">

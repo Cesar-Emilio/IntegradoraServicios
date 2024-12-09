@@ -21,12 +21,12 @@ export const users = {
     logout: async () => {
         return await instance.post(`${endpoint}/logout`);
     },
-    changePassword: async (data: Record<string, any>) => {
-        return await instance.post(`${endpoint}/changePassword`, data);
+    changePassword: async (userId: number, data: { oldPassword: string, newPassword: string }) => {
+        return await instance.put(`${endpoint}/changePassword/${userId}`, data);
     },
-    solicitudeChangePassword: async (email: string) => {
-        return await instance.post(`${endpoint}/solicitudeChangePassword`, { email });
-    },
+    requestPasswordChange: async (email: string) => {
+        return await instance.post(`${endpoint}/solicitudeChangePassword/${encodeURIComponent(email)}`);
+    },    
     changePasswordBySolicitude: async (data: { token: string; password: string }) => {
         return await instance.post(`${endpoint}/changePasswordBySolicitude`, data);
     },

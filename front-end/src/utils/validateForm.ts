@@ -49,3 +49,8 @@ export const TaskValidate = Yup.object().shape({
         .required("El nombre de la tarea es obligatorio")
         .max(50, "El nombre no puede superar los 50 caracteres"),
   });
+
+
+export const EmailValidate = Yup.object().shape({
+    email: Yup.string().trim().email('Correo electónico invalido').required('El correo electrónico es requerido'),
+});

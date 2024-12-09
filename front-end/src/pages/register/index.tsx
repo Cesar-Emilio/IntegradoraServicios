@@ -56,7 +56,7 @@ export const RegisterPage: React.FC<{}> = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+    
         try {
             const phoneNumber = Number(registerData.phone);
     
@@ -67,8 +67,9 @@ export const RegisterPage: React.FC<{}> = () => {
                     "phone"
                 );
             }
+    
             await RegisterValidate.validate(registerData);
-
+    
             const response = await users.create({
                 name: registerData.name,
                 lastname: registerData.lastname,
@@ -77,14 +78,12 @@ export const RegisterPage: React.FC<{}> = () => {
                 password: registerData.password,
                 admin: "ROLE_USER",
             });
-
+    
             if (response.data.type === "SUCCESS") {
                 const userData: TypeUser = response.data.result;
-                console.log(userData);
-
                 localStorage.setItem("jwt", userData.jwt);
                 localStorage.setItem("user", JSON.stringify(userData));
-
+    
                 getSuccess("Se ha registrado correctamente");
                 navigate("/dashboard");
             } else {
@@ -92,11 +91,16 @@ export const RegisterPage: React.FC<{}> = () => {
             }
         } catch (error: any) {
             if (error.response) {
-                getError(error.response.data.message);
+                if (error.response.status === 400) {
+                    const errorMessage = error.response.data.message || "Error desconocido";
+                    getError(errorMessage);
+                } else {
+                    getError(error.message);
+                }
             } else {
                 getError(error.message);
             }
-
+    
             switch (error.path) {
                 case "email":
                     emailRef.current?.focus();
@@ -118,6 +122,8 @@ export const RegisterPage: React.FC<{}> = () => {
             }
         }
     };
+    
+    
 
     return (
         <Container maxWidth="sm">

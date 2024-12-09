@@ -33,18 +33,17 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         // Rutas públicas
-                        .requestMatchers("/login", "/users/register").permitAll()
+                        .requestMatchers("/login", "/users/register", "/users/find/**", "/users/changePasswordBySolicitude/**", "/users/solicitudeChangePassword/**").permitAll()
 
                         //Rutas protegidas para ROLE_USER y ROLE_ADMIN
                         .requestMatchers("/users/login", "/users/logout", "/users/changePassword/**", "/users/findAll",
-                                "/users/edit/**", "/users/solicitudeChangePassword/**",
-                                "/users/changePasswordBySolicitude/**", "/users/update/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                                "/users/edit/**", "/users/update/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         .requestMatchers("/proyects/findAll", "/proyects/find/**","/proyects/active", "/proyects/inactive",
                                 "/proyects/getTasks").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         .requestMatchers("/category/findAll").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 
                         // Rutas protegidas exclusivas para ROLE_ADMIN
-                        .requestMatchers("/users/changeStatus/**", "/users/find/**")
+                        .requestMatchers("/users/changeStatus/**")
                         .hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/proyects/register", "/proyects/update/**", "/proyects/changeStatus/**"
                                 ).hasAuthority("ROLE_ADMIN")
