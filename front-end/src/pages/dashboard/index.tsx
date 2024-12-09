@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import AddIcon from '@mui/icons-material/Add';
 import {
     Grid,
     Box,
@@ -135,6 +136,7 @@ export const DashboardPage: React.FC = () => {
                                 marginTop: { xs: 2, sm: 0 },
                                 ml: { xs: 0, sm: 2 },
                             }}
+                            startIcon={<AddIcon />}
                             onClick={handleOpenProyectDialog}
                         >
                             Agregar Proyecto

@@ -45,6 +45,7 @@ type TypeTask = {
 export const ProjectPage: React.FC = () => {
     const navigate = useNavigate();
     const { getError, getSuccess } = useNotification();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         document.title = "Proyecto";
@@ -69,22 +70,11 @@ export const ProjectPage: React.FC = () => {
     const [taskDescription, setTaskDescription] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<number | "">("");
     const [selectedUser, setSelectedUser] = useState<number | "">("");
-    const [project, setProject] = useState<TypeProject>({
-        id: 0,
-        name: "",
-        abreviation: "",
-        description: "",
-        status: false,
-        categories: [],
-        tasks: [],
-    });
+    const [project, setProject] = useState<TypeProject | null>(null);
 
     const [openCategoryDialog, setOpenCategoryDialog] = useState(false);
     const [categoryName, setCategoryName] = useState("");
     const [categoryDescription, setCategoryDescription] = useState("");
-
-    const handleOpenTaskDialog = () => setOpenTaskDialog(true);
-    const handleOpenCategoryDialog = () => setOpenCategoryDialog(true);
 
     const [listCategories, setListCategories] = useState<any[]>([]);
     const [listUsers, setListUsers] = useState<any[]>([]);
@@ -96,12 +86,13 @@ export const ProjectPage: React.FC = () => {
     const taskResponsiblesRef = React.useRef<HTMLInputElement>(null);
     const taskCategoryRef = React.useRef<HTMLInputElement>(null);
 
+    const handleOpenTaskDialog = () => setOpenTaskDialog(true);
+    const handleOpenCategoryDialog = () => setOpenCategoryDialog(true);
+
     const fetchUsers = async () => {
         if (!proyect_id) return;
-
         try {
             const response = await users.getAll();
-            console.log("Usuarios obtenidos:", response);
             setListUsers(response.data.result);
         } catch (error) {
             console.error("Error al obtener los usuarios:", error);
@@ -110,10 +101,8 @@ export const ProjectPage: React.FC = () => {
 
     const fetchCategories = async () => {
         if (!proyect_id) return;
-
         try {
             const response = await categories.getAll(proyect_id);
-            console.log("Categorías obtenidas:", response);
             setListCategories(response.data.result);
         } catch (error) {
             console.error("Error al obtener las categorías:", error);
@@ -122,12 +111,14 @@ export const ProjectPage: React.FC = () => {
 
     const fetchProyect = async () => {
         try {
+            setIsLoading(true);
             const response = await proyects.get(proyect_id);
-            console.log("Proyecto obtenido:", response);
             setProject(response.data.result);
-            console.log("Proyecto:", project);
         } catch (error) {
             console.error("Error al obtener el proyecto:", error);
+            setProject(null);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -154,12 +145,9 @@ export const ProjectPage: React.FC = () => {
     };
 
     const handleCreateTask = async () => {
-        console.log("selectedUser antes de validar:", selectedUser);
-    
         try {
             const selectedUserId = Number(selectedUser);
-    
-            // Validar manualmente si selectedUserId es válido
+
             if (isNaN(selectedUserId) || selectedUserId <= 0) {
                 throw new Yup.ValidationError(
                     "Debes seleccionar un responsable válido.",
@@ -167,14 +155,14 @@ export const ProjectPage: React.FC = () => {
                     "responsibles_id"
                 );
             }
-    
+
             await TaskValidate.validate({
                 name: taskName,
                 description: taskDescription,
                 category_id: Number(selectedCategory),
                 responsibles_id: [selectedUserId],
             });
-    
+
             const taskData: TypeTask = {
                 name: taskName,
                 description: taskDescription,
@@ -182,10 +170,10 @@ export const ProjectPage: React.FC = () => {
                 proyect_id: Number(proyect_id),
                 responsibles_id: [selectedUserId],
             };
-    
+
             const response = await tasks.create(taskData);
             getSuccess("Tarea creada exitosamente");
-    
+
             handleCloseTaskDialog();
         } catch (error: any) {
             if (error.response) {
@@ -193,7 +181,7 @@ export const ProjectPage: React.FC = () => {
             } else {
                 getError(error.message);
             }
-    
+
             if (error.path === "name" && taskNameRef.current) {
                 taskNameRef.current.focus();
             } else if (error.path === "description" && taskDescriptionRef.current) {
@@ -205,7 +193,6 @@ export const ProjectPage: React.FC = () => {
             }
         }
     };
-    
 
     const handleCreateCategory = async () => {
         const categoryData: TypeCategory = {
@@ -215,16 +202,12 @@ export const ProjectPage: React.FC = () => {
             status: true,
         };
 
-        console.log("Creando categoría:", categoryData);
-
         try {
             await CategoryValidate.validate(categoryData);
             const response = await categories.create(categoryData);
-            console.log("Categoría creada exitosamente:", response);
             getSuccess("Categoría creada exitosamente");
 
             fetchCategories();
-
             handleCloseCategoryDialog();
         } catch (error: any) {
             getError("Error al crear la categoría");
@@ -240,6 +223,22 @@ export const ProjectPage: React.FC = () => {
             }
         }
     };
+
+    if (isLoading) {
+        return (
+            <Box sx={{ padding: 3 }}>
+                <Typography>Cargando...</Typography>
+            </Box>
+        );
+    }
+
+    if (!project) {
+        return (
+            <Box sx={{ padding: 3 }}>
+                <Typography>No se pudo cargar el proyecto</Typography>
+            </Box>
+        );
+    }
 
     return (
         <Box sx={{ padding: 3 }}>
@@ -299,16 +298,22 @@ export const ProjectPage: React.FC = () => {
             <Typography variant="h6" sx={{ marginBottom: 2 }}>
                 Tareas del Proyecto
             </Typography>
+
             <List>
-                {/* Aquí agregarías las tareas, utilizando mock data o la data real */}
-                {/* exampleTasks.map((task) => (
-                    <ListItem key={task.id}>
-                        <ListItemText
-                            primary={task.name}
-                            secondary={task.description}
-                        />
+                {project.tasks.length > 0 ? (
+                    project.tasks.map((task) => (
+                        <ListItem key={task.id}>
+                            <ListItemText
+                                primary={task.name}
+                                secondary={task.description}
+                            />
+                        </ListItem>
+                    ))
+                ) : (
+                    <ListItem>
+                        <ListItemText primary="No hay tareas en este proyecto" />
                     </ListItem>
-                )) */}
+                )}
             </List>
             <Divider />
 
